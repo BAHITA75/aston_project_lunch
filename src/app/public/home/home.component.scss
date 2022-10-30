@@ -1,6 +1,7 @@
 .Home{
     height: 100vh;
     background-color: #FADDB1;
+    font-family: 'Ubuntu';
 
     .navbar{
         height: 15vh;
@@ -26,14 +27,15 @@
             height: 15vh;
             display: flex;
             justify-content: end;
+            align-items: center;
             position: absolute;
 
             .userIcon{
-                width: 43px;
+                width: 40px;
                 height: auto;
+                cursor: pointer;
         
-            }
-            
+            }    
         }
     }
 
@@ -44,12 +46,12 @@
         align-items: center;
 
         .circleHome{
-            width: 20vh;
-            height: 20vh;
+            width: 30vh;
+            height: 30vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid black;
+            border: 1.5px solid black;
             border-radius: 20vh;
             cursor: pointer;
             transition: 0.5s ease;
@@ -95,7 +97,7 @@
     .circleHome{
 
         h3{
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
     }
     
@@ -103,5 +105,13 @@
 }
 
 @media screen and (min-width: 1025px){
+
+    .circleHome{
+
+        h3{
+            font-size: 1.1rem;
+        }
+    }
+    
     
 }

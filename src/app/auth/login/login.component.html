@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="SignIn">
+    <nav class="navLogin">
+        <a class="navBtn" routerLink="/" >Retour à l'accueil</a>
+    </nav>
+    <main class="mainSignIn">
+        <figure class="containerFormSignIn">
+            <figure class="titleFormSignIn">
+                <h1>Connectez-vous</h1>
+            </figure>
+            <form class="formSignIn" action="POST">
+                <div class="containerInput">
+                    <input class="signFormField" type="email" placeholder="Adresse mail">
+                    <span>adresse mail non connue</span>
+
+                </div>
+
+                <div class="containerInput">
+                    <input class="signFormField" type="password" placeholder="Mot de passe">
+                    <span>mot de passe incorrect</span>
+                </div>
+
+                <div class="containerInput"><input class="signFormSubmit" type="submit" value="Connexion"></div>
+            </form>
+            <figure class="containerRedirectBtn">
+                <p>Pas encore inscrit  <a routerLink="/signup">Créer votre compte</a></p>
+            </figure>
+        </figure>
+    </main>
+</div>

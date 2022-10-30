@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { PublicRoutingModule } from './public-routing.module';
+import { AuthRoutingModule } from '../auth/auth-routing.module';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     CommonModule,
-    PublicRoutingModule
+    PublicRoutingModule,
+    AuthRoutingModule
   ]
 })
 export class PublicModule { }
