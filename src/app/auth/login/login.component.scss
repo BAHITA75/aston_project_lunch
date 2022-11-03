@@ -1,18 +1,26 @@
 .SignIn{
     height: 100vh;
     font-family: 'Ubuntu';
-    background-color: #FADDB1;
+    background-color: #d8b785;
 
     .navLogin{
         height: 15vh;
         display: flex;
         align-items: center;
 
+        .returnAllIcon{
+            width: 22px;
+            height: auto;
+            margin-top: 6px;
+            margin-left: 50px;
+        }
+
         .navBtn{
-            margin-left: 30px;
             color: black;
+            margin-left: 10px;
             text-decoration: none;
             cursor: pointer;
+            
 
             &:after{
                 
@@ -21,10 +29,9 @@
     }
 
     .mainSignIn{
-        height: 85vh;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+
 
         span{
             visibility: hidden;
@@ -33,7 +40,117 @@
 }
 
 @media screen and (max-width: 768px){
-    .containerFormLogin{}
+
+    .returnAllIcon, .navBtn{
+        display: none;
+    }
+
+
+    .returnMobIcon{
+        margin-left: 40px;
+        width: 46px;
+        height: auto;
+    }
+
+    .navBtn{
+        font-size: 1.2rem;
+        
+
+        &:after{
+            
+        }
+    }
+
+    .mainSignIn{
+        height: 75vh;
+       align-items: center;
+
+
+        span{
+            visibility: hidden;
+        }
+    }
+
+    .containerFormSignIn{
+        width: 80%;
+        height: 60vh;
+        overflow: hidden;
+        border-radius: 50px;
+        border: 3px solid black;
+
+        .titleFormSignIn{
+            height: 15vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h1{
+                
+                font-weight: 300;
+            }
+        }
+
+        .formSignIn{
+            height: 45vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            
+
+            .containerInput{
+                height: 10vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .signFormField{
+                    width: 70%;
+                    height: 7vh;
+                    border: none;
+                    background-color: transparent;
+                    border-bottom: 1.5px solid black;
+                    font-family: 'Ubuntu'; 
+                }
+
+                span{
+                    font-size: 13px;
+                    margin-top: 3px;
+                    color: red;
+                }
+
+                .signFormSubmit{
+                    padding: 14px;
+                    background-color: transparent;
+                    border: 1.4px solid black;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                    font-family: 'Ubuntu';
+
+                    &:hover{
+                        background-color: rgb(27, 27, 27);
+                        color: #FADDB1;
+                    }
+                }
+            }
+        }
+
+        .containerRedirectBtn{
+            height: 10vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            p{
+                font-size: 0.7rem;
+
+                a{
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+
 
 
 }
@@ -46,12 +163,26 @@
 
 @media screen and (min-width: 1025px){
 
+    .mainSignIn{
+        height: 85vh;
+        align-items: flex-start;
+    }
+
+        .navBtn{
+            font-size: 1.2rem;
+            
+
+            &:after{
+                
+            }
+        }
+
     .containerFormSignIn{
-        width: 30vw;
+        width: 25vw;
         height: 70vh;
         overflow: hidden;
         border-radius: 50px;
-        border: 2px solid black;
+        border: 3px solid black;
 
         .titleFormSignIn{
             height: 15vh;
@@ -60,6 +191,7 @@
             align-items: center;
 
             h1{
+
                 font-weight: 300;
             }
         }

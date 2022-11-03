@@ -1,6 +1,6 @@
 .Home{
     height: 100vh;
-    background-color: #FADDB1;
+    background-color: #d8b785;
     font-family: 'Ubuntu';
 
     .navbar{
@@ -10,20 +10,14 @@
         align-items: center;
 
         .containerLogo{
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
             height: 15vh;
-
-            h1{
-                font-size: 1.8rem;
-            }
-        
-        
+            display: flex;
+            align-items: center;
         }
     
         .containerUserIcon{
-            width: 90%;
+            width: 80%;
             height: 15vh;
             display: flex;
             justify-content: end;
@@ -46,13 +40,10 @@
         align-items: center;
 
         .circleHome{
-            width: 30vh;
-            height: 30vh;
             display: flex;
             justify-content: center;
             align-items: center;
             border: 1.5px solid black;
-            border-radius: 20vh;
             cursor: pointer;
             transition: 0.5s ease;
 
@@ -72,17 +63,18 @@
 @media screen and (max-width: 768px){
     
     .containerLogo{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 15vh;
+        justify-content: start;
 
         h1{
-            font-size: 1.8rem;
+            margin-left: 30px;
+            font-size: 1.6rem;
         }
     }
 
     .circleHome{
+        width: 20vh;
+        height: 20vh;
+        border-radius: 20vh;
 
         h3{
             font-size: 0.9rem;
@@ -94,11 +86,22 @@
 
 @media screen and (min-width: 769px) and (max-width:1024px){
 
-    .circleHome{
+    .containerLogo{
+        justify-content: start;
 
-        h3{
-            font-size: 0.8rem;
+        h1{
+            margin-left: 80px;
+            font-size: 1.8rem;
         }
+    }
+
+    h3{
+        font-size: 1.2rem;
+    }
+    .circleHome{
+        width: 25vh;
+        height: 25vh;
+        border-radius: 25vh;
     }
     
     
@@ -106,10 +109,22 @@
 
 @media screen and (min-width: 1025px){
 
+    .containerLogo{
+        justify-content: center;
+
+        h1{
+            font-size: 2.1rem;
+        }
+    }
+
+
     .circleHome{
+        width: 27vh;
+        height: 27vh;
+        border-radius: 27vh;
 
         h3{
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
     }
     
