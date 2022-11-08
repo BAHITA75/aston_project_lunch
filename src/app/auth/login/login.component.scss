@@ -163,6 +163,10 @@
 
 @media screen and (min-width: 1025px){
 
+    .returnMobIcon{
+        display: none;
+    }
+
     .mainSignIn{
         height: 85vh;
         align-items: flex-start;
@@ -226,11 +230,13 @@
                 }
 
                 .signFormSubmit{
-                    padding: 14px;
+                    width: 150px;
+                    height: 60px;
                     background-color: transparent;
-                    border: 1.4px solid black;
+                    border: 1.8px solid black;
                     cursor: pointer;
                     transition: 0.3s ease;
+                    font-size: 17px;
                     font-family: 'Ubuntu';
 
                     &:hover{
@@ -248,7 +254,7 @@
             align-items: center;
 
             p{
-                font-size: 0.7rem;
+                font-size: 0.9rem;
 
                 a{
                     margin-left: 3px;
