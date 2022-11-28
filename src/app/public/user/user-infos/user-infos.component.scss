@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main{
+    display: flex;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.welcome{
+    padding: 45px 0;
+    height: 100vh;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.cagnotte {
+    display: flex;
+    justify-content: end;
+    margin-right: 25px;
+}
+
+.cagnotte a {
+    padding: 0.6rem 2.4rem;
+    border: 2px solid;
+    border-radius: 25px;
+    font-weight: 500;
+}
+
+.infos {
+    padding: 45px;
+    line-height: 1.9rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.arrow-down {  
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 10px;
+    top: 14px;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 5px solid;
+}
+
+.infos h2 {
+    margin-bottom: 1.9rem;
+}
+
+.password {
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+}
+
+.password input {
+    margin: 2px;
+}
+
+.editPass:hover div {
+    visibility: visible;
+}
+
+
+
+
+
+
+
