@@ -6,14 +6,15 @@
         </div>
         <div class="infos">
             <h2>Informations personnelles</h2>
-            <p><strong>Prénom et Nom</strong> : Toto DUPONT</p>
-            <p><strong>Adresse mail</strong> : toto@adresse.com</p>
+            <p><strong>Prénom et Nom</strong> : {{ users[0].name }}</p>
+            <p><strong>Adresse mail</strong> : {{ users[0].firstname }}</p>
             <a class="editPass"><strong>Modifier mon mot de passe </strong>
                 <i class="arrow-down"></i>
                 <div class="password">
                     <input type="password" name="" id="" placeholder="Mot de passe actuel">
                     <input type="password" name="" id="" placeholder="Nouveau mot de passe">
                     <input type="password" name="" id="" placeholder="confirmer le nouveau de passe">
+                    <input type="button" value="submit" class="btn btn-primary col-6">
                 </div>
             </a>
             

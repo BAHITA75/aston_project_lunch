@@ -7,8 +7,8 @@ import { SidebarComponent } from './user/component/sidebar/sidebar.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { UserInfosComponent } from './user/user-infos/user-infos.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from '../services/user-service';
 
 @NgModule({
   declarations: [
@@ -18,10 +18,7 @@ import { UserInfosComponent } from './user/user-infos/user-infos.component';
     UserOrderComponent,
     UserInfosComponent,
   ],
-  imports: [
-    CommonModule,
-    PublicRoutingModule,
-    AuthRoutingModule
-  ]
+  imports: [CommonModule, PublicRoutingModule, AuthRoutingModule,  HttpClientModule],
+  providers: [UserService], //On fourni ainsi notre service au module
 })
-export class PublicModule { }
+export class PublicModule {}
