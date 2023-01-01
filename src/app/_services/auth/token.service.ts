@@ -24,6 +24,12 @@ export class TokenService {
     localStorage.removeItem('token')
     this.router.navigate(['/'])
   }
+
+  // on suprimme le token quand il sera expiré
+  clearTokenExpired(): void{
+    localStorage.removeItem('token')
+    this.router.navigate(['auth'])
+  }
  
   //on recupère le token de l'utilisateur connecté puis l'injecter dans l'intercepteur
   getToken(): string | null {

@@ -16,6 +16,7 @@ export class UserInfosComponent implements OnInit {
 
   ngOnInit() {
     this.userService.findAll().subscribe((data) => {
+      console.log(data);
       this.users = data;
     });
 
