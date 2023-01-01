@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "npx compodoc -p src/tsconfig.doc.json --port 7200",
+    "compodoc:serve": "npx compodoc -p src/tsconfig.doc.json -s --port 7200",
+    "compodoc:serve:watch": "npx compodoc -p src/tsconfig.doc.json -s -w --port 7200" 
   },
   "private": true,
   "dependencies": {

@@ -1,3 +1,38 @@
+
+
+<!-- <div class="form_container">
+    <div>
+        <div>Email : {{ form.email }}</div>
+        <div>Passw : {{ form.password }}</div>
+    </div>
+
+    <form 
+        name="form" 
+        #f="ngForm"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        >
+        <div class="group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required>
+            <div class="form_error" *ngIf="email.errors && f.submitted">
+                Email is required !
+            </div>
+        </div>
+        <div class="group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="5">
+   
+            <div class="form_error" *ngIf="password.errors && f.submitted">
+                <div *ngIf="password.errors['required']">Password is required</div>
+                <div *ngIf="password.errors['minlength']">Password must be at least 5 charracters</div>
+            </div>
+        </div>
+        <div class="group">
+            <button>Login</button>
+        </div>
+    </form>
+</div> -->
+
 <div class="SignIn">
     <nav class="navLogin">
         <img class="returnAllIcon" src="../../../assets/arrowReturn.svg" alt="retour vers l'accueil">
@@ -9,16 +44,28 @@
             <figure class="titleFormSignIn">
                 <h1>Connectez-vous</h1>
             </figure>
-            <form class="formSignIn" action="POST">
+            <form 
+                class="formSignIn" 
+                action="POST"
+                name="form" 
+                #f="ngForm"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                >
                 <div class="containerInput">
-                    <input class="signFormField" type="email" placeholder="Adresse mail">
-                    <span>adresse mail non connue</span>
-
+                    <input class="signFormField" type="email" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required placeholder="Adresse mail">
+                    <div class="form_error" *ngIf="email.errors && f.submitted">
+                        Email is required !
+                    </div>
+                    <!-- <span>adresse mail non connue</span> -->
                 </div>
 
                 <div class="containerInput">
-                    <input class="signFormField" type="password" placeholder="Mot de passe">
-                    <span>mot de passe incorrect</span>
+                    <input class="signFormField" type="password" placeholder="Mot de passe" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="5">
+                    <div class="form_error" *ngIf="password.errors && f.submitted">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']">Password must be at least 5 charracters</div>
+                    </div>
+                    <!-- <span>mot de passe incorrect</span> -->
                 </div>
 
                 <div class="containerInput"><input class="signFormSubmit" type="submit" value="Connexion"></div>

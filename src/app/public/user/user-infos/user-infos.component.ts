@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user-service';
-import { User } from '../../../model/user';
+import { UserService } from 'src/app/_services/user-service';
+import { User } from '../../../_model/user';
+import { Img } from '../../../_model/img';
 
 @Component({
   selector: 'app-user-infos',
   templateUrl: './user-infos.component.html',
-  styleUrls: ['./user-infos.component.scss']
+  styleUrls: ['./user-infos.component.scss'],
 })
 export class UserInfosComponent implements OnInit {
+  users: User[];
+  image: Img;
 
-  users : User[];
-
-  constructor(private userService: UserService) {
-    
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {
+    this.userService.findAll().subscribe((data) => {
       this.users = data;
-      console.log(data);
+    });
+
+    this.userService.findImg(1).subscribe((data) => {
+      this.image = data;
     });
   }
-
 }

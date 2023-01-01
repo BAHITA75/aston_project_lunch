@@ -25,6 +25,10 @@ ul {
     font-size: 18px;
 }
 
+.sign-out i {
+    color: red;
+}
+
 .side-bar {
     display: flex;
     flex-direction: column;
@@ -34,3 +38,4 @@ ul {
     padding: 2rem;
     background-color: #faddb1;
 }
+
