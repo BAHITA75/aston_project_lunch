@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/public/user/user-infos/user-infos.component.ts</code>
+    <code>src/app/public/user/user-profile/user-profile.component.ts</code>
 </p>
 
 
@@ -95,19 +95,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-user-infos</code></td>
+                <td class="col-md-9"><code>app-user-profile</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./user-infos.component.scss</code></td>
+                <td class="col-md-9"><code>./user-profile.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./user-infos.component.html</code></td>
+                <td class="col-md-9"><code>./user-profile.component.html</code></td>
             </tr>
 
 
@@ -177,7 +177,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/public/user/user-infos/user-infos.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/public/user/user-profile/user-profile.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -245,7 +245,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/public/user/user-infos/user-infos.component.ts:17</a></div>
+                            class="link-to-prism">src/app/public/user/user-profile/user-profile.component.ts:17</a></div>
                 </td>
             </tr>
 
@@ -286,7 +286,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/public/user/user-infos/user-infos.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/public/user/user-profile/user-profile.component.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -312,7 +312,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/public/user/user-infos/user-infos.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/public/user/user-profile/user-profile.component.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -331,9 +331,9 @@ import { User } from &#x27;../../../_model/user&#x27;;
 import { Img } from &#x27;../../../_model/img&#x27;;
 
 @Component({
-  selector: &#x27;app-user-infos&#x27;,
-  templateUrl: &#x27;./user-infos.component.html&#x27;,
-  styleUrls: [&#x27;./user-infos.component.scss&#x27;],
+  selector: &#x27;app-user-profile&#x27;,
+  templateUrl: &#x27;./user-profile.component.html&#x27;,
+  styleUrls: [&#x27;./user-profile.component.scss&#x27;],
 })
 export class UserInfosComponent implements OnInit {
   users: User[];
@@ -386,7 +386,7 @@ export class UserInfosComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./user-infos.component.scss</code>
+                    <code>./user-profile.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">@import url(&#x27;https://fonts.googleapis.com/css2?family&#x3D;Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&amp;display&#x3D;swap&#x27;);
 
@@ -495,7 +495,7 @@ a {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="main">    <app-sidebar></app-sidebar>    <div class="welcome">        <div class="cagnotte">            <a href="">Cagnotte : X </a>        </div>        <div class="infos">            <h2>Informations personnelles</h2>            <img style="width: 50px; height: 50px;" src="{{image.image64}}" alt="">            <p><strong>Prénom et Nom</strong> : {{ users[0].name }}</p>            <p><strong>Adresse mail</strong> : {{ users[0].firstname }}</p>            <a class="editPass"><strong>Modifier mon mot de passe </strong>                <i class="arrow-down"></i>                <div class="password">                    <input type="password" name="" id="" placeholder="Mot de passe actuel">                    <input type="password" name="" id="" placeholder="Nouveau mot de passe">                    <input type="password" name="" id="" placeholder="confirmer le nouveau de passe">                    <input type="button" value="submit" class="btn btn-primary col-6">                </div>            </a>                    </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserInfosComponent', 'selector': 'app-user-infos'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserInfosComponent', 'selector': 'app-user-profile'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserInfosComponent'};
 </script>

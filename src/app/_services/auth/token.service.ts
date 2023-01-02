@@ -22,12 +22,14 @@ export class TokenService {
   // se servir pour la deconnexion: au moment du logout la methode clearToken() est appelée
   clearToken(): void{
     localStorage.removeItem('token')
-    this.router.navigate(['/'])
+    localStorage.removeItem('user')
+    this.router.navigate(['auth'])
   }
 
   // on suprimme le token quand il sera expiré
   clearTokenExpired(): void{
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
     this.router.navigate(['auth'])
   }
  

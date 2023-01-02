@@ -29,14 +29,17 @@ export class TokenInterceptor implements HttpInterceptor {
       console.log(clone);
 
       return next.handle(clone).pipe( // on recupère l'erreur quand on reçois la reponse
+
         catchError(error => {
           console.log(error);
           if(error.status === 401){ // si l'erreur de 401 (erreur d'authentification, le token est expiré)
             this.TokenService.clearTokenExpired(); // on suprimme le token actuel puis on redirge le user vers la page de connexion
           }
           return throwError('Session Expired');
-        }),
+        })
+  
       );
+
     } else {
       return next.handle(request);
     } 

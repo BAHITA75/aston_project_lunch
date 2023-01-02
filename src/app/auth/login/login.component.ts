@@ -1,7 +1,9 @@
+import { User } from './../../_model/user';
 import { TokenService } from '../../_services/auth/token.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth/auth.service';
+import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 
 interface ICredentials {
@@ -24,9 +26,14 @@ export class LoginComponent implements OnInit {
     password: '',
   };
 
+  jwt: any = '';
+  user: any;
+  isLunchLadyUncrypted: any;
+
   constructor(
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -42,13 +49,40 @@ export class LoginComponent implements OnInit {
   // }
 
   onSubmit(): void {
-    console.log(this.form);
+    //console.log(this.form);
     this.authService.login(this.form).subscribe(
-      data => {
-        console.log(data.headers.get('Authorization'));
-        this.tokenService.saveToken(data.headers.get('Authorization'));
+      (data) => {
+        //console.log(data.headers.get('Authorization'));
+
+        // Récupération du token
+        this.jwt = data.headers.get('Authorization');
+
+        // Décrypter le token
+        let tokenUncrypte: any = jwt_decode(this.jwt);
+
+        // stockage du token et de l'utilisateur
+        this.tokenService.saveToken(this.jwt);
+        localStorage.setItem('user', JSON.stringify(tokenUncrypte['user']));
+
+        // Récupération de l'ID de l'utilisateur stocké dans le token
+        this.user = localStorage.getItem('user');
+        let userId = JSON.parse(this.user).id;
+
+        // Récupération du role de l'utilisateur
+        this.isLunchLadyUncrypted = localStorage.getItem('user');
+        let isLunchLady = JSON.parse(this.isLunchLadyUncrypted).isLunchLady;
+
+        // console.log(isLunchLady);
+        // console.log(localStorage.getItem('user'));
+
+        // redirection de l'utilisateur selon son role
+        if (isLunchLady == false) {
+          this.router.navigate(['user-profile/' + userId]);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
-      err => console.log(err),
+      (err) => console.log(err)
     );
   }
 }

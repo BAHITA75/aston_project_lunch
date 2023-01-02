@@ -5,7 +5,7 @@ import { PublicRoutingModule } from './public-routing.module';
 import { SidebarComponent } from './user/component/sidebar/sidebar.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
-import { UserInfosComponent } from './user/user-infos/user-infos.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../_services/user-service';
 
@@ -15,7 +15,7 @@ import { UserService } from '../_services/user-service';
     UserHomeComponent,
     SidebarComponent,
     UserOrderComponent,
-    UserInfosComponent,
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,
