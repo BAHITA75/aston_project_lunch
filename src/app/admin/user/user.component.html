@@ -1,0 +1,48 @@
+<div class="main">
+    <app-header></app-header>
+    <div #tab>
+        <div class="input-group rounded ">
+            <input (keyup)="search();" #inputSearch type="search" class="form-control rounded" placeholder="Chercher par nom" aria-label="Search" aria-describedby="search-addon" />
+            <span  style="cursor: pointer;" class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+        </div>
+        <div class="tab p-2">
+          <table class="table ">
+              <thead>
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prénom</th>
+                  <th scope="col">Porte feuille</th>
+                  <th scope="col">Modifier</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="!actif">
+                <tr  *ngFor="let user of users" >
+                  <td>{{user.name}}</td>
+                  <td>{{user.firstname}}</td>
+                  <td>{{user.wallet}}€</td>
+                  <td (click)="getUser(user)">GO</td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="actif">
+                <tr  *ngFor="let user of tabSearch" >
+                  <td>{{user.name}}</td>
+                  <td>{{user.firstname}}</td>
+                  <td>{{user.wallet}}€</td>
+                  <td (click)="getUser(user)">GO</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div *ngIf="user">
+      {{user.name}}
+      {{user.firstname}}
+      {{user.wallet}}
+      <input type="number" #input>
+      <button (click)="credit(user)">Crediter</button>
+      <button (click)="debit(user)">Debiter</button>
+    </div>
+</div>

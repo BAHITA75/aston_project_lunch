@@ -1,0 +1,42 @@
+<div class="main">
+    <div class="">
+        <div class="input-group rounded ">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+        </div>
+        <div class="tab p-2">
+          <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col">Numéro de commande</th>
+                <th scope="col">Client</th>
+                <th scope="col">Commande</th>
+                <th scope="col">Price</th>
+                <th scope="col">Annuler</th>
+              </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let order of orders">
+                  <tr >
+                    <td>{{order.id}}</td>
+                    <td>{{order.user?.name}} {{order.user?.firstname}}</td>                    
+                    <td >
+                      <span *ngFor="let quantity of order.quantity">{{quantity.menu?.label}} </span>
+                      <span *ngFor="let quantity of order.quantity">{{quantity.meal?.label}} </span>
+                    </td>
+                    <td>
+                      <span style="display: none;" *ngFor="let quantity of order.quantity">{{quantity.menu?.priceDF}}</span>
+                      <span #priceMeal style="display: none;" *ngFor="let quantity of order.quantity">{{quantity.meal?.priceDF}} </span>
+                      <span #totalPrice >{{totalPriceResult}}</span>
+                    </td>
+                    <td (click)="yes(orders)">GO</td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
