@@ -36,10 +36,14 @@
         span{
             visibility: hidden;
         }
+
+        .form_error {
+            color: red;
+        }
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1024px){
 
     .returnAllIcon, .navBtn{
         display: none;
@@ -56,9 +60,7 @@
         font-size: 1.2rem;
         
 
-        &:after{
-            
-        }
+       
     }
 
     .mainSignIn{
@@ -155,11 +157,11 @@
 
 }
 
-@media screen and (min-width: 769px) and (max-width:1024px){
+// @media screen and (min-width: 769px) and (max-width:1024px){
 
-    .containerFormLogin{}
+//     .containerFormLogin{}
     
-}
+// }
 
 @media screen and (min-width: 1025px){
 

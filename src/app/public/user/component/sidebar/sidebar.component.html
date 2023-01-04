@@ -4,13 +4,13 @@
     </div>
     <div class="menu">
         <ul>
-            <li><a href="" routerLink="/user-infos">Modifier le profil</a></li>
-            <li><a href="" routerLink="/user-order">Commandes</a></li>
+            <li><a (click)="redirectToUserProfile()">Modifier le profil</a></li>
+            <li><a routerLink="/user-order">Commandes</a></li>
             
         </ul>
     </div>
     <div class="sign-out">
-        <a href="">
+        <a (click)="logout()">
             <i class="fa-solid fa-power-off me-2"></i>
             <span>Déconnexion</span>
         </a>

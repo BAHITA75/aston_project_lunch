@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Meal } from 'src/app/model/meal';
-import { Order } from 'src/app/model/order';
-import { Quantity } from 'src/app/model/quantity';
+import { Meal } from 'src/app/_model/meal';
+import { Order } from 'src/app/_model/order';
+import { Quantity } from 'src/app/_model/quantity';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({

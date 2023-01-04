@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Menu } from '../model/menu';
+import { Menu } from '../_model/menu';
 import { Observable } from 'rxjs';
 
 

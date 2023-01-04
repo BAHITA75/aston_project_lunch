@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { PublicRoutingModule } from './public-routing.module';
-import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { SidebarComponent } from './user/component/sidebar/sidebar.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
-import { UserInfosComponent } from './user/user-infos/user-infos.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from '../services/user-service';
+import { UserService } from '../_services/user-service';
 
 @NgModule({
   declarations: [
@@ -16,9 +15,13 @@ import { UserService } from '../services/user-service';
     UserHomeComponent,
     SidebarComponent,
     UserOrderComponent,
-    UserInfosComponent,
+    UserProfileComponent,
   ],
-  imports: [CommonModule, PublicRoutingModule, AuthRoutingModule,  HttpClientModule],
-  providers: [UserService], //On fourni ainsi notre service au module
+  imports: [
+    CommonModule,
+    PublicRoutingModule,
+    HttpClientModule,
+  ],
+  providers: [], //On fourni ainsi notre service au module
 })
 export class PublicModule {}
