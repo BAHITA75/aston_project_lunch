@@ -1,6 +1,4 @@
-import { User } from './../../_model/user';
 import { TokenService } from '../../_services/auth/token.service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth/auth.service';
 import jwt_decode from 'jwt-decode';
@@ -38,16 +36,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // onSubmit(): void {
-  //   console.log(this.form);
-  //   this.authService.login(this.form).subscribe(
-  //     (data) => {
-  //       this.tokenService.saveToken(data.access_token);
-  //     },
-  //     (err) => console.log(err)
-  //   );
-  // }
-
   onSubmit(): void {
     //console.log(this.form);
     this.authService.login(this.form).subscribe(
@@ -84,5 +72,9 @@ export class LoginComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  createAccount() {
+    this.router.navigate(['auth/sign-up'])
   }
 }

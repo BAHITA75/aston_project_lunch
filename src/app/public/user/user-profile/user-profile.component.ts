@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user-service';
 import { User } from '../../../_model/user';
 import { Img } from '../../../_model/img';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     private http: HttpClient
   ) {}
 
@@ -33,6 +34,7 @@ export class UserProfileComponent implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('userId');
     // Appel de la fonction pour récuperer les données
     this.getUserInfos(this.userId);
+    this.getImage(this.userId);
   }
 
   async getUserInfos(userId: number) {
@@ -63,5 +65,16 @@ export class UserProfileComponent implements OnInit {
       //   this.showBadToaster('Chef, chef ! On a un problème :( ' + error['status'] + ' ' + error.error['exceptionMessage']);
       // }
     }
+  }
+  async getImage(userId: number) {
+    let userImageInfo: any = await this.userService.getUserImage(userId);
+    this.image = userImageInfo['image64'];
+    // console.log(this.image);
+  }
+
+  //-------------------- Modification des informations des utilisateurs ----------------------------------------------
+  updateUser() {
+    //REDIRECTION
+    this.router.navigate(['user-update']); //Navigation
   }
 }
