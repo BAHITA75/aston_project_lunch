@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="">
+        <div class="input-group rounded ">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+        </div>
+        <div class="tab p-2">
+          <table class="table ">
+              <thead>
+                <tr>
+                  <th scope="col">Menu</th>
+                  <th scope="col">Prix</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let menu of menus">
+                  <td>{{menu.label}}</td>
+                  <td>{{menu.priceDF}}€</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
