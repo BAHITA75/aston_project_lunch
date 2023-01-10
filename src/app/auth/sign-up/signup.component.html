@@ -57,14 +57,15 @@
             </p>
 
             <label for="photoUser" class="ph-user">
-                Choisir un avatar:
+                Uploader une image:
             </label> <br>
             <input
                 type="file"
                 id="photoUser"
                 name="photoUser"
-                accept="image/png, image/jpeg"
                 [formControl]="image"
+                accept="image/*"
+                (change)="onModifyAvatar($any($event).target.files[0])"
             />
             <div id="containAvatar" *ngIf="avatar">
                 <img class="img-avatar" src={{avatar}}/>

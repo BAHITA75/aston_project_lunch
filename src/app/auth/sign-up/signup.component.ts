@@ -32,6 +32,8 @@ export class SignupComponent implements OnInit {
   people:any ;
   base64Output : string = "data:image/png;base64,";
 
+  
+
   constructor( private router: Router, private builder: FormBuilder,private userService:UserService ) {
 
      //Configuration des contraintes des validators
@@ -107,12 +109,13 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  
 //-------------------- Creation d'un compte utilisateur ----------------------------------------------
   async createAccount(){
     //Gestion des validateurs
     this.submitted = true;
 
-    //Recupérations des informations saisies dans le formulaire d'enregistrement
+    //Recupération des informations saisies dans le formulaire d'enregistrement
     this.people = {
       "address": this.createAccountForm.value.adress,
       "wallet": 0,
@@ -155,10 +158,16 @@ export class SignupComponent implements OnInit {
   //   this.toastr.info(message) ;
   // }
 //-------------------- MODIFICATION DE L'AVATAR --------------------------------------------
+
+
   async onModifyAvatar(file:any){
     try {
+
         //Récuperation du path de l'image choisie
         this.imagePath = file.name ;
+
+        console.log(file)
+        console.log(this.imagePath)
 
         //Conversion du path de l'image choisie, enregistrement et modification de l'avatar
         this.convertFile(file).subscribe(base64 => {
@@ -182,5 +191,6 @@ export class SignupComponent implements OnInit {
     reader.readAsBinaryString(file);
     reader.onload = (event:any) => result.next(btoa(event.target.result.toString()));
     return result;
+    
   }
 }

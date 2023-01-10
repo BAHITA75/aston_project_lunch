@@ -1,9 +1,11 @@
+import { TokenService } from './../../../_services/auth/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../_services/user-service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../_model/user';
 import { Observable, ReplaySubject } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-user-update',
@@ -30,9 +32,10 @@ export class UserUpdateComponent implements OnInit {
   user:any ;
   avatar?:any ;
   base64Output : string = "data:image/png;base64,";
+  jwt: any = ""
 
 //-------------------- CONSTRUCTEUR ----------------------------------------------
- constructor( private router: Router, private builder: FormBuilder,private userService:UserService) {
+ constructor( private router: Router, private builder: FormBuilder,private userService:UserService, private tokenService: TokenService) {
      //CONFIGURATEUR DES VALIDATORS : EMAIL
      this.email = new FormControl('', [
       Validators.required,
@@ -146,7 +149,7 @@ export class UserUpdateComponent implements OnInit {
     }
   }
 //-------------------- CHANGEMENT D'INFORMATIONS DE COMPTE ----------------------------------------------
-  async changeInformationsAccount(){
+  async changeInfosUser(){
   //BOUTON DE VALIDATION DU FORMULAIRE
   this.submitted = true;
   //RECUPERATION DES VALEURS MODIFIÉES POUR L'UPDATE EN BDD (VERIFICATION SI CHANGEMENT DE MOT DE PASSE)
@@ -180,18 +183,19 @@ export class UserUpdateComponent implements OnInit {
     //RECUPERATION DE 'LID DE L'UTILISATEUR A MODIFIER
       let idUser = this.user.id;
       //REQUETES DE CHANGEMENT AU SERVICE DE UTILISATEUR
-      let requeteChangeInformations = this.userService.updateUser(this.people, this.user.id);
+      let requeteChangeInformations = this.userService.updateUser(this.people, idUser);
       //CHANGEMENT DE L'OBJET LOCAL DE STOCKAGE DES DONNÉES DE L'UTILISATEUR
       localStorage.setItem('user', JSON.stringify(requeteChangeInformations)) ;
-      //REDIRECTION
-      this.router.navigate([`user-profile/${this.user.id}`]);
 
+      // Récupération de l'ID de l'utilisateur stocké dans le token
       // this.jwt = localStorage.getItem('token')
-
-      //   // Décrypter le token
       // let tokenUncrypte: any = jwt_decode(this.jwt);
-      // this.tokenService.saveToken(this.jwt);
       // localStorage.setItem('user', JSON.stringify(tokenUncrypte['user']));
+      // this.tokenService.saveToken(this.jwt);
+      // this.user = localStorage.getItem('user');
+      // let userId = JSON.parse(this.user).id;
+      
+      this.router.navigate([`user-profile/${idUser}`]);
     }
     catch (error: any) {
       

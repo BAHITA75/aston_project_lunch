@@ -1,10 +1,14 @@
-.contain-changeinfo {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3em;
-    margin-top: 3em;
+.contain {
+    width: 100%;
+    margin: 3em auto;
     padding: 3em;
+}
+
+.containInfos {
+    width: 60%;
+    padding: 3em;
+    margin: auto;
+    background-color: #faddb1;
 }
 
 h2 {
@@ -14,11 +18,40 @@ h2 {
     margin-bottom: 2em;
 }
 
+.photoUserUpadated {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px;
+    margin-bottom: 1.5em;
+
+}
+
+.photoUserUpadated img {
+    width: 150px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.photoUserUpadated label {
+    background-color: #e7bc7b;
+    border: #195806 solid 1px;
+    border-radius: 6px ;
+    padding: 0.2em;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
 form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 40%;
+    width: 70%;
     margin: auto;
 }
 
@@ -31,8 +64,7 @@ input,
 select,
 textarea {
     width: 60%;
-    border-color: #175242;
-    border: 1px solid;
+    border: #195806 solid 1px;
     border-radius: 6px;
 }
 
@@ -47,10 +79,6 @@ p {
 .choosefile {
     border: none;
     background-color: #175242;
-}
-
-input[type="file"] {
-    display: none;
 }
 
 .custom-file-upload {
@@ -78,18 +106,22 @@ input[type="file"] {
     border-radius: 6px;
 }
 
-.modif {
-    width: 40%;
+.btnModif {
+    width: 60%;
     margin: auto;
     background-color: #2482d5;
     font-weight: bold;
+}
+
+#boutonReturn button {
+    margin-top: 1.5em;
 }
 
 @media screen and (min-width: 300px) and (max-width: 1020px) {
     form {
         width: 100%;
     }
-    .contain-changeinfo {
+    .contain {
         margin-top: 0;
     }
 }

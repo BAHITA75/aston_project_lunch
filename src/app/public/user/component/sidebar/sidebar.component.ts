@@ -14,10 +14,16 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  redirectToUserProfile(): void {
-    this.user = localStorage.getItem('user');
-    let userId = JSON.parse(this.user).id;
-    this.router.navigate(['user-profile/' + userId]);
+  // redirectToUserProfile(): void {
+  //   this.user = localStorage.getItem('user');
+  //   let userId = JSON.parse(this.user).id;
+  //   this.router.navigate(['user-profile/' + userId]);
+  // }
+  
+  // Traitement de la modification de l'utilisateur conneté
+  updateUser(): void {
+    // Redirection vers le composant user-update
+    this.router.navigate(['user-update']); 
   }
 
   // Deconnexion de l'utilisateur

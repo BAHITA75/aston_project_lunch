@@ -13,7 +13,7 @@ import { TokenInterceptorProvider } from './_services/auth/token.interceptor';
   ],
   imports: [
     BrowserModule, 
-    AppRoutingModule, 
+    AppRoutingModule,
     HttpClientModule
   ],
   providers: [TokenInterceptorProvider],

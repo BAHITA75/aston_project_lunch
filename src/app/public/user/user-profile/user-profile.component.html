@@ -25,13 +25,11 @@
                         </div>
                     </div>
                 </div>
-                <!--Si l'utilisateur est la lunch-->
             </div>
             <div class="btn-action">
                 <button (click)="updateUser()" >Modifier mes informations / Mot de Passe</button>
-                <!--Si ce n'est pas la lunch, le compte peut etre soldé-->
                 <button *ngIf="!isLunch">Solder mon Compte</button>
-                <button >Retour au Menu</button>
+                <button routerLink="/menu" >Retour au Menu</button>
             </div>
         </div>
     </div>

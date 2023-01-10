@@ -14,16 +14,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.url = `http://localhost:8080/stone.lunchtime`;
-  }
+}
 
   //--------------------  RECUPERATION DES NFORMATIONS D'UN UTILISATEUR ----------------------------------------------
   async getUserInfos(userId: number) {
     //FORMULATION HEADER
     const headers = {
-      Authorization: this.tokenItem,
+      "Authorization": this.tokenItem,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      accept: 'application/json',
+      "accept": 'application/json',
     };
 
     //REQUETE API: recuperer l'utilisateur par son id
@@ -32,10 +32,12 @@ export class UserService {
 
   //------------------------ RECUPERATION DE LA PHOTO DE L'UTILISATEUR ---------------------------------
   async getUserImage(userId: number) {
-    //REQUETE API
-    return await this.http
-      .get(`${this.url}/user/findimg/${userId}`)
-      .toPromise();
+  const headers = { 'Authorization': this.tokenItem ,
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'accept': 'application/json',
+  };
+    return await this.http.get(`${this.url}/user/findimg/${userId}`, {headers}).toPromise();
     // return this.http.get<Img>(`${this.url}/user/findimg/${userId}`).subscribe(
     //   data => console.log(data)
     // );
@@ -84,7 +86,7 @@ export class UserService {
     //REFORMULATION DE L'URL
     let url = this.url + "/user/register" ;
     //FOMULATION DU HEADER
-    const headers = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'accept': 'application/json' };
+    const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'accept': 'application/json' };
 
     //REQUETE API
     return await this.http.put(url, people, { headers }).toPromise();
