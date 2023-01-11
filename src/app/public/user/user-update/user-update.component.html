@@ -2,7 +2,7 @@
     <div class="containInfos">
         <h2>Mes informations - Changements</h2>
         
-        <!--Changement de la photo de l'utilisateur et apercue de la photo de l'utilisateur-->
+        <!--Changement de la photo de l'utilisateur-->
         <div class="photoUserUpadated"> 
             <img src={{avatar}} alt="avatar"/> 
             <label for="photoUssser">Changer la photo à uploader (png,jpeg)</label>
@@ -11,7 +11,7 @@
                 id="photoUssser"
                 name="photoUssser"
                 accept="image/*"
-                (change)="onModifyAvatar($any($event).target.files[0])"
+                (change)="changeImage($any($event).target.files[0])"
             />
         </div>
 

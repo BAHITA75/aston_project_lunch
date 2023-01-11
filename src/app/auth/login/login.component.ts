@@ -73,7 +73,12 @@ export class LoginComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+  //-------------------- Mot de passe oublié --------------------//
+  resetPassword(){
+    this.router.navigate(['auth/resetPassword']);
+  }
 
+  //-------------------- Création de compte --------------------//
   createAccount() {
     this.router.navigate(['auth/sign-up'])
   }

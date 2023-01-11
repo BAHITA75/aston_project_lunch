@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../_model/user';
 import { Img } from '../_model/img';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -80,6 +81,18 @@ export class UserService {
     //REQUETE API
     return await this.http.patch(url, avatarObj, { headers }).toPromise();
   }
+
+  //--------------------  Mot de passe oublié ----------------------------------------------//
+  async forgotPassword(resetPasswordForm : FormGroup){
+    // Url de la requete
+    let url = this.url + "/forgotpassword?email=" + resetPasswordForm.value.email ;
+    // Requete de l' Api
+    return await this.http.post(url,"", {observe : 'response'}).toPromise();
+  }
+
+  // async forgotPassword(resetPasswordForm : FormGroup): Observable<HttpResponse<Response>> {
+  //   return this.http.post<Response>(`${this.url}/forgotpassword?email=" ${resetPasswordForm.value.email}`, credentials, {observe: 'response'});
+  // }
 
   //--------------------  Creation d'un compte (S'enregistrer) ----------------------------------------------
   async createAccount(people: any){
