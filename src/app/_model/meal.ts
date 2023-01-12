@@ -1,12 +1,13 @@
-import { Ingredients } from "./ingredients";
+import { Ingredient } from "./ingredient";
 
-export class Meal {
-    id?: number;
-    description?: string;
-    label?: string;
-    status?: number;
-    imageId?: string;
-    priceDF?: string;
-    category?: Array<number>;
-    ingredients?: Ingredients;
-}
+export interface Meal{
+    "id": number,
+    "description": string,
+    "label": string,
+    "status": number,
+    "imageId": number,
+    "priceDF": number,
+    "availableForWeeks": number[]
+    "category": number,
+    "ingredients": Ingredient[]
+  }

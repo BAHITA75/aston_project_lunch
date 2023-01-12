@@ -14,7 +14,11 @@ import jwt_decode from 'jwt-decode';
 })
 export class UserUpdateComponent implements OnInit {
   submitted: boolean = false;
-  changeInformationsForm: FormGroup;
+
+  user: any;
+  userUpdated: any;
+
+  updateUserInfos: FormGroup;
   name: FormControl;
   firstname: FormControl;
   phone: FormControl;
@@ -25,12 +29,11 @@ export class UserUpdateComponent implements OnInit {
   password: FormControl;
   passwordVerif: FormControl;
   sex: FormControl;
+  
   imagePath: string = '';
   image64: any;
-  people: any;
-  user: any;
-  avatar?: any;
-  base64Output: string = 'data:image/png;base64,';
+  base64: string = 'data:image/png;base64,';
+
   jwt: any = '';
 
   //-------------------- CONSTRUCTEUR ----------------------------------------------
@@ -93,7 +96,7 @@ export class UserUpdateComponent implements OnInit {
     this.sex = new FormControl('', [Validators.required]);
 
     //CRÉATION DU FORMULAIRE REACTIF DE CREATION DE COMPTE
-    this.changeInformationsForm = this.builder.group({
+    this.updateUserInfos = this.builder.group({
       name: this.name,
       firstname: this.firstname,
       phone: this.phone,
@@ -112,7 +115,7 @@ export class UserUpdateComponent implements OnInit {
     this.user = userUncrypted;
 
     //AJOUT DES VALEURS RECUPERÉES DE L'UTILISATEUR DANS LE FORMULAIRE PRÉ-REMPLIE
-    this.changeInformationsForm.setValue({
+    this.updateUserInfos.setValue({
       name: this.user.name,
       firstname: this.user.firstname,
       phone: this.user.phone,
@@ -135,65 +138,54 @@ export class UserUpdateComponent implements OnInit {
   async getImage(userId: number) {
     try {
       //Recuperation de l'image par le service user
-      let userAvatarInformations: any = await this.userService.getUserImage(
+      let userImage: any = await this.userService.getUserImage(
         userId
       );
-      this.avatar = userAvatarInformations['image64'];
+      this.image64 = userImage['image64'];
     } catch (error: any) {
       console.log(error);
     }
   }
   //-------------------- Changement des infomations de l'utilisateur ----------------------------------------------
-  async changeInfosUser() {
+  async upadateUserInfos() {
     //Bouton de validation du formulaire
     this.submitted = true;
-    // Récuperation des valeurs modifiées pour les inserer dans la BDD (verification si changeme,nt de Mot de passe)
-    if (this.changeInformationsForm.value.password == '') {
-      this.people = {
-        address: this.changeInformationsForm.value.adress,
-        postalCode: this.changeInformationsForm.value.postalCode,
-        email: this.changeInformationsForm.value.email,
-        name: this.changeInformationsForm.value.name,
-        firstname: this.changeInformationsForm.value.firstname,
-        phone: this.changeInformationsForm.value.phone,
-        town: this.changeInformationsForm.value.town,
-        sex: this.changeInformationsForm.value.sex,
+    // Récuperation les valeurs modifiées pour les inserer dans la BDD (verification si changeme,nt de Mot de passe)
+    if (this.updateUserInfos.value.password == '') {
+      this.userUpdated = {
+        address: this.updateUserInfos.value.adress,
+        postalCode: this.updateUserInfos.value.postalCode,
+        email: this.updateUserInfos.value.email,
+        name: this.updateUserInfos.value.name,
+        firstname: this.updateUserInfos.value.firstname,
+        phone: this.updateUserInfos.value.phone,
+        town: this.updateUserInfos.value.town,
+        sex: this.updateUserInfos.value.sex,
       };
     } else {
-      this.people = {
-        address: this.changeInformationsForm.value.adress,
-        postalCode: this.changeInformationsForm.value.postalCode,
-        email: this.changeInformationsForm.value.email,
-        password: this.changeInformationsForm.value.password,
-        name: this.changeInformationsForm.value.name,
-        firstname: this.changeInformationsForm.value.firstname,
-        phone: this.changeInformationsForm.value.phone,
-        town: this.changeInformationsForm.value.town,
-        sex: this.changeInformationsForm.value.sex,
+      this.userUpdated = {
+        address: this.updateUserInfos.value.adress,
+        postalCode: this.updateUserInfos.value.postalCode,
+        email: this.updateUserInfos.value.email,
+        password: this.updateUserInfos.value.password,
+        name: this.updateUserInfos.value.name,
+        firstname: this.updateUserInfos.value.firstname,
+        phone: this.updateUserInfos.value.phone,
+        town: this.updateUserInfos.value.town,
+        sex: this.updateUserInfos.value.sex,
       };
     }
-    console.log(this.people);
+    console.log(this.userUpdated);
 
     try {
       // Récuperation de l'Id de l'utilisateur
       let idUser = this.user.id;
-      // Requete de modification dans le service
-      let requeteChangeInformations = this.userService.updateUser(
-        this.people,
-        idUser
-      );
-      // Changement de l'objet dans le LocalStorage
-      localStorage.setItem('user', JSON.stringify(requeteChangeInformations));
+      // Insersion des modifications de l'utilisateur dans la BDD
+      let userUpdated = await this.userService.updateUser(this.userUpdated, idUser);
+      // Changement de l'objet utilisateur dans le LocalStorage
+      localStorage.setItem('user', JSON.stringify(userUpdated));
 
-      // Récupération de l'ID de l'utilisateur stocké dans le token
-      // this.jwt = localStorage.getItem('token')
-      // let tokenUncrypte: any = jwt_decode(this.jwt);
-      // localStorage.setItem('user', JSON.stringify(tokenUncrypte['user']));
-      // this.tokenService.saveToken(this.jwt);
-      // this.user = localStorage.getItem('user');
-      // let userId = JSON.parse(this.user).id;
-
-      this.router.navigate([`user-profile/${idUser}`]);
+      this.router.navigate([`user/user-profile/${this.user.id}`]);
     } catch (error: any) {}
   }
   //--------------------- Modification de l'image de l'utilisateur  -------------------//
@@ -204,26 +196,29 @@ export class UserUpdateComponent implements OnInit {
       this.imagePath = file.name;
       //Convertion du path du fichier en string base 64
       this.convertFile(file).subscribe((base64) => {
-        this.base64Output = this.base64Output + base64;
-        this.avatar = this.base64Output;
+        this.base64 = this.base64 + base64;
+        this.image64 = this.base64;
         //Enregistrement dans la BDD de l'objet contenant les informations de l'avatar de l'utilisateur
-        this.onRecordImg();
+        this.setImage();
       });
-    } catch (error: any) {}
+    } catch (error: any) {
+      console.log('changeImage', error);
+    }
   }
-  //-------------------- ENREGISTREMENT DE L'AVATAR EN BDD --------------------------
-  async onRecordImg() {
+  //-------------------- Enregistrement de l'image dans la BDD --------------------------
+  async setImage() {
     //Formation de l'objet contenant les informations de l'avatar de l'utilisateur
-    let objImage = {
+    let imageObj = {
       imagePath: this.imagePath,
-      image64: this.base64Output,
+      image64: this.image64,
     };
     //Requetes asynchrone de changement d'avatar au service user
-    await this.userService.changeUserPicture(this.user.id, objImage);
+    await this.userService.changeUserPicture(this.user.id, imageObj);
     //Redirection vers la page "mon compte"
     this.router.navigate([`user/profile/${this.user.id}`]);
   }
-  //------------------- CONVERTION DU PATH D'UNE IMAGE EN STRING BASE 64 ---------------
+
+  //------------------- Conversion du path d'une image en base 64 ---------------//
   convertFile(file: File): Observable<string> {
     const result = new ReplaySubject<string>(1);
     const reader = new FileReader();
@@ -231,8 +226,8 @@ export class UserUpdateComponent implements OnInit {
     reader.readAsBinaryString(file);
     //Conversion du fichier en string base 64
     reader.onload = (event: any) =>
-      result.next(btoa(event.target.result.toString()));
-    //Renvoie la base 64 du fichier
+    result.next(btoa(event.target.result.toString()));
+
     return result;
   }
 }

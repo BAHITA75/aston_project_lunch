@@ -18,7 +18,7 @@ export class MealService {
       //FORMUALTION DU HEADER
       const headers = { 'Authorization': this.tokenItem ,
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Origin': '*',
       'accept': 'application/json',
       };
 

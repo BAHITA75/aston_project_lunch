@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
         // redirection de l'utilisateur selon son role
         if (isLunchLady == false) {
-          this.router.navigate(['user-profile/' + userId]);
+          this.router.navigate(['user/user-profile/' + userId]);
         } else {
           this.router.navigate(['/']);
         }

@@ -4,7 +4,7 @@
         
         <!--Changement de la photo de l'utilisateur-->
         <div class="photoUserUpadated"> 
-            <img src={{avatar}} alt="avatar"/> 
+            <img src={{image64}} alt="avatar"/> 
             <label for="photoUssser">Changer la photo à uploader (png,jpeg)</label>
             <input
                 type="file"
@@ -17,7 +17,7 @@
 
         <!--Formulaire contenant les informations de l'utilisateur et Gestion des erreurs de validators-->
         <div id="createForm">
-            <form (ngSubmit)="changeInfosUser()" [formGroup]="changeInformationsForm"> 
+            <form (ngSubmit)="upadateUserInfos()" [formGroup]="updateUserInfos"> 
 
                 <div class="label-form">
                     Nom :<input type="text" [formControl]="name" />
@@ -138,7 +138,7 @@
 
         <div id="boutonReturn">
             <!--Bouton de retour vers le login-->
-            <button class="btn" routerLink="/user-profile/{{user.id}}">Retour</button>
+            <button class="btn" routerLink="/user/user-profile/{{user.id}}">Retour</button>
         </div>
     </div>
 </div>

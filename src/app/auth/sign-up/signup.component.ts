@@ -12,8 +12,8 @@ import { Observable, ReplaySubject } from 'rxjs';
 
 export class SignupComponent implements OnInit {
 
-  submitted = false; //Necessaire à la gestion des erreurs (activation des validators)
-  createAccountForm: FormGroup; //Formulaire de creation de compte
+  submitted = false; 
+  createUserForm: FormGroup; //Formulaire de creation de compte
   name: FormControl;
   firstname: FormControl;
   phone: FormControl;
@@ -25,15 +25,13 @@ export class SignupComponent implements OnInit {
   password: FormControl; 
   passwordVerif: FormControl;
   sex: FormControl;
-  avatar: any ;
-  image64:string = "" ;
+
   imagePath:string = "" ;
-  msgError: string = '';
+  image64:any;
+  base64 : string = "data:image/png;base64,";
+
   people:any ;
-  base64Output : string = "data:image/png;base64,";
-
   
-
   constructor( private router: Router, private builder: FormBuilder,private userService:UserService ) {
 
      //Configuration des contraintes des validators
@@ -93,7 +91,7 @@ export class SignupComponent implements OnInit {
     ]);
 
     //Création du formulaire de création de compte
-    this.createAccountForm = this.builder.group({
+    this.createUserForm = this.builder.group({
       name: this.name,
       firstname: this.firstname,
       phone: this.phone,
@@ -111,31 +109,31 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
   
 //-------------------- Creation d'un compte utilisateur ----------------------------------------------
-  async createAccount(){
+  async createUser(){
     //Gestion des validateurs
     this.submitted = true;
 
     //Recupération des informations saisies dans le formulaire d'enregistrement
     this.people = {
-      "address": this.createAccountForm.value.adress,
+      "address": this.createUserForm.value.adress,
       "wallet": 0,
-      "postalCode": this.createAccountForm.value.postalCode,
-      "email": this.createAccountForm.value.email,
+      "postalCode": this.createUserForm.value.postalCode,
+      "email": this.createUserForm.value.email,
       "isLunchLady": false,
-      "password": this.createAccountForm.value.password,
-      "name": this.createAccountForm.value.name,
-      "firstname": this.createAccountForm.value.firstname,
-      "phone": this.createAccountForm.value.phone,
-      "town": this.createAccountForm.value.town,
-      "sex": this.createAccountForm.value.sex,
+      "password": this.createUserForm.value.password,
+      "name": this.createUserForm.value.name,
+      "firstname": this.createUserForm.value.firstname,
+      "phone": this.createUserForm.value.phone,
+      "town": this.createUserForm.value.town,
+      "sex": this.createUserForm.value.sex,
       "image": {
         "imagePath": this.imagePath,
-        "image64": this.avatar
+        "image64": this.image64
       }
     }
      try {
       //Requete au service des utilisateurs
-      await this.userService.createAccount(this.people);
+      await this.userService.createUser(this.people);
 
       this.router.navigate(['auth/login']);
     }
@@ -147,41 +145,21 @@ export class SignupComponent implements OnInit {
  returnLogin(){
     this.router.navigate(['auth/login']);
   }
-//-------------------- FONCTIONS DES TOASTER ----------------------------------------------
-  // showGoodToaster(message:string){
-  //   this.toastr.success(message) ;
-  // }
-  // showBadToaster(message:string){
-  //   this.toastr.error(message) ;
-  // }
-  // showCleverToaster(message:string){
-  //   this.toastr.info(message) ;
-  // }
-//-------------------- MODIFICATION DE L'AVATAR --------------------------------------------
 
-
-  async onModifyAvatar(file:any){
+  async changeImage(file:any){
     try {
 
         //Récuperation du path de l'image choisie
         this.imagePath = file.name ;
 
-        console.log(file)
-        console.log(this.imagePath)
-
         //Conversion du path de l'image choisie, enregistrement et modification de l'avatar
         this.convertFile(file).subscribe(base64 => {
-          this.base64Output = this.base64Output + base64;
-          this.avatar = this.base64Output ;
+          this.base64 = this.base64 + base64;
+          this.image64 = this.base64 ;
         });
     }
     catch (error:any) {
-      //GESTION DES ERREURS ET MESSAGES D'ERREURS
-      // if(error['status'] == 401){
-      //   this.showBadToaster("Mais Chef ! T'es plus connecté :( ... Reviens :D ! ");
-      // }else{
-      //   this.showBadToaster('Chef, chef ! On a un problème :( ' + error['status'] + ' ' + error.error['exceptionMessage']);
-      // }
+      console.log("")
     }
   }
 //-------------------- Convertion du path d'une image en string de base 64 ------------------------

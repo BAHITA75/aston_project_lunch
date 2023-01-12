@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth/auth.service';
 import { UserService } from 'src/app/_services/user-service';
 
 @Component({
@@ -14,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup; 
   email: FormControl;
 
-  constructor( private router: Router, private builder: FormBuilder, private userService: UserService){
+  constructor( private router: Router, private builder: FormBuilder, private authService: AuthService){
     // Configuration des validators Email
     this.email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -30,7 +31,7 @@ export class ResetPasswordComponent implements OnInit {
 
     try { 
 
-      await this.userService.forgotPassword(this.resetPasswordForm); 
+      await this.authService.forgotPassword(this.resetPasswordForm); 
 
       this.router.navigate(['auth/login']);
     } 

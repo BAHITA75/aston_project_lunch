@@ -58,12 +58,7 @@ export class UserProfileComponent implements OnInit {
           break;
       }
     } catch (error: any) {
-      //GESTION DES ERREURS ET MESSAGES D'ERREURS
-      // if(error['status'] == 401){
-      //   this.showBadToaster("Mais Chef ! T'es plus connecté :( ... Reviens :D ! ");
-      // }else{
-      //   this.showBadToaster('Chef, chef ! On a un problème :( ' + error['status'] + ' ' + error.error['exceptionMessage']);
-      // }
+      console.log("getUSerInfis", error)
     }
   }
   async getImage(userId: number) {
@@ -75,6 +70,19 @@ export class UserProfileComponent implements OnInit {
   //-------------------- Modification des informations des utilisateurs ----------------------------------------------
   updateUser() {
     //REDIRECTION
-    this.router.navigate(['user-update']); //Navigation
+    this.router.navigate(['user/user-update']); //Navigation
+  }
+
+  //-------------------- SOLDER UN COMPTE ----------------------------------------------
+  async deleteUser(){
+    //REQUETE ASYNCHRONE POUR SOLDER UN COMPTE
+     try {
+      //REQUETE VERS LE SERVICE DES UTILIATEURS
+      await this.userService.deleteUser(this.userId);
+      this.router.navigate(['/']);
+    }
+    catch (error: any) {
+      console.log("soldeAccount", error)
+    }
   }
 }

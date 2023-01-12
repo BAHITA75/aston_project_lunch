@@ -4,7 +4,7 @@
     <div id="createForm">
         <p>Tout les champs sont obligatoires</p>
         <!--Formualire de création de Compte-->
-        <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
+        <form (ngSubmit)="createUser()" [formGroup]="createUserForm">
 
             <!--Inputs du formulaire & Bouton Valider et gestion des erreurs de validators-->
             <input type="text" placeholder="Nom" [formControl]="name" />
@@ -65,10 +65,10 @@
                 name="photoUser"
                 [formControl]="image"
                 accept="image/*"
-                (change)="onModifyAvatar($any($event).target.files[0])"
+                (change)="changeImage($any($event).target.files[0])"
             />
-            <div id="containAvatar" *ngIf="avatar">
-                <img class="img-avatar" src={{avatar}}/>
+            <div id="containAvatar" *ngIf="image64">
+                <img class="img-avatar" src={{image64}}/>
             </div><br>
 
             <button
