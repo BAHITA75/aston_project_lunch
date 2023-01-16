@@ -23,7 +23,6 @@ export class TokenService {
   clearToken(): void{
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    this.router.navigate(['auth'])
   }
 
   // on suprimme le token quand il sera expiré

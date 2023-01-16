@@ -1,0 +1,41 @@
+
+.nav-contain {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f1cc98;
+}
+
+.contain-link {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.contain-brand {
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.nav-item:first-child {
+    a {
+        background-color: rgb(234, 239, 239);
+    }  
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: large;
+}
+
+.contain-brand h1 {
+    color: white;
+    font-size: 2em;
+}
+
+img {
+    width: 55px;
+    padding: 0.6rem;
+}

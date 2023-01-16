@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
-
+  
+  // Connexion
   onSubmit(): void {
     //console.log(this.form);
     this.authService.login(this.form).subscribe(
@@ -65,9 +66,11 @@ export class LoginComponent implements OnInit {
 
         // redirection de l'utilisateur selon son role
         if (isLunchLady == false) {
-          this.router.navigate(['user/user-profile/' + userId]);
+          this.router.navigate(['/menu']);
+          setTimeout(this.refreshPage, 1);
         } else {
           this.router.navigate(['/']);
+          setTimeout(this.refreshPage, 1) ;
         }
       },
       (err) => console.log(err)
@@ -82,4 +85,13 @@ export class LoginComponent implements OnInit {
   createAccount() {
     this.router.navigate(['auth/sign-up'])
   }
+
+  // rafraichir la page
+  refreshPage(){
+    location.reload();
+  }
 }
+
+
+
+

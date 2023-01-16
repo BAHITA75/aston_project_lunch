@@ -11,9 +11,9 @@
                         <p><span>Prénom :</span> {{userInfo.firstname}} </p>
                         <p><span>E-Mail :</span> {{userInfo.email}} </p>
                         <p><span>Télephone :</span> {{userInfo.phone}} </p>
-                        <p *ngIf="userInfo.address"><span>Adresse: </span> {{userInfo.address}}</p>
-                        <p *ngIf="userInfo.town"><span>Ville:</span> {{userInfo.town}}</p>
-                        <p *ngIf="userInfo.postalCode"><span>Code Postal:</span> {{userInfo.postalCode}}</p>
+                        <p *ngIf="userInfo.address"><span>Adresse : </span> {{userInfo.address}}</p>
+                        <p *ngIf="userInfo.town"><span>Ville :</span> {{userInfo.town}}</p>
+                        <p *ngIf="userInfo.postalCode"><span>Code Postal :</span> {{userInfo.postalCode}}</p>
                     </div>
                     <div *ngIf="!isLunch" class="pictogram">
                         <div class="user-picture">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="wallet-credit">
                             <p>Crédit :</p>
-                            <p><span> {{userInfo.wallet}} </span></p>
+                            <p><span> {{userInfo.wallet}}  </span></p>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,9 @@
     height: 100vh;
     background-color: #d8b785;
     font-family: 'Ubuntu';
+    a {
+        text-decoration: none;
+    }
 
     .navbar{
         height: 15vh;
@@ -49,6 +52,7 @@
 
             h3{
                 font-weight: 400;
+                text-align: center;
             }
 
             &:hover{
@@ -78,6 +82,8 @@
 
         h3{
             font-size: 0.9rem;
+            font-weight: 400;
+            text-align: center;
         }
     }
 
@@ -102,6 +108,13 @@
         width: 25vh;
         height: 25vh;
         border-radius: 25vh;
+        a {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+        }
     }
     
     
@@ -122,9 +135,13 @@
         width: 27vh;
         height: 27vh;
         border-radius: 27vh;
+        a {
+            text-align: center;
+        }
 
         h3{
             font-size: 1.2rem;
+            text-align: center;
         }
     }
     

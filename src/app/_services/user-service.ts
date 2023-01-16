@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from '../_model/user';
-import { Img } from '../_model/img';
+import { User } from '../_interfaces/user';
+import { Img } from '../_interfaces/img';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -20,10 +20,10 @@ export class UserService {
   async getUserInfos(userId: number) {
     //FORMULATION HEADER
     const headers = {
-      "Authorization": this.tokenItem,
+      Authorization: this.tokenItem,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      "accept": 'application/json',
+      accept: 'application/json',
     };
 
     //REQUETE API: recuperer l'utilisateur par son id
@@ -33,13 +33,14 @@ export class UserService {
   //------------------------ RECUPERATION DE LA PHOTO DE L'UTILISATEUR ---------------------------------
   async getUserImage(userId: number) {
     const headers = {
-      "Authorization": this.tokenItem,
+      Authorization: this.tokenItem,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      "accept": 'application/json',
+      accept: 'application/json',
     };
     return await this.http
-      .get(`${this.url}/findimg/${userId}`, { headers }).toPromise();
+      .get(`${this.url}/findimg/${userId}`, { headers })
+      .toPromise();
     // return this.http.get<Img>(`${this.url}/user/findimg/${userId}`).subscribe(
     //   data => console.log(data)
     // );
@@ -48,10 +49,10 @@ export class UserService {
   //--------------------  Modification des informations de l'utilisateur ----------------------------------------------
   async updateUser(user: any, userId: number) {
     const headers = {
-      "Authorization": this.tokenItem,
+      Authorization: this.tokenItem,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'http://localhost:4200/menu',
-      "accept": 'application/json',
+      accept: 'application/json',
     };
 
     return await this.http
@@ -62,10 +63,10 @@ export class UserService {
   //------------------------- Changement de la photo de l'utilisateur --------------------------
   async changeUserPicture(userId: number, avatarObj: any) {
     const headers = {
-      "Authorization": this.tokenItem,
+      Authorization: this.tokenItem,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      "accept": 'application/json',
+      accept: 'application/json',
     };
 
     return await this.http
@@ -75,26 +76,49 @@ export class UserService {
 
   //--------------------  Creation d'un compte (S'enregistrer) ----------------------------------------------
   async createUser(people: any) {
- 
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      "accept": 'application/json',
+      accept: 'application/json',
     };
 
-    return await this.http.put(`${this.url}/register`, people, { headers }).toPromise();
+    return await this.http
+      .put(`${this.url}/register`, people, { headers })
+      .toPromise();
   }
 
   //--------------------  Supprission du compte utilisateur ----------------------------------------------
   async deleteUser(userId: number) {
-
     const headers = {
-      "Authorization": this.tokenItem,
+      Authorization: this.tokenItem,
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      "accept": 'application/json',
+      accept: 'application/json',
     };
 
-    return await this.http.delete(`${this.url}/delete/${userId}`, { headers }).toPromise();
+    return await this.http
+      .delete(`${this.url}/delete/${userId}`, { headers })
+      .toPromise();
+  }
+
+  //--------------------  VERIFICATION D'AUTHENTIFICATION ----------------------------------------------
+  onVerifAuthentification() {
+    //RECUPERATION DE L'OBJET USER LOCAL
+    let userCrypted: any = localStorage.getItem('user');
+    //DECRYPTAGE DE L'OBJET
+    let userUncrypted: any = JSON.parse(userCrypted);
+
+    //SELON LE RETOUR DE L'OBJET, ON DEFINIT LA CONNEXION
+    if (userUncrypted == null) {
+      return 0; // personne n'est connecté
+    } else {
+      let isLunchLady = userUncrypted.isLunchLady;
+
+      if (isLunchLady == false) {
+        return 1; // utilisyateur connecté
+      } else {
+        return 2; // continiere connecté
+      }
+    }
   }
 }

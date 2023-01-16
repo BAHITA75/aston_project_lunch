@@ -1,18 +1,22 @@
-<div class="main">
-    <app-sidebar></app-sidebar> <!-- sidebar -->
-    <div class="welcome">
-        <div class="cagnotte">
-            <a href="">Cagnotte : X </a>
-        </div>
-        <div class="order">
-            <div class="order-on">
-                <h4>Commande en cours</h4>
-                <span>0</span>
-            </div>
-            <div>
-                <h4 class="order-off">Commander un plat</h4>
-                <i class="fa-solid fa-utensils"></i>
-            </div>
-        </div>
-    </div>
-</div>
+<main class="contain-order">
+    <section class="contain-inprogress">
+        <h2>Mes commandes</h2>
+        <ul *ngIf="thereIsOrders">
+            <!-- Pour toutes les commandes en cours récupérées on affiche les infos -->
+            <li *ngFor="let order of orders ">
+                <div class="contain-order-details">
+                    <p class="date"> {{order.creationDate}} à {{ order.creationTime }} </p>
+                    <p class="status">Statut : {{order.status}} </p>
+                    <p class="price"> {{ order.price }} Crédit(s)</p>
+                </div>
+                <!-- Redirection vers différentes actions -->
+                <a>Voir Détails</a>  
+            </li>
+        </ul>
+
+        <button (click)="ReturnMenu()">Retour vers mon compte</button>
+    </section>
+</main>
+
+
+

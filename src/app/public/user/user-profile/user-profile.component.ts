@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user-service';
-import { User } from '../../../_model/user';
-import { Img } from '../../../_model/img';
+import { User } from '../../../_interfaces/user';
+import { Img } from '../../../_interfaces/img';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

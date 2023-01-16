@@ -1,4 +1,4 @@
-import { ErrorComponent } from './_error/error.component';
+import { Page404Component } from './_page404/page404.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -8,11 +8,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./public/public.module').then((m) => m.PublicModule),
   },
+  // {
+  //   path: 'admin',
+  //   loadChildren: () =>
+  //     import('./admin/admin.module').then((m) => m.AdminModule),
+  // },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
- 
+
+  { path: 'page-404', component: Page404Component },
+  { path: '**', redirectTo: 'page-404', pathMatch: 'full' },
 ];
 
 @NgModule({

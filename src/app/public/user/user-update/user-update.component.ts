@@ -1,9 +1,13 @@
-import { TokenService } from './../../../_services/auth/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../_services/user-service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../../_model/user';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { User } from '../../../_interfaces/user';
 import { Observable, ReplaySubject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 
@@ -23,13 +27,13 @@ export class UserUpdateComponent implements OnInit {
   firstname: FormControl;
   phone: FormControl;
   email: FormControl;
-  adress: FormControl;
+  address: FormControl;
   postalCode: FormControl;
   town: FormControl;
   password: FormControl;
   passwordVerif: FormControl;
   sex: FormControl;
-  
+
   imagePath: string = '';
   image64: any;
   base64: string = 'data:image/png;base64,';
@@ -40,8 +44,7 @@ export class UserUpdateComponent implements OnInit {
   constructor(
     private router: Router,
     private builder: FormBuilder,
-    private userService: UserService,
-    private tokenService: TokenService
+    private userService: UserService
   ) {
     //CONFIGURATEUR DES VALIDATORS : EMAIL
     this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -73,7 +76,7 @@ export class UserUpdateComponent implements OnInit {
     ]);
 
     //CONFIGURATEUR DES VALIDATORS : ADRESSE POSTALE
-    this.adress = new FormControl('', [Validators.required]);
+    this.address = new FormControl('', [Validators.required]);
 
     //CONFIGURATEUR DES VALIDATORS : CODE POSTALE
     this.postalCode = new FormControl('', [
@@ -101,7 +104,7 @@ export class UserUpdateComponent implements OnInit {
       firstname: this.firstname,
       phone: this.phone,
       email: this.email,
-      adress: this.adress,
+      address: this.address,
       postalCode: this.postalCode,
       password: this.password,
       passwordVerif: this.passwordVerif,
@@ -109,23 +112,23 @@ export class UserUpdateComponent implements OnInit {
       town: this.town,
     });
 
-    //RECUPERATION DE L'OBJET USER POUR RECUPERER LES INFORMATIONS LCOALES
+    // Recuperation de l'objet user dans le storage pour recuperer les informations à modifier
     let userCrypted: any = localStorage.getItem('user');
     let userUncrypted: User = JSON.parse(userCrypted);
     this.user = userUncrypted;
 
-    //AJOUT DES VALEURS RECUPERÉES DE L'UTILISATEUR DANS LE FORMULAIRE PRÉ-REMPLIE
+    // Ajout des valeurs récupérées de l'utilisateur dans le formulaire pré-rempli
     this.updateUserInfos.setValue({
       name: this.user.name,
       firstname: this.user.firstname,
-      phone: this.user.phone,
+      phone: this.user.phone ? this.user.phone : '', // récupérer la propriété dans l'objet user si elle existe sinon on recupère un champs vide
       email: this.user.email,
-      adress: this.user.address,
-      postalCode: this.user.postalCode,
+      address: this.user.address ? this.user.address : '',
+      postalCode: this.user.postalCode ? this.user.postalCode : '',
+      town: this.user.town ? this.user.town : '',
       password: '',
       passwordVerif: '',
       sex: this.user.sex,
-      town: this.user.town,
     });
 
     this.getImage(this.user.id);
@@ -138,9 +141,7 @@ export class UserUpdateComponent implements OnInit {
   async getImage(userId: number) {
     try {
       //Recuperation de l'image par le service user
-      let userImage: any = await this.userService.getUserImage(
-        userId
-      );
+      let userImage: any = await this.userService.getUserImage(userId);
       this.image64 = userImage['image64'];
     } catch (error: any) {
       console.log(error);
@@ -153,7 +154,7 @@ export class UserUpdateComponent implements OnInit {
     // Récuperation les valeurs modifiées pour les inserer dans la BDD (verification si changeme,nt de Mot de passe)
     if (this.updateUserInfos.value.password == '') {
       this.userUpdated = {
-        address: this.updateUserInfos.value.adress,
+        address: this.updateUserInfos.value.address,
         postalCode: this.updateUserInfos.value.postalCode,
         email: this.updateUserInfos.value.email,
         name: this.updateUserInfos.value.name,
@@ -164,7 +165,7 @@ export class UserUpdateComponent implements OnInit {
       };
     } else {
       this.userUpdated = {
-        address: this.updateUserInfos.value.adress,
+        address: this.updateUserInfos.value.address,
         postalCode: this.updateUserInfos.value.postalCode,
         email: this.updateUserInfos.value.email,
         password: this.updateUserInfos.value.password,
@@ -181,7 +182,10 @@ export class UserUpdateComponent implements OnInit {
       // Récuperation de l'Id de l'utilisateur
       let idUser = this.user.id;
       // Insersion des modifications de l'utilisateur dans la BDD
-      let userUpdated = await this.userService.updateUser(this.userUpdated, idUser);
+      let userUpdated = await this.userService.updateUser(
+        this.userUpdated,
+        idUser
+      );
       // Changement de l'objet utilisateur dans le LocalStorage
       localStorage.setItem('user', JSON.stringify(userUpdated));
 
@@ -226,11 +230,8 @@ export class UserUpdateComponent implements OnInit {
     reader.readAsBinaryString(file);
     //Conversion du fichier en string base 64
     reader.onload = (event: any) =>
-    result.next(btoa(event.target.result.toString()));
+      result.next(btoa(event.target.result.toString()));
 
     return result;
   }
 }
-
-
-

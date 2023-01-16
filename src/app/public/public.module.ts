@@ -2,24 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { PublicRoutingModule } from './public-routing.module';
-import { SidebarComponent } from './user/component/sidebar/sidebar.component';
+// import { SidebarComponent } from './user/component/sidebar/sidebar.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { UserService } from '../_services/user-service';
 import { MenuComponent } from './menu/menu.component';
 import { registerLocaleData } from '@angular/common'; //Gestion des dates Françaises
 import localeFr from '@angular/common/locales/fr';
 import { UserUpdateComponent } from './user/user-update/user-update.component'; //Gestion des dates Françaises
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../_components/components.module';
 registerLocaleData(localeFr, 'fr'); //Gestion des dates Françaises
 
 @NgModule({
   declarations: [
     HomeComponent,
     UserHomeComponent,
-    SidebarComponent,
+    // SidebarComponent,
     UserOrderComponent,
     UserProfileComponent,
     MenuComponent,
@@ -29,9 +31,10 @@ registerLocaleData(localeFr, 'fr'); //Gestion des dates Françaises
     CommonModule,
     PublicRoutingModule,
     HttpClientModule,
+    ComponentsModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [], //On fourni ainsi notre service au module
+  providers: [DatePipe, ComponentsModule], 
 })
 export class PublicModule {}

@@ -1,8 +1,8 @@
-import { Meal } from '../../_model/meal';
+import { Meal } from '../../_interfaces/meal';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../_services/menu-service';
 import { Router } from '@angular/router';
-import { Menu } from '../../_model/menu';
+import { Menu } from '../../_interfaces/menu';
 import { MealService } from '../../_services/meal-service';
 import { ConstraintService } from '../../_services/constraint-service';
 
@@ -12,93 +12,91 @@ import { ConstraintService } from '../../_services/constraint-service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
- 
   days: any = [
     {
-      'id' : 0,
-      'name' : "Lundi",
-      'date': "",
-      'plats': [],
-      'image64' : [
+      id: 0,
+      name: 'Lundi',
+      date: '',
+      plats: [],
+      image64: [
         {
-          'idPlats': 0,
-          'image64': ""
+          idPlats: 0,
+          image64: '',
         },
         {
-          'idPlats': 0,
-          'image64': ""
-        }
-      ]
+          idPlats: 0,
+          image64: '',
+        },
+      ],
     },
     {
-      'id' : 1,
-      'name' : "Mardi",
-      'date': "",
-      'plats': [],
-      'image64' : [
+      id: 1,
+      name: 'Mardi',
+      date: '',
+      plats: [],
+      image64: [
         {
-          'idPlats': 0,
-          'image64': ""
+          idPlats: 0,
+          image64: '',
         },
         {
-          'idPlats': 0,
-          'image64': ""
-        }
-      ]
+          idPlats: 0,
+          image64: '',
+        },
+      ],
     },
     {
-      'id' : 2,
-      'name' : "Mercredi",
-      'date': "",
-      'plats': [],
-      'image64' : [
+      id: 2,
+      name: 'Mercredi',
+      date: '',
+      plats: [],
+      image64: [
         {
-          'idPlats': 0,
-          'image64': ""
+          idPlats: 0,
+          image64: '',
         },
         {
-          'idPlats': 0,
-          'image64': ""
-        }
-      ]
+          idPlats: 0,
+          image64: '',
+        },
+      ],
     },
     {
-      'id' : 3,
-      'name' : "Jeudi",
-      'date': "",
-      'plats': [],
-      'image64' : [
+      id: 3,
+      name: 'Jeudi',
+      date: '',
+      plats: [],
+      image64: [
         {
-          'idPlats': 0,
-          'image64': ""
+          idPlats: 0,
+          image64: '',
         },
         {
-          'idPlats': 0,
-          'image64': ""
-        }
-      ]
+          idPlats: 0,
+          image64: '',
+        },
+      ],
     },
     {
-      'id' : 4,
-      'name' : "Vendredi",
-      'date': "",
-      'plats': [],
-      'image64' : [
+      id: 4,
+      name: 'Vendredi',
+      date: '',
+      plats: [],
+      image64: [
         {
-          'idPlats': 0,
-          'image64': ""
+          idPlats: 0,
+          image64: '',
         },
         {
-          'idPlats': 0,
-          'image64': ""
-        }
-      ]
-    }
-  ]
-  categories:any = [] ;
-  isInsert:boolean = false ;
-  category0:any = [
-
+          idPlats: 0,
+          image64: '',
+        },
+      ],
+    },
+  ];
+  categories: any = [];
+  isInsert: boolean = false;
+  category0: any = [
     {
       id: 0,
       name: 'Autres',
@@ -198,79 +196,39 @@ export class MenuComponent implements OnInit {
   Menus: any;
   getCarte: any;
   getAllItem: any;
-  msgError: string = '';
-  bucket: any = [];
   platsTemp: any = [];
   plats: any = [];
   meal: any;
-  today:any = "" ;
-  todayHours:any = "" ;
-  todayMinutes:any = "";
+  today: any = '';
+  todayHours: any = '';
+  todayMinutes: any = '';
   maxMinutes: number = -1;
   maxHours: number = -1;
 
-//-------------------- CONSTRUCTEUR ------------------------
-  constructor(private menuService: MenuService, private router: Router, private mealService: MealService, private constraintService: ConstraintService) {}
-//-------------------- ON INIT ------------------------
+  //-------------------- CONSTRUCTEUR ------------------------
+  constructor(
+    private menuService: MenuService,
+    private router: Router,
+    private mealService: MealService,
+    private constraintService: ConstraintService
+  ) {}
+  //-------------------- ON INIT ------------------------
   ngOnInit(): void {
-    //Calcul de l'heure toute les 5 minutes
-    setInterval(()=>{
-      this.getTime() ;
-    }, 60000);
-    
-    this.getTime();
+
     this.today = new Date().toISOString().substring(0, 10);
 
     //CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE
     this.onChargeWeekMenu();
     //CHARGEMENT DE LA CARTE POUR LA SEMAINE
-    this.onChargeCarte() ;
-    //RÉCUPERATION DES DATES DE LA SEMAINE ACTUELLE
-    this.getDatesOfAllWeek();
+    this.onChargeCarte();
+  
   }
 
-  async getTime(){
-    this.todayHours = new Date().getHours();
-    this.todayMinutes = new Date().getMinutes();
-    this.today = new Date().toISOString().substring(0, 10);
-    let cons: any = await this.constraintService.getConstraint(1);
-    this.maxMinutes = parseInt(cons.orderTimeLimit.substring(3, 5));
-    this.maxHours = parseInt(cons.orderTimeLimit.substring(0, 2));
-    console.log( "h = "+this.maxHours+" vs "+this.todayHours)
-    console.log(this.todayHours) ;
-    console.log(this.todayMinutes);
-  }
-//-------------------- Recuperation des date des jours de la semaine actuelle ------------------------
-  getDatesOfAllWeek() {
-    let today = new Date();
-    let day = today.getDay();
-    let diff = today.getDate() - day + (day == 0 ? -6:1); // Ajustement si le jour J est un samedi
-    //Pour tout les jours de la semaine, calcul de la date
-    for(let i = 0; i < 5; i++){
-      let tmpDate = new Date();
-      let dateOut = new Date(tmpDate.setDate(diff + i));
-      this.days[i].date = dateOut.toISOString().substring(0, 10);
-    }
-
-  }
-//----------------------- CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE ACTUELLE ------------------------
+  //----------------------- CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE ACTUELLE ------------------------
   async onChargeWeekMenu() {
-    //RECUPERATION DE LA DATE ACTUELLE
-    let dateActuelle: any = new Date();
-
-    //CALCUL DU NUMÉRO DE LA SEMAINE ACTUELLE
-    let premierJanvier: any = new Date(dateActuelle.getFullYear(), 0, 1);
-    let nombreDeJourDifference = Math.floor(
-      (dateActuelle - premierJanvier) / (24 * 60 * 60 * 1000)
-    );
-    let numSemaineActuelle = Math.ceil(
-      (dateActuelle.getDay() + 1 + nombreDeJourDifference) / 7
-    );
-
-    //REQUETE ASYNCHRONE DE RECUPERATION DES PLATS DU JOUR POUR LA SEMAINE ACTUELLE
     try {
       //REQUETE AU SERVICE MENU
-      this.Menus = await this.menuService.getWeekMenu(numSemaineActuelle);
+      this.Menus = await this.menuService.getWeekMenu();
 
       //Pour tout les menus de la semaine recuperés si le menu est un meal
       this.Menus.forEach((Menu: any) => {
@@ -285,62 +243,12 @@ export class MenuComponent implements OnInit {
           });
         }
       });
-
-      // TRIER LES DOUBLONS
-      let cache: any = {};
-
-      this.plats = this.platsTemp.filter(function (
-        elem: { id: string | number },
-        index: any,
-        array: any
-      ) {
-        return cache[elem.id] ? 0 : (cache[elem.id] = 1);
-      });
-
-      // REPARTIR LES PLATS CHOISIS DANS LE TABLEAU DES JOURS
-      this.plats.forEach((meal: any) => {
-        if (meal.description) {
-          if (meal.description.includes('0')) {
-            this.getImageMeal(meal.id, 0) ;
-            this.days[0].plats.push(meal);
-          }
-          if (meal.description.includes('1')) {
-            this.getImageMeal(meal.id, 1) ;
-            this.days[1].plats.push(meal);
-          }
-          if (meal.description.includes('2')) {
-            this.getImageMeal(meal.id, 2) ;
-            this.days[2].plats.push(meal);
-          }
-          if (meal.description.includes('3')) {
-            this.getImageMeal(meal.id, 3) ;
-            this.days[3].plats.push(meal);
-          }
-          if (meal.description.includes('4')) {
-            this.getImageMeal(meal.id, 4) ;
-            this.days[4].plats.push(meal);
-          }
-        }
-      });
-
+  
     } catch (error: any) {
-      console.log(error)
+      console.log(error);
     }
   }
-
- async getImageMeal(mealId: number, day: number){
-    const mealImage: any = await this.mealService.findMealImage(mealId) ;
-
-    if(this.days[day].image64[0].image64 === ""){
-      this.days[day].image64[0].idPlats = mealId ;
-      this.days[day].image64[0].image64 = mealImage.image64 ;
-    }else{
-      this.days[day].image64[1].idPlats = mealId ;
-      this.days[day].image64[1].image64 = mealImage.image64 ;
-    }
-  }
-
-//--------------------------- CHARGEMENT DE LA CARTE DES MEALS AVAILABLE FOR TODAY ----------------------
+  //--------------------------- CHARGEMENT DE LA CARTE DES MEALS AVAILABLE FOR TODAY ----------------------
   async onChargeCarte() {
     //REQUETE ASYNCHRONE DE RECUPERATION DE LA CARTE DISPONIBLE POUR CE JOUR
     try {
@@ -424,89 +332,8 @@ export class MenuComponent implements OnInit {
       if (this.category11[0]['items'].length >= 1) {
         this.categories.push(this.category11);
       }
+    } catch (error: any) {
+      console.log(error);
     }
-    catch (error: any) {
-      console.log(error)
-    }
-  }
-//------------------------ AJOUTER UN MENU AU PANIER ----------------------------------------------
-  onAddMenuToBucket(plat:any, date: string) {
-    // onAddMenuToBucket(menuId:number)
-    console.log(plat)
-    //FOREACH ELEMENT DU PANIER, SI L'ELEMENT == L'ELEMENT RECU EN PARAMETRE ALORS AJOUT AU PANIER
-    let bucketLocalStorage: any = localStorage.getItem('bucket');
-    this.bucket = JSON.parse(bucketLocalStorage);
-    this.isInsert = false;
-
-    //Si le panier est vide alors on crée un objet meal et on le push directement
-    if (this.bucket == null) {
-      this.bucket = [];
-      let quantite = 1;
-      let ObjetItemToAdd = [{ name: "plat du jour", quantite: quantite}, plat];
-      this.bucket.push(ObjetItemToAdd);
-    } else {
-      //sinon, chercher dans le panier si l'element existe deja
-      this.bucket.forEach((meal: any) => {
-        //Si oui, on ajoute seulement 1 à la quantite
-        if (meal[1].id == plat.id) {
-          this.isInsert = true;
-          meal[0].quantite = meal[0].quantite + 1;
-        }
-      });
-
-      //Si l'element n'a pas été trouvé alors on le crée et on le push
-      if (!this.isInsert) {
-        let quantite = 1;
-        let ObjetItemToAdd = [{ name: "plat du jour", quantite: quantite}, plat];
-        this.bucket.push(ObjetItemToAdd);
-      }
-    }
-
-    //Suppression du panier déjà enregistré dans la local storage et enregistrement du nouveau panier
-    localStorage.removeItem('bucket');
-    let bucket = JSON.stringify(this.bucket);
-    localStorage.setItem('bucket', bucket);
-  }
-//--------------------------- AJOUTER UN ELEMENT DE LA CARTE AU PANIER -----------------------------------
-  addItemToBucket(categoryName: any, item: any, itemId: number) {
-    //FOREACH ELEMENT DU PANIER, SI L'ELEMENT == L'ELEMENT RECU EN PARAMETRE ALORS AJOUT AU PANIER
-    let bucketLocalStorage: any = localStorage.getItem('bucket');
-    this.bucket = JSON.parse(bucketLocalStorage);
-    this.isInsert = false;
-    console.log(item)
-    //Si le panier est vide alors on crée un objet meal et on le push directement
-    if (this.bucket == null) {
-      this.bucket = [];
-      let quantite = 1;
-      let ObjetItemToAdd = [{ name: categoryName, quantite: quantite }, item];
-      this.bucket.push(ObjetItemToAdd);
-    } else {
-      //sinon, chercher dans le panier si l'element existe deja
-      this.bucket.forEach((meal: any) => {
-        //Si oui, on ajoute seulement 1 à la quantite
-        if (meal[1].id == itemId) {
-          this.isInsert = true;
-          meal[0].quantite = meal[0].quantite + 1;
-        }
-      });
-
-      //Si l'element n'a pas été trouvé alors on le crée et on le push
-      if (!this.isInsert) {
-        let quantite = 1;
-        let ObjetItemToAdd = [{ name: categoryName, quantite: quantite }, item];
-        this.bucket.push(ObjetItemToAdd);
-      }
-    }
-
-    //Suppression du panier déjà enregistré dans la local storage et enregistrement du nouveau panier
-    localStorage.removeItem('bucket');
-    let bucket = JSON.stringify(this.bucket);
-    localStorage.setItem('bucket', bucket);
-
-  }
-//---------------------------- REDIRECTION SUR LE BUCKET -------------------------------------------------
-  onGoToBucket() {
-    this.router.navigate(['bucket']);
   }
 }
-
