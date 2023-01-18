@@ -5,11 +5,13 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from '../services/user-service';
+import { UserService } from '../_services/user-service';
 import { MenuComponent } from './menu/menu.component';
 import { MenuService } from '../services/menu.service';
 import { OrderComponent } from './order/order.component';
 import { OrderService } from '../services/order.service';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { OrderService } from '../services/order.service';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [UserService, MenuService, OrderService],

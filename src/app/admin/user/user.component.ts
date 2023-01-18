@@ -56,14 +56,15 @@ export class UserComponent implements OnInit {
     var wallet = this.input.nativeElement.value;
     return this.http.post<User>(`http://localhost:8080/stone.lunchtime/user/credit/${user.id}?amount=${wallet}`, user).subscribe(data => {
       console.log(data);
-    });
+    }), location.reload();
   }
 
   debit(user: User){
     var wallet = this.input.nativeElement.value;
     return this.http.post<User>(`http://localhost:8080/stone.lunchtime/user/debit/${user.id}?amount=${wallet}`, user).subscribe(data => {
       console.log(data);
-    });
+    }), location.reload();
+
   }
   
 
