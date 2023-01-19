@@ -181,7 +181,6 @@ export class LoginComponent implements OnInit {
     //console.log(this.form);
     this.authService.login(this.form).subscribe(
       (data) &#x3D;&gt; {
-        //console.log(data.headers.get(&#x27;Authorization&#x27;));
 
         // Récupération du token
         this.jwt &#x3D; data.headers.get(&#x27;Authorization&#x27;);
@@ -195,14 +194,10 @@ export class LoginComponent implements OnInit {
 
         // Récupération de l&#x27;ID de l&#x27;utilisateur stocké dans le token
         this.user &#x3D; localStorage.getItem(&#x27;user&#x27;);
-        let userId &#x3D; JSON.parse(this.user).id;
 
         // Récupération du role de l&#x27;utilisateur
         this.isLunchLadyUncrypted &#x3D; localStorage.getItem(&#x27;user&#x27;);
         let isLunchLady &#x3D; JSON.parse(this.isLunchLadyUncrypted).isLunchLady;
-
-        // console.log(isLunchLady);
-        // console.log(localStorage.getItem(&#x27;user&#x27;));
 
         // redirection de l&#x27;utilisateur selon son role
         if (isLunchLady &#x3D;&#x3D; false) {

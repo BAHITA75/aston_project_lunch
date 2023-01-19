@@ -311,13 +311,8 @@ export class HomeComponent implements OnInit {
   constructor(private menuService : MenuService) { }
 
   ngOnInit() {
-    this.menuService.getMenuToday().subscribe(data &#x3D;&gt; {
-      this.menus &#x3D; data;
-      console.log(this.menus);
-    });
     
   }
-
 }
 </code></pre>
     </div>

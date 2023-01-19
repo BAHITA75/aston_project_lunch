@@ -48,15 +48,15 @@ export class NavbarComponent implements OnInit {
         break;
     }
 
-    //Redirection en cas cantiniere
-    if (this.isConnect && this.isLunchLady) {
-      this.router.navigate(['/']);
+    //Redirection de la cantinière
+    if(this.isConnect && this.isLunchLady){
+      this.router.navigate(["admin/home"]);
     }
 
     //Récuperation des informations de l'utilisateur avec l'item user en local storage
     let userLocal: any = localStorage.getItem('user');
 
-    //Si l'objet local n'est pas null alors on recupere son coutenu
+    //Si l'objet local n'est pas null alors on recupere son coutenu (son Id)
     if (userLocal != null) {
       userLocal = JSON.parse(userLocal);
       this.userId = userLocal.id;
@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
   }
 
   // ........................redirection vers la connexion........................//
-  loggin() {
+  login() {
     this.router.navigate(['auth/login']);
   }
 

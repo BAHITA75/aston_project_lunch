@@ -10,7 +10,7 @@ export class TokenService {
 
   saveToken(token: string | any): void{
     localStorage.setItem('token', token);
-    this.router.navigate(['']);
+    this.router.navigate(['admin/use']);
 }
 
   isLogged(): boolean{

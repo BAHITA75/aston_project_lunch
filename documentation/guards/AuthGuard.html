@@ -182,8 +182,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/auth/auth.guard.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/app/auth/auth.guard.ts:16</a></div>
                 </td>
             </tr>
 
@@ -261,17 +261,18 @@ export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
     private tokenService: TokenService
-  ){
-
-  }
+  ){}
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable&lt;boolean | UrlTree&gt; | Promise&lt;boolean | UrlTree&gt; | boolean | UrlTree {
   
     if(this.tokenService.isLogged()) {
       return true;
+    } else {
+      return this.router.navigate([&quot;auth&quot;]);
     }
-    return this.router.navigate([&quot;auth&quot;]);
+    
   }
 }
 </code></pre>

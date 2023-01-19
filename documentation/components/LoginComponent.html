@@ -286,8 +286,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/auth/login/login.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/auth/login/login.component.ts:80</a></div>
                 </td>
             </tr>
 
@@ -397,8 +397,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/auth/login/login.component.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/auth/login/login.component.ts:85</a></div>
                 </td>
             </tr>
 
@@ -434,8 +434,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/app/auth/login/login.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/auth/login/login.component.ts:75</a></div>
                 </td>
             </tr>
 
@@ -623,7 +623,6 @@ export class LoginComponent implements OnInit {
     //console.log(this.form);
     this.authService.login(this.form).subscribe(
       (data) &#x3D;&gt; {
-        //console.log(data.headers.get(&#x27;Authorization&#x27;));
 
         // Récupération du token
         this.jwt &#x3D; data.headers.get(&#x27;Authorization&#x27;);
@@ -637,14 +636,10 @@ export class LoginComponent implements OnInit {
 
         // Récupération de l&#x27;ID de l&#x27;utilisateur stocké dans le token
         this.user &#x3D; localStorage.getItem(&#x27;user&#x27;);
-        let userId &#x3D; JSON.parse(this.user).id;
 
         // Récupération du role de l&#x27;utilisateur
         this.isLunchLadyUncrypted &#x3D; localStorage.getItem(&#x27;user&#x27;);
         let isLunchLady &#x3D; JSON.parse(this.isLunchLadyUncrypted).isLunchLady;
-
-        // console.log(isLunchLady);
-        // console.log(localStorage.getItem(&#x27;user&#x27;));
 
         // redirection de l&#x27;utilisateur selon son role
         if (isLunchLady &#x3D;&#x3D; false) {
@@ -681,69 +676,23 @@ export class LoginComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">
-
-&lt;!-- &lt;div class&#x3D;&quot;form_container&quot;&gt;
-    &lt;div&gt;
-        &lt;div&gt;Email : {{ form.email }}&lt;/div&gt;
-        &lt;div&gt;Passw : {{ form.password }}&lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;form 
-        name&#x3D;&quot;form&quot; 
-        #f&#x3D;&quot;ngForm&quot;
-        (ngSubmit)&#x3D;&quot;f.form.valid &amp;&amp; onSubmit()&quot;
-        &gt;
-        &lt;div class&#x3D;&quot;group&quot;&gt;
-            &lt;label for&#x3D;&quot;email&quot;&gt;Email&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;form.email&quot; #email&#x3D;&quot;ngModel&quot; required&gt;
-            &lt;div class&#x3D;&quot;form_error&quot; *ngIf&#x3D;&quot;email.errors &amp;&amp; f.submitted&quot;&gt;
-                Email is required !
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;group&quot;&gt;
-            &lt;label for&#x3D;&quot;password&quot;&gt;Password&lt;/label&gt;
-            &lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; [(ngModel)]&#x3D;&quot;form.password&quot; #password&#x3D;&quot;ngModel&quot; required minlength&#x3D;&quot;5&quot;&gt;
-   
-            &lt;div class&#x3D;&quot;form_error&quot; *ngIf&#x3D;&quot;password.errors &amp;&amp; f.submitted&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;password.errors[&#x27;required&#x27;]&quot;&gt;Password is required&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;password.errors[&#x27;minlength&#x27;]&quot;&gt;Password must be at least 5 charracters&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;group&quot;&gt;
-            &lt;button&gt;Login&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/form&gt;
-&lt;/div&gt; --&gt;
-
-&lt;div class&#x3D;&quot;SignIn&quot;&gt;
-    &lt;nav class&#x3D;&quot;navLogin&quot;&gt;
-        &lt;img class&#x3D;&quot;returnAllIcon&quot; src&#x3D;&quot;../../../assets/arrowReturn.svg&quot; alt&#x3D;&quot;retour vers l&#x27;accueil&quot;&gt;
-        &lt;a class&#x3D;&quot;navBtn&quot; routerLink&#x3D;&quot;/&quot; &gt;Retour à l&#x27;accueil&lt;/a&gt;
-        &lt;img class&#x3D;&quot;returnMobIcon&quot; routerLink&#x3D;&quot;/&quot; src&#x3D;&quot;../../../assets/arrowLeftCircle.svg&quot; alt&#x3D;&quot;retour vers l&#x27;accueil&quot;&gt;
-    &lt;/nav&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;SignIn&quot;&gt;
     &lt;main class&#x3D;&quot;mainSignIn&quot;&gt;
         &lt;figure class&#x3D;&quot;containerFormSignIn&quot;&gt;
             &lt;figure class&#x3D;&quot;titleFormSignIn&quot;&gt;
                 &lt;h1&gt;Connectez-vous&lt;/h1&gt;
             &lt;/figure&gt;
-            &lt;form 
-                class&#x3D;&quot;formSignIn&quot; 
-                action&#x3D;&quot;POST&quot;
-                name&#x3D;&quot;form&quot; 
-                #f&#x3D;&quot;ngForm&quot;
-                (ngSubmit)&#x3D;&quot;f.form.valid &amp;&amp; onSubmit()&quot;
-                &gt;
+            &lt;form  class&#x3D;&quot;formSignIn&quot;  action&#x3D;&quot;POST&quot; name&#x3D;&quot;form&quot;  #f&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;f.form.valid &amp;&amp; onSubmit()&quot;&gt;
                 &lt;div class&#x3D;&quot;containerInput&quot;&gt;
-                    &lt;input class&#x3D;&quot;signFormField&quot; type&#x3D;&quot;email&quot; name&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;form.email&quot; #email&#x3D;&quot;ngModel&quot; required placeholder&#x3D;&quot;Adresse mail&quot;&gt;
-                    &lt;!-- &lt;div class&#x3D;&quot;form_error&quot; *ngIf&#x3D;&quot;email.errors &amp;&amp; f.submitted&quot;&gt;
-                        Email est requis!
-                    &lt;/div&gt; --&gt;
+                    &lt;input class&#x3D;&quot;signFormField&quot; type&#x3D;&quot;email&quot; name&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; 
+                    [(ngModel)]&#x3D;&quot;form.email&quot; #email&#x3D;&quot;ngModel&quot; required placeholder&#x3D;&quot;Adresse mail&quot;&gt;
+                
                     &lt;span *ngIf&#x3D;&quot;email.errors &amp;&amp; f.submitted&quot;&gt;Adresse émail est requise&lt;/span&gt;
                 &lt;/div&gt;
 
                 &lt;div class&#x3D;&quot;containerInput&quot;&gt;
-                    &lt;input class&#x3D;&quot;signFormField&quot; type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Mot de passe&quot; name&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; [(ngModel)]&#x3D;&quot;form.password&quot; #password&#x3D;&quot;ngModel&quot; required minlength&#x3D;&quot;5&quot;&gt;
+                    &lt;input class&#x3D;&quot;signFormField&quot; type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Mot de passe&quot; name&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; 
+                    [(ngModel)]&#x3D;&quot;form.password&quot; #password&#x3D;&quot;ngModel&quot; required minlength&#x3D;&quot;5&quot;&gt;
                     &lt;span *ngIf&#x3D;&quot;password.errors &amp;&amp; f.submitted&quot;&gt;Mot de passe est requis&lt;/span&gt;
                 &lt;/div&gt;
 
@@ -764,33 +713,17 @@ export class LoginComponent implements OnInit {
                     <code>./login.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">.SignIn{
-    height: 100vh;
+    height: 91vh;
     font-family: &#x27;Ubuntu&#x27;;
     background-color: #faddb1;
-
-    .navLogin{
-        height: 15vh;
-        display: flex;
-        align-items: center;
-
-        .returnAllIcon{
-            width: 22px;
-            height: auto;
-            margin-top: 6px;
-            margin-left: 50px;
-        }
-
-        .navBtn{
-            color: black;
-            margin-left: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .mainSignIn{
         display: flex;
         justify-content: center;
+
 
         span {
             color: red;
@@ -822,37 +755,25 @@ export class LoginComponent implements OnInit {
 
 @media screen and (max-width: 1024px){
 
-    .returnAllIcon, .navBtn{
-        display: none;
-    }
-
-
-    .returnMobIcon{
-        margin-left: 40px;
-        width: 46px;
-        height: auto;
-    }
-
-    .navBtn{
-        font-size: 1.2rem;   
-    }
-
-    .mainSignIn{
-        height: 75vh;
-       align-items: center;
-
-
-        span{
-            visibility: hidden;
+    .SignIn {
+        .mainSignIn {
+            margin: 0;
+            width: 80%;
         }
     }
 
+    span{
+        visibility: hidden;
+    }
+    
     .containerFormSignIn{
         width: 80%;
-        height: 100%;
         overflow: hidden;
         border-radius: 50px;
-        border: 3px solid black;
+        background-color: #f0f0f5;
+        overflow: hidden;
+        border-radius: 50px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         .titleFormSignIn{
             height: 15vh;
@@ -925,26 +846,14 @@ export class LoginComponent implements OnInit {
     }
 }
 
-// @media screen and (min-width: 769px) and (max-width:1024px){
-
-//     .containerFormLogin{}
-    
-// }
 
 @media screen and (min-width: 1025px){
-
-    .returnMobIcon{
-        display: none;
-    }
 
     .mainSignIn{
         height: 75vh;
         align-items: flex-start;
     }
-    .navBtn{
-        font-size: 1.2rem;
-    }
-        
+
     .containerFormSignIn{
         background-color: #f0f0f5;
         width: 35vw;
@@ -1046,7 +955,7 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- <div class="form_container">    <div>        <div>Email : {{ form.email }}</div>        <div>Passw : {{ form.password }}</div>    </div>    <form         name="form"         #f="ngForm"        (ngSubmit)="f.form.valid && onSubmit()"        >        <div class="group">            <label for="email">Email</label>            <input type="text" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required>            <div class="form_error" *ngIf="email.errors && f.submitted">                Email is required !            </div>        </div>        <div class="group">            <label for="password">Password</label>            <input type="password" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="5">               <div class="form_error" *ngIf="password.errors && f.submitted">                <div *ngIf="password.errors[\'required\']">Password is required</div>                <div *ngIf="password.errors[\'minlength\']">Password must be at least 5 charracters</div>            </div>        </div>        <div class="group">            <button>Login</button>        </div>    </form></div> --><div class="SignIn">    <nav class="navLogin">        <img class="returnAllIcon" src="../../../assets/arrowReturn.svg" alt="retour vers l\'accueil">        <a class="navBtn" routerLink="/" >Retour à l\'accueil</a>        <img class="returnMobIcon" routerLink="/" src="../../../assets/arrowLeftCircle.svg" alt="retour vers l\'accueil">    </nav>    <main class="mainSignIn">        <figure class="containerFormSignIn">            <figure class="titleFormSignIn">                <h1>Connectez-vous</h1>            </figure>            <form                 class="formSignIn"                 action="POST"                name="form"                 #f="ngForm"                (ngSubmit)="f.form.valid && onSubmit()"                >                <div class="containerInput">                    <input class="signFormField" type="email" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required placeholder="Adresse mail">                    <!-- <div class="form_error" *ngIf="email.errors && f.submitted">                        Email est requis!                    </div> -->                    <span *ngIf="email.errors && f.submitted">Adresse émail est requise</span>                </div>                <div class="containerInput">                    <input class="signFormField" type="password" placeholder="Mot de passe" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="5">                    <span *ngIf="password.errors && f.submitted">Mot de passe est requis</span>                </div>                <div class="containerInput"><input class="signFormSubmit" type="submit" value="Connexion"></div>            </form>            <figure class="containerRedirectBtn">                <p><a (click)="resetPassword()">Mot de Passe perdu ?</a></p>                <p>Pas encore inscrit ? <a (click)="createAccount()">Créer votre compte</a></p>            </figure>        </figure>    </main></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="SignIn">    <main class="mainSignIn">        <figure class="containerFormSignIn">            <figure class="titleFormSignIn">                <h1>Connectez-vous</h1>            </figure>            <form  class="formSignIn"  action="POST" name="form"  #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">                <div class="containerInput">                    <input class="signFormField" type="email" name="email" id="email"                     [(ngModel)]="form.email" #email="ngModel" required placeholder="Adresse mail">                                    <span *ngIf="email.errors && f.submitted">Adresse émail est requise</span>                </div>                <div class="containerInput">                    <input class="signFormField" type="password" placeholder="Mot de passe" name="password" id="password"                     [(ngModel)]="form.password" #password="ngModel" required minlength="5">                    <span *ngIf="password.errors && f.submitted">Mot de passe est requis</span>                </div>                <div class="containerInput"><input class="signFormSubmit" type="submit" value="Connexion"></div>            </form>            <figure class="containerRedirectBtn">                <p><a (click)="resetPassword()">Mot de Passe perdu ?</a></p>                <p>Pas encore inscrit ? <a (click)="createAccount()">Créer votre compte</a></p>            </figure>        </figure>    </main></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'Page404Component', 'selector': 'app-page404'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserUpdateComponent', 'selector': 'app-user-update'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};

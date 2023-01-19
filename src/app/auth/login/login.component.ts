@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth/auth.service';
 import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 interface ICredentials {
   email: string;
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
+    location: Location
   ) {}
 
   ngOnInit(): void {}
@@ -41,7 +43,6 @@ export class LoginComponent implements OnInit {
     //console.log(this.form);
     this.authService.login(this.form).subscribe(
       (data) => {
-
         // Récupération du token
         this.jwt = data.headers.get('Authorization');
 
@@ -53,20 +54,17 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(tokenUncrypte['user']));
 
         // Récupération de l'ID de l'utilisateur stocké dans le token
-        this.user = localStorage.getItem('user');
+        // this.user = localStorage.getItem('user');
 
         // Récupération du role de l'utilisateur
         this.isLunchLadyUncrypted = localStorage.getItem('user');
         let isLunchLady = JSON.parse(this.isLunchLadyUncrypted).isLunchLady;
 
         // redirection de l'utilisateur selon son role
-        if (isLunchLady == false) {
-          this.router.navigate(['/menu']);
+        
+          this.router.navigate(['menu']);
           setTimeout(this.refreshPage, 1);
-        } else {
-          this.router.navigate(['/admin/home']);
-          setTimeout(this.refreshPage, 1) ;
-        }
+      
       },
       (err) => console.log(err)
     );

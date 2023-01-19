@@ -323,7 +323,8 @@ export class MenuComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;main&quot;&gt;
-    &lt;div class&#x3D;&quot;&quot;&gt;
+  &lt;app-header&gt;&lt;/app-header&gt;
+    &lt;div class&#x3D;&quot;container m-4&quot;&gt;
         &lt;div class&#x3D;&quot;input-group rounded &quot;&gt;
             &lt;input type&#x3D;&quot;search&quot; class&#x3D;&quot;form-control rounded&quot; placeholder&#x3D;&quot;Search&quot; aria-label&#x3D;&quot;Search&quot; aria-describedby&#x3D;&quot;search-addon&quot; /&gt;
             &lt;span class&#x3D;&quot;input-group-text border-0&quot; id&#x3D;&quot;search-addon&quot;&gt;
@@ -355,7 +356,14 @@ export class MenuComponent implements OnInit {
                 <p class="comment">
                     <code>./menu.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.main {
+    display: flex;
+}
+
+.tab {
+    overflow: scroll;
+    height: 90vh;
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -383,7 +391,7 @@ export class MenuComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="main">    <div class="">        <div class="input-group rounded ">            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />            <span class="input-group-text border-0" id="search-addon">              <i class="fas fa-search"></i>            </span>        </div>        <div class="tab p-2">          <table class="table ">              <thead>                <tr>                  <th scope="col">Menu</th>                  <th scope="col">Prix</th>                </tr>              </thead>              <tbody>                <tr *ngFor="let menu of menus">                  <td>{{menu.label}}</td>                  <td>{{menu.priceDF}}€</td>                </tr>              </tbody>            </table>        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="main">  <app-header></app-header>    <div class="container m-4">        <div class="input-group rounded ">            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />            <span class="input-group-text border-0" id="search-addon">              <i class="fas fa-search"></i>            </span>        </div>        <div class="tab p-2">          <table class="table ">              <thead>                <tr>                  <th scope="col">Menu</th>                  <th scope="col">Prix</th>                </tr>              </thead>              <tbody>                <tr *ngFor="let menu of menus">                  <td>{{menu.label}}</td>                  <td>{{menu.priceDF}}€</td>                </tr>              </tbody>            </table>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'Page404Component', 'selector': 'app-page404'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserUpdateComponent', 'selector': 'app-user-update'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MenuComponent'};

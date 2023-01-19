@@ -231,6 +231,8 @@ import { MenuComponent } from &#x27;./menu/menu.component&#x27;;
 import { MenuService } from &#x27;../services/menu.service&#x27;;
 import { OrderComponent } from &#x27;./order/order.component&#x27;;
 import { OrderService } from &#x27;../services/order.service&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+
 
 @NgModule({
   declarations: [
@@ -243,7 +245,8 @@ import { OrderService } from &#x27;../services/order.service&#x27;;
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],

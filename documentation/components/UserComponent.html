@@ -823,14 +823,15 @@ export class UserComponent implements OnInit {
     var wallet &#x3D; this.input.nativeElement.value;
     return this.http.post&lt;User&gt;(&#x60;http://localhost:8080/stone.lunchtime/user/credit/${user.id}?amount&#x3D;${wallet}&#x60;, user).subscribe(data &#x3D;&gt; {
       console.log(data);
-    });
+    }), location.reload();
   }
 
   debit(user: User){
     var wallet &#x3D; this.input.nativeElement.value;
     return this.http.post&lt;User&gt;(&#x60;http://localhost:8080/stone.lunchtime/user/debit/${user.id}?amount&#x3D;${wallet}&#x60;, user).subscribe(data &#x3D;&gt; {
       console.log(data);
-    });
+    }), location.reload();
+
   }
   
 
@@ -840,13 +841,21 @@ export class UserComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;main&quot;&gt;
     &lt;app-header&gt;&lt;/app-header&gt;
-    &lt;div #tab&gt;
-        &lt;div class&#x3D;&quot;input-group rounded &quot;&gt;
-            &lt;input (keyup)&#x3D;&quot;search();&quot; #inputSearch type&#x3D;&quot;search&quot; class&#x3D;&quot;form-control rounded&quot; placeholder&#x3D;&quot;Chercher par nom&quot; aria-label&#x3D;&quot;Search&quot; aria-describedby&#x3D;&quot;search-addon&quot; /&gt;
-            &lt;span  style&#x3D;&quot;cursor: pointer;&quot; class&#x3D;&quot;input-group-text border-0&quot; id&#x3D;&quot;search-addon&quot;&gt;
-              &lt;i class&#x3D;&quot;fas fa-search&quot;&gt;&lt;/i&gt;
-            &lt;/span&gt;
+    &lt;div #tab class&#x3D;&quot;container m-4&quot;&gt;
+      &lt;h2&gt;Utilisateurs&lt;/h2&gt;
+      &lt;header class&#x3D;&quot;row d-flex justify-content-end&quot;&gt;
+        &lt;h4 style&#x3D;&quot;text-align: right&quot;&gt;Filtrer&lt;/h4&gt;
+        &lt;div class&#x3D;&quot;col-6&quot; *ngIf&#x3D;&quot;user&quot;&gt;
+          &lt;input class&#x3D;&quot;form-control rounded mx-2 my-2&quot; type&#x3D;&quot;number&quot; #input placeholder&#x3D;&quot;Entrer un montant&quot;&gt;
+          &lt;p class&#x3D;&quot;mx-2 my-2&quot; &gt;Vous allez modifier le porte feuille de : {{user?.name}} {{user?.firstname}} ({{user?.wallet}}€)&lt;/p&gt;
+          &lt;button class&#x3D;&quot;btn mx-2 my-2 btn-primary btn-sm&quot; (click)&#x3D;&quot;credit(user)&quot;&gt;Crediter&lt;/button&gt;
+          &lt;button class&#x3D;&quot;btn mx-2 my-2 btn-primary btn-sm&quot; (click)&#x3D;&quot;debit(user)&quot;&gt;Debiter&lt;/button&gt;
         &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-4&quot;&gt;
+            &lt;input (keyup)&#x3D;&quot;search();&quot; #inputSearch type&#x3D;&quot;search&quot; class&#x3D;&quot;form-control rounded mx-2 my-2&quot; placeholder&#x3D;&quot;Chercher par nom&quot; aria-label&#x3D;&quot;Search&quot; aria-describedby&#x3D;&quot;search-addon&quot; /&gt;
+        &lt;/div&gt;
+        
+      &lt;/header&gt;
         &lt;div class&#x3D;&quot;tab p-2&quot;&gt;
           &lt;table class&#x3D;&quot;table &quot;&gt;
               &lt;thead&gt;
@@ -854,7 +863,7 @@ export class UserComponent implements OnInit {
                   &lt;th scope&#x3D;&quot;col&quot;&gt;Nom&lt;/th&gt;
                   &lt;th scope&#x3D;&quot;col&quot;&gt;Prénom&lt;/th&gt;
                   &lt;th scope&#x3D;&quot;col&quot;&gt;Porte feuille&lt;/th&gt;
-                  &lt;th scope&#x3D;&quot;col&quot;&gt;Modifier&lt;/th&gt;
+                  &lt;th scope&#x3D;&quot;col&quot;&gt;Action&lt;/th&gt;
                 &lt;/tr&gt;
               &lt;/thead&gt;
               &lt;tbody *ngIf&#x3D;&quot;!actif&quot;&gt;
@@ -862,7 +871,7 @@ export class UserComponent implements OnInit {
                   &lt;td&gt;{{user.name}}&lt;/td&gt;
                   &lt;td&gt;{{user.firstname}}&lt;/td&gt;
                   &lt;td&gt;{{user.wallet}}€&lt;/td&gt;
-                  &lt;td (click)&#x3D;&quot;getUser(user)&quot;&gt;GO&lt;/td&gt;
+                  &lt;td (click)&#x3D;&quot;getUser(user)&quot; id&#x3D;&quot;edit&quot;&gt;Créditer / Débiter&lt;/td&gt;
                 &lt;/tr&gt;
               &lt;/tbody&gt;
               &lt;tbody *ngIf&#x3D;&quot;actif&quot;&gt;
@@ -870,20 +879,12 @@ export class UserComponent implements OnInit {
                   &lt;td&gt;{{user.name}}&lt;/td&gt;
                   &lt;td&gt;{{user.firstname}}&lt;/td&gt;
                   &lt;td&gt;{{user.wallet}}€&lt;/td&gt;
-                  &lt;td (click)&#x3D;&quot;getUser(user)&quot;&gt;GO&lt;/td&gt;
+                  &lt;td (click)&#x3D;&quot;getUser(user)&quot;&gt;Créditer / Débiter&lt;/td&gt;
                 &lt;/tr&gt;
               &lt;/tbody&gt;
             &lt;/table&gt;
 
         &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;user&quot;&gt;
-      {{user.name}}
-      {{user.firstname}}
-      {{user.wallet}}
-      &lt;input type&#x3D;&quot;number&quot; #input&gt;
-      &lt;button (click)&#x3D;&quot;credit(user)&quot;&gt;Crediter&lt;/button&gt;
-      &lt;button (click)&#x3D;&quot;debit(user)&quot;&gt;Debiter&lt;/button&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -941,6 +942,10 @@ img {
 .tab {
     overflow: scroll;
     height: 80vh;
+}
+
+#edit:hover{
+    cursor: pointer;
 }</code></pre>
     </div>
 
@@ -969,7 +974,7 @@ img {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="main">    <app-header></app-header>    <div #tab>        <div class="input-group rounded ">            <input (keyup)="search();" #inputSearch type="search" class="form-control rounded" placeholder="Chercher par nom" aria-label="Search" aria-describedby="search-addon" />            <span  style="cursor: pointer;" class="input-group-text border-0" id="search-addon">              <i class="fas fa-search"></i>            </span>        </div>        <div class="tab p-2">          <table class="table ">              <thead>                <tr>                  <th scope="col">Nom</th>                  <th scope="col">Prénom</th>                  <th scope="col">Porte feuille</th>                  <th scope="col">Modifier</th>                </tr>              </thead>              <tbody *ngIf="!actif">                <tr  *ngFor="let user of users" >                  <td>{{user.name}}</td>                  <td>{{user.firstname}}</td>                  <td>{{user.wallet}}€</td>                  <td (click)="getUser(user)">GO</td>                </tr>              </tbody>              <tbody *ngIf="actif">                <tr  *ngFor="let user of tabSearch" >                  <td>{{user.name}}</td>                  <td>{{user.firstname}}</td>                  <td>{{user.wallet}}€</td>                  <td (click)="getUser(user)">GO</td>                </tr>              </tbody>            </table>        </div>    </div>    <div *ngIf="user">      {{user.name}}      {{user.firstname}}      {{user.wallet}}      <input type="number" #input>      <button (click)="credit(user)">Crediter</button>      <button (click)="debit(user)">Debiter</button>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="main">    <app-header></app-header>    <div #tab class="container m-4">      <h2>Utilisateurs</h2>      <header class="row d-flex justify-content-end">        <h4 style="text-align: right">Filtrer</h4>        <div class="col-6" *ngIf="user">          <input class="form-control rounded mx-2 my-2" type="number" #input placeholder="Entrer un montant">          <p class="mx-2 my-2" >Vous allez modifier le porte feuille de : {{user?.name}} {{user?.firstname}} ({{user?.wallet}}€)</p>          <button class="btn mx-2 my-2 btn-primary btn-sm" (click)="credit(user)">Crediter</button>          <button class="btn mx-2 my-2 btn-primary btn-sm" (click)="debit(user)">Debiter</button>        </div>        <div class="col-4">            <input (keyup)="search();" #inputSearch type="search" class="form-control rounded mx-2 my-2" placeholder="Chercher par nom" aria-label="Search" aria-describedby="search-addon" />        </div>              </header>        <div class="tab p-2">          <table class="table ">              <thead>                <tr>                  <th scope="col">Nom</th>                  <th scope="col">Prénom</th>                  <th scope="col">Porte feuille</th>                  <th scope="col">Action</th>                </tr>              </thead>              <tbody *ngIf="!actif">                <tr  *ngFor="let user of users" >                  <td>{{user.name}}</td>                  <td>{{user.firstname}}</td>                  <td>{{user.wallet}}€</td>                  <td (click)="getUser(user)" id="edit">Créditer / Débiter</td>                </tr>              </tbody>              <tbody *ngIf="actif">                <tr  *ngFor="let user of tabSearch" >                  <td>{{user.name}}</td>                  <td>{{user.firstname}}</td>                  <td>{{user.wallet}}€</td>                  <td (click)="getUser(user)">Créditer / Débiter</td>                </tr>              </tbody>            </table>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'Page404Component', 'selector': 'app-page404'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserUpdateComponent', 'selector': 'app-user-update'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserComponent'};

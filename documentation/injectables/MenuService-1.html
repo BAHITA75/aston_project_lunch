@@ -104,14 +104,6 @@
                                 <a href="#getMenuImage" >getMenuImage</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#getMenuToday" >getMenuToday</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#getMenuToday$" >getMenuToday$</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#getTodayMenu" >getTodayMenu</a>
                             </li>
@@ -122,10 +114,6 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#getWeekMenu" >getWeekMenu</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#getWeekMenu$" >getWeekMenu$</a>
                             </li>
                         </ul>
                     </td>
@@ -215,8 +203,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/app/_services/menu-service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/_services/menu-service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -298,84 +286,6 @@
                     </div>
                     <div class="io-description">
                         
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getMenuToday"></a>
-                    <span class="name">
-                        <span class="modifier">Public</span>
-                        <span ><b>getMenuToday</b></span>
-                        <a href="#getMenuToday"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getMenuToday()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/_services/menu-service.ts:55</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Menu.html" target="_self" >Observable&lt;Menu[]&gt;</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getMenuToday$"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>getMenuToday$</b></span>
-                        <a href="#getMenuToday$"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getMenuToday$()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/_services/menu-service.ts:49</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
                     </div>
                 </td>
             </tr>
@@ -542,45 +452,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getWeekMenu$"></a>
-                    <span class="name">
-                        <span class="modifier">Public</span>
-                        <span ><b>getWeekMenu$</b></span>
-                        <a href="#getWeekMenu$"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getWeekMenu$()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/app/_services/menu-service.ts:44</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Menu.html" target="_self" >Observable&lt;Menu[]&gt;</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
             <section>
     
@@ -668,11 +539,11 @@ export class MenuService {
 
   tokenItem: any &#x3D; localStorage.getItem(&#x27;token&#x27;);
 
-  //-------------------- CONSTRUCTEUR ----------------------------------------------
   constructor(private http: HttpClient) {}
-  //-------------------- RECUPERATION DES MENU DU JOUR POUR LA SEMAINE ----------------------------------------------
+
+//.......................... Récupérer la menu de la semaine.......................... //
   async getWeekMenu() {
-    let url &#x3D; this.url + &#x27;/menu/findallavailableforthisweek/&#x27;;
+    let url &#x3D; this.url + &#x27;/menu/findallavailableforthisweek&#x27;;
 
     return await this.http.get(url).toPromise();
   }
@@ -691,36 +562,18 @@ export class MenuService {
     return await this.http.get(url).toPromise();
   }
 
-  //------------------------ Recupuration de la photo du menu ---------------------------------
+  //.......................... Récupérer la photo du menu.......................... //
   async getMenuImage(menuId: number) {
     let url &#x3D; this.url + &#x27;/menu/findimg/&#x27;;
 
     return await this.http.get(url + menuId).toPromise();
   }
 
-  public getWeekMenu$(): Observable&lt;Menu[]&gt; {
-    let url &#x3D; this.url + &#x27;/menu/findallavailableforthisweek&#x27;;
-    return this.http.get&lt;Menu[]&gt;(url);
-  }
 
-  async getMenuToday$() {
-    let url &#x3D; this.url + &#x27;/menu/findallavailablefortoday&#x27;;
-
-    return await this.http.get(url).toPromise();
-  }
-
-  public getMenuToday(): Observable&lt;Menu[]&gt; {
-    
-    let url &#x3D; this.url + &#x27;/menu/findallavailablefortoday&#x27;;
-    return this.http.get&lt;Menu[]&gt;(url);
-  }
-
-  //-------------------- RECUPERATION DE LA CARTE POUR UNE SEMAINE ----------------------------------------------
+  //.......................... Récupérer la carte de la semaine.......................... //
   async getCarte() {
-    //REFORMULATION DE L&#x27;URL
     var url &#x3D; this.url + &#x27;/meal/findallavailablefortoday&#x27;;
 
-    //REQUETE API
     return await this.http.get(url).toPromise();
   }
 }
