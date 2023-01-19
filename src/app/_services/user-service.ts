@@ -17,9 +17,17 @@ export class UserService {
     this.url = `http://localhost:8080/stone.lunchtime/user`;
   }
 
-  // ---------------------Récuperation des informations d'un utilisateur ------------------------//
+  //--------------------  RECUPERATION DES NFORMATIONS D'UN UTILISATEUR ----------------------------------------------
   async getUserInfos(userId: number) {
+    //FORMULATION HEADER
+    const headers = {
+      Authorization: this.tokenItem,
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      accept: 'application/json',
+    };
 
+    //REQUETE API: recuperer l'utilisateur par son id
     return await this.http.get(`${this.url}/find/${userId}`).toPromise();
   }
 

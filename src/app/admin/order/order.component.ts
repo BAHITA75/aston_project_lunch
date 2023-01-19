@@ -3,6 +3,7 @@ import { Meal } from 'src/app/_interfaces/meal';
 import { Order } from 'src/app/_interfaces/order';
 import { Quantity } from 'src/app/_interfaces/quantity';
 import { OrderService } from 'src/app/services/order.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-order',
@@ -14,25 +15,48 @@ export class OrderComponent implements OnInit {
   @ViewChild('priceMeal') priceMeal: ElementRef;
   @ViewChild('totalPrice') totalPrice: ElementRef;
   
-  totalPriceResult : string;
+  startDate : string;
+  endDate : string;
+  selectedValue : number;
   orders : Order[];
-  constructor(private orderService: OrderService) { }
+  ordersFilter : Order[];
+  constructor(private orderService: OrderService, private http: HttpClient) { }
   
   ngOnInit(): void {
     this.orderService.findAll().subscribe(data => {
       this.orders = data;
-      console.log(this.orders);
     });
-    // this.priceMeal.nativeElement.classList.add('hidden');
-    // this.priceMenu.nativeElement.classList.add('hidden');
   }
-  yes(orders: object){
-    console.log(orders);
-    for (const order in orders) {
-      console.log(order);
-      
-    }
-    this.totalPriceResult = this.priceMeal.nativeElement.value;
 
-  }
+
+  submitDates() {
+
+    if (this.startDate == undefined && this.endDate == undefined) {
+      let status = this.selectedValue;
+      if (status == undefined) {
+        status = 0;
+      }
+      
+      const url = `http://localhost:8080/stone.lunchtime/order/findallbetweendateinstatus?status=${status}`
+  
+      this.http.get<Order[]>(url).subscribe(data => {
+        this.ordersFilter = data;
+        console.log(this.ordersFilter);
+      });
+    }
+    let start = this.startDate.replace(/-/g, "%2F");
+    let end = this.endDate.replace(/-/g, "%2F");
+    
+    let status = this.selectedValue;
+    if (status == undefined) {
+      status = 0;
+    }
+    
+    const url = `http://localhost:8080/stone.lunchtime/order/findallbetweendateinstatus?status=${status}&beginDate=${start}&endDate=${end}`
+
+    this.http.get<Order[]>(url).subscribe(data => {
+      this.ordersFilter = data;
+      console.log(this.ordersFilter);
+    });
+}
 }

@@ -18,9 +18,20 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path:'user', loadChildren: () => import('./public/public.module')
+      .then(m => m.PublicModule)
+  },
+  {
+    path:'user-order', loadChildren: () => import('./public/public.module')
+      .then(m => m.PublicModule)
+  },
+  {
+    path:'user-infos', loadChildren: () => import('./public/public.module')
+      .then(m => m.PublicModule)
+  },
 
-  { path: 'page-404', component: Page404Component },
-  { path: '**', redirectTo: 'page-404', pathMatch: 'full' },
+
 ];
 
 @NgModule({

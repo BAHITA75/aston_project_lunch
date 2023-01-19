@@ -10,6 +10,8 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuService } from '../services/menu.service';
 import { OrderComponent } from './order/order.component';
 import { OrderService } from '../services/order.service';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { OrderService } from '../services/order.service';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],
