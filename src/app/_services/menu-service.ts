@@ -11,11 +11,11 @@ export class MenuService {
 
   tokenItem: any = localStorage.getItem('token');
 
-  //-------------------- CONSTRUCTEUR ----------------------------------------------
   constructor(private http: HttpClient) {}
-  //-------------------- RECUPERATION DES MENU DU JOUR POUR LA SEMAINE ----------------------------------------------
+
+//.......................... Récupérer la menu de la semaine.......................... //
   async getWeekMenu() {
-    let url = this.url + '/menu/findallavailableforthisweek/';
+    let url = this.url + '/menu/findallavailableforthisweek';
 
     return await this.http.get(url).toPromise();
   }
@@ -34,36 +34,18 @@ export class MenuService {
     return await this.http.get(url).toPromise();
   }
 
-  //------------------------ Recupuration de la photo du menu ---------------------------------
+  //.......................... Récupérer la photo du menu.......................... //
   async getMenuImage(menuId: number) {
     let url = this.url + '/menu/findimg/';
 
     return await this.http.get(url + menuId).toPromise();
   }
 
-  public getWeekMenu$(): Observable<Menu[]> {
-    let url = this.url + '/menu/findallavailableforthisweek';
-    return this.http.get<Menu[]>(url);
-  }
 
-  async getMenuToday$() {
-    let url = this.url + '/menu/findallavailablefortoday';
-
-    return await this.http.get(url).toPromise();
-  }
-
-  public getMenuToday(): Observable<Menu[]> {
-    
-    let url = this.url + '/menu/findallavailablefortoday';
-    return this.http.get<Menu[]>(url);
-  }
-
-  //-------------------- RECUPERATION DE LA CARTE POUR UNE SEMAINE ----------------------------------------------
+  //.......................... Récupérer la carte de la semaine.......................... //
   async getCarte() {
-    //REFORMULATION DE L'URL
     var url = this.url + '/meal/findallavailablefortoday';
 
-    //REQUETE API
     return await this.http.get(url).toPromise();
   }
 }

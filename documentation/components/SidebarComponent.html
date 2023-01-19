@@ -527,7 +527,7 @@ export class SidebarComponent implements OnInit {
     &lt;div class&#x3D;&quot;menu&quot;&gt;
         &lt;ul&gt;
             &lt;li&gt;&lt;a (click)&#x3D;&quot;updateUser()&quot;&gt;Modifier mes informations&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a (click) &#x3D; &quot;userOrder()&quot;&gt;Mes Commandes&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a (click)&#x3D;&quot;userOrder()&quot;&gt;Mes Commandes&lt;/a&gt;&lt;/li&gt;
             
         &lt;/ul&gt;
     &lt;/div&gt;
@@ -637,7 +637,7 @@ ul {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="side-bar">    <div class="title">        <h1>Edu\'cantine</h1>    </div>    <div class="menu">        <ul>            <li><a (click)="updateUser()">Modifier mes informations</a></li>            <li><a (click) = "userOrder()">Mes Commandes</a></li>                    </ul>    </div>    <div class="sign-out">        <a (click)="logout()">            <i class="fa-solid fa-power-off me-2"></i>            <span>Déconnexion</span>        </a>    </div> </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="side-bar">    <div class="title">        <h1>Edu\'cantine</h1>    </div>    <div class="menu">        <ul>            <li><a (click)="updateUser()">Modifier mes informations</a></li>            <li><a (click)="userOrder()">Mes Commandes</a></li>                    </ul>    </div>    <div class="sign-out">        <a (click)="logout()">            <i class="fa-solid fa-power-off me-2"></i>            <span>Déconnexion</span>        </a>    </div> </div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'Page404Component', 'selector': 'app-page404'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserUpdateComponent', 'selector': 'app-user-update'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};

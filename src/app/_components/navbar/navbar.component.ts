@@ -10,14 +10,10 @@ import { UserService } from 'src/app/_services/user-service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  public user!: User;
-  checkToken: any = '';
-  checkTokenDecode: any = '';
   role: string;
   isConnect: Boolean = false;
   isLunchLady: Boolean = false;
   userId: any = '';
-  today: number = Date.now();
 
   //---------------------------- Constructeur --------------------------------
   constructor(

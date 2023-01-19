@@ -1,31 +1,15 @@
 .SignIn{
-    height: 100vh;
+    height: 91vh;
     font-family: 'Ubuntu';
     background-color: #faddb1;
-
-    .navLogin{
-        height: 15vh;
-        display: flex;
-        align-items: center;
-
-        .returnAllIcon{
-            width: 22px;
-            height: auto;
-            margin-top: 6px;
-            margin-left: 50px;
-        }
-
-        .navBtn{
-            color: black;
-            margin-left: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .mainSignIn{
         display: flex;
         justify-content: center;
+
 
         span {
             color: red;
@@ -57,37 +41,25 @@
 
 @media screen and (max-width: 1024px){
 
-    .returnAllIcon, .navBtn{
-        display: none;
-    }
-
-
-    .returnMobIcon{
-        margin-left: 40px;
-        width: 46px;
-        height: auto;
-    }
-
-    .navBtn{
-        font-size: 1.2rem;   
-    }
-
-    .mainSignIn{
-        height: 75vh;
-       align-items: center;
-
-
-        span{
-            visibility: hidden;
+    .SignIn {
+        .mainSignIn {
+            margin: 0;
+            width: 80%;
         }
     }
 
+    span{
+        visibility: hidden;
+    }
+    
     .containerFormSignIn{
         width: 80%;
-        height: 100%;
         overflow: hidden;
         border-radius: 50px;
-        border: 3px solid black;
+        background-color: #f0f0f5;
+        overflow: hidden;
+        border-radius: 50px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         .titleFormSignIn{
             height: 15vh;
@@ -160,26 +132,14 @@
     }
 }
 
-// @media screen and (min-width: 769px) and (max-width:1024px){
-
-//     .containerFormLogin{}
-    
-// }
 
 @media screen and (min-width: 1025px){
-
-    .returnMobIcon{
-        display: none;
-    }
 
     .mainSignIn{
         height: 75vh;
         align-items: flex-start;
     }
-    .navBtn{
-        font-size: 1.2rem;
-    }
-        
+
     .containerFormSignIn{
         background-color: #f0f0f5;
         width: 35vw;

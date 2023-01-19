@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     //console.log(this.form);
     this.authService.login(this.form).subscribe(
       (data) => {
-        //console.log(data.headers.get('Authorization'));
 
         // Récupération du token
         this.jwt = data.headers.get('Authorization');
@@ -55,14 +54,10 @@ export class LoginComponent implements OnInit {
 
         // Récupération de l'ID de l'utilisateur stocké dans le token
         this.user = localStorage.getItem('user');
-        let userId = JSON.parse(this.user).id;
 
         // Récupération du role de l'utilisateur
         this.isLunchLadyUncrypted = localStorage.getItem('user');
         let isLunchLady = JSON.parse(this.isLunchLadyUncrypted).isLunchLady;
-
-        // console.log(isLunchLady);
-        // console.log(localStorage.getItem('user'));
 
         // redirection de l'utilisateur selon son role
         if (isLunchLady == false) {

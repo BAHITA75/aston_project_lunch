@@ -140,16 +140,13 @@
                                 <a href="#checkTokenDecode" >checkTokenDecode</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
                                 <a href="#isConnect" >isConnect</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
                                 <a href="#isLunchLady" >isLunchLady</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#result" >result</a>
+                                <a href="#role" >role</a>
                             </li>
                             <li>
                                 <a href="#today" >today</a>
@@ -302,8 +299,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:71</a></div>
                 </td>
             </tr>
 
@@ -339,8 +336,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:76</a></div>
                 </td>
             </tr>
 
@@ -376,8 +373,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:30</a></div>
                 </td>
             </tr>
 
@@ -413,8 +410,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:81</a></div>
                 </td>
             </tr>
 
@@ -450,8 +447,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/_components/navbar/navbar.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -541,7 +538,6 @@
                 <td class="col-md-4">
                     <a name="isConnect"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
                         <span ><b>isConnect</b></span>
                         <a href="#isConnect"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -573,7 +569,6 @@
                 <td class="col-md-4">
                     <a name="isLunchLady"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
                         <span ><b>isLunchLady</b></span>
                         <a href="#isLunchLady"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -603,17 +598,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="result"></a>
+                    <a name="role"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>result</b></span>
-                        <a href="#result"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>role</b></span>
+                        <a href="#role"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -736,9 +730,9 @@ export class NavbarComponent implements OnInit {
   public user!: User;
   checkToken: any &#x3D; &#x27;&#x27;;
   checkTokenDecode: any &#x3D; &#x27;&#x27;;
-  public result: any;
-  public isConnect: Boolean &#x3D; false;
-  public isLunchLady: Boolean &#x3D; false;
+  role: string;
+  isConnect: Boolean &#x3D; false;
+  isLunchLady: Boolean &#x3D; false;
   userId: any &#x3D; &#x27;&#x27;;
   today: number &#x3D; Date.now();
 
@@ -748,28 +742,34 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private tokenService: TokenService
   ) {}
-  //---------------------------- QUI EST CONNECTÉ --------------------------------
+  
+  //---------------------------- ON INIT --------------------------------
+  ngOnInit(): void {
+    this.whoIsConnect();
+  }
+
+  //---------------------------- qui est connecté--------------------------------
   whoIsConnect() {
     //Récuperation de l&#x27;authentification de la personne en cours
-    this.result &#x3D; this.userService.onVerifAuthentification();
+    this.role &#x3D; this.userService.authentificationRole();
 
     //Selon le resultat on assigne a isConnect et isLunchLady leur valeur
-    switch (this.result) {
-      case 0: // personne n&#x27;est connecté
+    switch (this.role) {
+      case &#x27;any&#x27;: // personne n&#x27;est connecté
         this.isConnect &#x3D; false;
         this.isLunchLady &#x3D; false;
         break;
-      case 1: // user connecté
+      case &#x27;user&#x27;: // user connecté
         this.isConnect &#x3D; true;
         this.isLunchLady &#x3D; false;
         break;
-      case 2: // continiere connecté
+      case &#x27;cantiniere&#x27;: // continiere connecté
         this.isConnect &#x3D; true;
         this.isLunchLady &#x3D; true;
         break;
     }
 
-    //Redirection en cas de lunchlady
+    //Redirection en cas cantiniere
     if (this.isConnect &amp;&amp; this.isLunchLady) {
       this.router.navigate([&#x27;/&#x27;]);
     }
@@ -783,12 +783,8 @@ export class NavbarComponent implements OnInit {
       this.userId &#x3D; userLocal.id;
     }
   }
-  //---------------------------- ON INIT --------------------------------
-  ngOnInit(): void {
-    this.whoIsConnect();
-  }
 
-  //---------------------------- ON LOG --------------------------------
+  // ........................redirection vers la connexion........................//
   loggin() {
     this.router.navigate([&#x27;auth/login&#x27;]);
   }
@@ -798,7 +794,7 @@ export class NavbarComponent implements OnInit {
     this.tokenService.clearToken();
     this.router.navigate([&#x27;/menu&#x27;]);
   }
-  //---------------------------- Refraiche de la page ---------------------------//
+  //............................... rafraichir la page ...............................//
   refresh() {
     location.reload();
   }
@@ -855,8 +851,7 @@ export class NavbarComponent implements OnInit {
                 <p class="comment">
                     <code>./navbar.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">
-.nav-contain {
+                <pre class="line-numbers"><code class="language-scss">.nav-contain {
     display: flex;
     justify-content: space-between;
     background-color: #f1cc98;
@@ -870,7 +865,6 @@ export class NavbarComponent implements OnInit {
 
 .contain-brand {
     display: flex;
-    width: 20%;
     justify-content: flex-end;
     align-items: center;
     margin-right: 1rem;
@@ -889,12 +883,31 @@ export class NavbarComponent implements OnInit {
 
 .contain-brand h1 {
     color: white;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 img {
     width: 55px;
     padding: 0.6rem;
+}
+
+@media screen and (max-width: 572px) {
+    .nav-contain {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .contain-brand h1 {
+        color: white;
+        font-size: 1.4rem;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+       
 }
 </code></pre>
     </div>

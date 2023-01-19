@@ -789,9 +789,9 @@ export class UserComponent implements OnInit {
   constructor(private userService : UserService, private http : HttpClient) { }
 
   ngOnInit() {
-    this.userService.findAll().subscribe(data &#x3D;&gt; {
-      this.users &#x3D; data;
-    });
+    // this.userService.findAll().subscribe(data &#x3D;&gt; {
+    //   this.users &#x3D; data;
+    // });
     this.actif &#x3D; false;
   }
 

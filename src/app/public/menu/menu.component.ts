@@ -1,10 +1,6 @@
 import { Meal } from '../../_interfaces/meal';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../_services/menu-service';
-import { Router } from '@angular/router';
-import { Menu } from '../../_interfaces/menu';
-import { MealService } from '../../_services/meal-service';
-import { ConstraintService } from '../../_services/constraint-service';
 import { Img } from 'src/app/_interfaces/img';
 
 @Component({
@@ -13,90 +9,14 @@ import { Img } from 'src/app/_interfaces/img';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  days: any = [
-    {
-      id: 0,
-      name: 'Lundi',
-      date: '',
-      plats: [],
-      image64: [
-        {
-          idPlats: 0,
-          image64: '',
-        },
-        {
-          idPlats: 0,
-          image64: '',
-        },
-      ],
-    },
-    {
-      id: 1,
-      name: 'Mardi',
-      date: '',
-      plats: [],
-      image64: [
-        {
-          idPlats: 0,
-          image64: '',
-        },
-        {
-          idPlats: 0,
-          image64: '',
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'Mercredi',
-      date: '',
-      plats: [],
-      image64: [
-        {
-          idPlats: 0,
-          image64: '',
-        },
-        {
-          idPlats: 0,
-          image64: '',
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: 'Jeudi',
-      date: '',
-      plats: [],
-      image64: [
-        {
-          idPlats: 0,
-          image64: '',
-        },
-        {
-          idPlats: 0,
-          image64: '',
-        },
-      ],
-    },
-    {
-      id: 4,
-      name: 'Vendredi',
-      date: '',
-      plats: [],
-      image64: [
-        {
-          idPlats: 0,
-          image64: '',
-        },
-        {
-          idPlats: 0,
-          image64: '',
-        },
-      ],
-    },
-  ];
+
+  menus: any;
+  carte: any;
+  plats: any = [];
+  image: Img;
+  img: any;
+
   categories: any = [];
-  isInsert: boolean = false;
   category0: any = [
     {
       id: 0,
@@ -124,7 +44,7 @@ export class MenuComponent implements OnInit {
   category3: any = [
     {
       id: 3,
-      name: 'Plats Principaux',
+      name: 'Plats',
       items: [],
     },
   ];
@@ -192,38 +112,16 @@ export class MenuComponent implements OnInit {
       items: [],
     },
   ];
-  Meal!: Meal;
-  Menu!: Menu;
-  Menus: any;
-  MenusWD: any;
-  getCarte: any;
-  getAllItem: any;
-  platsTemp: any = [];
-  plats: any = [];
-  meal: any;
-  today: any = '';
-  todayHours: any = '';
-  todayMinutes: any = '';
-  maxMinutes: number = -1;
-  maxHours: number = -1;
 
-  image: Img;
-  img: any;
-
-  //-------------------- CONSTRUCTEUR ------------------------
   constructor(
     private menuService: MenuService,
-    private router: Router,
-    private mealService: MealService,
-    private constraintService: ConstraintService
   ) {}
-  //-------------------- ON INIT ------------------------
-  ngOnInit(): void {
-    this.today = new Date().toISOString().substring(0, 10);
 
-    //CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE
+  ngOnInit(): void {
+
+    // le menu de la semaine
     this.onChargeWeekMenu();
-    //CHARGEMENT DE LA CARTE POUR LA SEMAINE
+    // la carte de la semaine
     this.onChargeCarte();
     
   }
@@ -233,85 +131,72 @@ export class MenuComponent implements OnInit {
     this.image = menuImageInfo['image64'];
   }
 
-  //----------------------- CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE ACTUELLE ------------------------
+  //.......................... Récupérer les menu de la semaine.......................... //
   async onChargeWeekMenu() {
     try {
       //REQUETE AU SERVICE MENU
-      this.Menus = await this.menuService.getWeekMenu();
-      this.MenusWD = await this.menuService.getTodayMenu();
-      console.log(this.MenusWD);
+      this.menus = await this.menuService.getWeekMenu();
 
-      this.Menus.forEach((Menu: any) => {
-         this.img = this.getImage(Menu.id)
+      console.log(this.menus);
+
+      this.menus.forEach((menu: any) => {
+         this.img = this.getImage(menu.id)
          console.log()
        });
-      
 
-      //Pour tout les menus de la semaine recuperés si le menu est un meal
-      this.Menus.forEach((Menu: any) => {
-        if (Menu.meals) {
-          //Alors on tris et on reforme un array
-          Menu.meals.forEach((meal: any) => {
-            if (meal) {
-              let tmp = meal;
-              // ON PUSH TOUT LES PLATS RELIES AU MENU DANS UN TABLEAU TEMPORAIRE
-              this.platsTemp.push(tmp);
-            }
-          });
-        }
-      });
     } catch (error: any) {
-      console.log(error);
+      console.log('menu week', error);
     }
   }
-  //--------------------------- CHARGEMENT DE LA CARTE DES MEALS AVAILABLE FOR TODAY ----------------------
+
+    //.......................... Récupérer la menu de la semaine.......................... //
   async onChargeCarte() {
-    //REQUETE ASYNCHRONE DE RECUPERATION DE LA CARTE DISPONIBLE POUR CE JOUR
     try {
-      //REQUETE AU SERVICE MENU
-      this.getCarte = await this.menuService.getCarte();
-      //FOREACH DU RESULTAT POUR TRIER LES ELEMENTS DE LA CARTE PAR CATEGORIE
-      this.getCarte.forEach((element: any) => {
-        switch (element.category) {
+      this.carte = await this.menuService.getCarte();
+
+      // inserser les plats dans les categories correspondantes
+      this.carte.forEach((item: any) => {
+        switch (item.category) {
           case 0:
-            this.category0[0]['items'].push(element);
+            this.category0[0]['items'].push(item);
             break;
           case 1:
-            this.category1[0]['items'].push(element);
+            this.category1[0]['items'].push(item);
             break;
           case 2:
-            this.category2[0]['items'].push(element);
+            this.category2[0]['items'].push(item);
             break;
           case 3:
-            this.category3[0]['items'].push(element);
+            this.category3[0]['items'].push(item);
             break;
           case 4:
-            this.category4[0]['items'].push(element);
+            this.category4[0]['items'].push(item);
             break;
           case 5:
-            this.category5[0]['items'].push(element);
+            this.category5[0]['items'].push(item);
             break;
           case 6:
-            this.category6[0]['items'].push(element);
+            this.category6[0]['items'].push(item);
             break;
           case 7:
-            this.category7[0]['items'].push(element);
+            this.category7[0]['items'].push(item);
             break;
           case 8:
-            this.category8[0]['items'].push(element);
+            this.category8[0]['items'].push(item);
             break;
           case 9:
-            this.category9[0]['items'].push(element);
+            this.category9[0]['items'].push(item);
             break;
           case 10:
-            this.category10[0]['items'].push(element);
+            this.category10[0]['items'].push(item);
             break;
           case 11:
-            this.category11[0]['items'].push(element);
+            this.category11[0]['items'].push(item);
             break;
         }
       });
-      //AJOUT DES CATEGORIES DANS UN TABLEAU SI ELLES NE SONT PAS VIDES
+
+      //ajouter toutes les categories dans le tableau categories
       if (this.category0[0]['items'].length >= 1) {
         this.categories.push(this.category0);
       }

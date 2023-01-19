@@ -78,7 +78,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#tokenItem" >tokenItem</a>
                             </li>
                             <li>
@@ -101,6 +100,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#authentificationRole" >authentificationRole</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#changeUserPicture" >changeUserPicture</a>
                             </li>
@@ -119,9 +121,6 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#getUserInfos" >getUserInfos</a>
-                            </li>
-                            <li>
-                                <a href="#onVerifAuthentification" >onVerifAuthentification</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -209,6 +208,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="authentificationRole"></a>
+                    <span class="name">
+                        <span ><b>authentificationRole</b></span>
+                        <a href="#authentificationRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>authentificationRole()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/_services/user-service.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>&quot;any&quot; | &quot;user&quot; | &quot;cantiniere&quot;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="changeUserPicture"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -227,8 +263,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/_services/user-service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/_services/user-service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -310,8 +346,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/_services/user-service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/_services/user-service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -381,8 +417,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/_services/user-service.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/app/_services/user-service.ts:51</a></div>
                 </td>
             </tr>
 
@@ -576,43 +612,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onVerifAuthentification"></a>
-                    <span class="name">
-                        <span ><b>onVerifAuthentification</b></span>
-                        <a href="#onVerifAuthentification"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onVerifAuthentification()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/app/_services/user-service.ts:63</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>0 | 1 | 2</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="updateUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -631,8 +630,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/_services/user-service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/_services/user-service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -704,7 +703,6 @@
                 <td class="col-md-4">
                     <a name="tokenItem"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                         <span ><b>tokenItem</b></span>
                         <a href="#tokenItem"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -798,7 +796,7 @@
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { User } from &#x27;../_interfaces/user&#x27;;
 import { Img } from &#x27;../_interfaces/img&#x27;;
-import { HttpClient, HttpHeaders, HttpResponse } from &#x27;@angular/common/http&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
 @Injectable({
@@ -806,7 +804,7 @@ import { Observable } from &#x27;rxjs&#x27;;
 })
 export class UserService {
   private url: string;
-  private tokenItem: any &#x3D; localStorage.getItem(&#x27;token&#x27;);
+  tokenItem: any &#x3D; localStorage.getItem(&#x27;token&#x27;);
   userInfos: any &#x3D; &#x27;&#x27;;
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
@@ -822,32 +820,25 @@ export class UserService {
   //------------------------ Récupération de l&#x27;image de l&#x27;utilisateur -----------------------------//
   async getUserImage(userId: number) {
     
-    return await this.http
-      .get(&#x60;${this.url}/findimg/${userId}&#x60;)
-      .toPromise();
+    return await this.http.get(&#x60;${this.url}/findimg/${userId}&#x60;).toPromise();
   }
 
   //--------------------  Modification des informations de l&#x27;utilisateur --------------------------//
   async updateUser(user: any, userId: number) {
 
-    return await this.http
-      .patch(&#x60;${this.url}/update/${userId}&#x60;, user)
-      .toPromise();
+    return await this.http.patch(&#x60;${this.url}/update/${userId}&#x60;, user).toPromise();
   }
 
   //------------------------- Changement de la photo de l&#x27;utilisateur ----------------------------//
   async changeUserPicture(userId: number, avatarObj: any) {
 
-    return await this.http
-      .patch(&#x60;${this.url}/updateimg/${userId}&#x60;, avatarObj)
-      .toPromise();
+    return await this.http.patch(&#x60;${this.url}/updateimg/${userId}&#x60;, avatarObj).toPromise();
   }
 
   //--------------------  Creation d&#x27;un compte (S&#x27;enregistrer) -------------------------------------//
   async createUser(people: any) {
     
-    return await this.http
-      .put(&#x60;${this.url}/register&#x60;, people).toPromise();
+    return await this.http.put(&#x60;${this.url}/register&#x60;, people).toPromise();
   }
 
   //--------------------  Supprission du compte utilisateur ---------------------------------------//
@@ -856,22 +847,21 @@ export class UserService {
   }
 
   //-------------------------  Verification de la connexion ------------------------------------//
-  onVerifAuthentification() {
-    //RECUPERATION DE L&#x27;OBJET USER LOCAL
-    let userCrypted: any &#x3D; localStorage.getItem(&#x27;user&#x27;);
-    //DECRYPTAGE DE L&#x27;OBJET
-    let userUncrypted: any &#x3D; JSON.parse(userCrypted);
+  authentificationRole() {
+    let user: any &#x3D; localStorage.getItem(&#x27;user&#x27;);
 
-    //SELON LE RETOUR DE L&#x27;OBJET, ON DEFINIT LA CONNEXION
-    if (userUncrypted &#x3D;&#x3D; null) {
-      return 0; // personne n&#x27;est connecté
+    let userInfos: any &#x3D; JSON.parse(user);
+
+    //selon les infos de l&#x27;objet, on definit le role
+    if (userInfos &#x3D;&#x3D; null) {
+      return &#x27;any&#x27;; // personne n&#x27;est connecté
     } else {
-      let isLunchLady &#x3D; userUncrypted.isLunchLady;
+      let isLunchLady &#x3D; userInfos.isLunchLady;
 
       if (isLunchLady &#x3D;&#x3D; false) {
-        return 1; // utilisyateur connecté
+        return &#x27;user&#x27;; // utilisateur connecté
       } else {
-        return 2; // continiere connecté
+        return &#x27;cantiniere&#x27;; // continiere connecté
       }
     }
   }
