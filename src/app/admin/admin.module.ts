@@ -28,6 +28,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
 
   ],
-  providers: [UserService, MenuService, OrderService],
+  providers: [],
 })
 export class AdminModule { }

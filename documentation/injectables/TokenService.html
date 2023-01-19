@@ -82,6 +82,9 @@
                                 <a href="#clearToken" >clearToken</a>
                             </li>
                             <li>
+                                <a href="#clearTokenExpired" >clearTokenExpired</a>
+                            </li>
+                            <li>
                                 <a href="#getToken" >getToken</a>
                             </li>
                             <li>
@@ -176,8 +179,45 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/_services/auth/token.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/_services/auth/token.service.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearTokenExpired"></a>
+                    <span class="name">
+                        <span ><b>clearTokenExpired</b></span>
+                        <a href="#clearTokenExpired"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearTokenExpired()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/_services/auth/token.service.ts:29</a></div>
                 </td>
             </tr>
 
@@ -213,8 +253,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/app/_services/auth/token.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/_services/auth/token.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -280,7 +320,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>saveToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>saveToken(token: string | any)</code>
                 </td>
             </tr>
 
@@ -311,7 +351,7 @@
                                 <tr>
                                     <td>token</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>string | any</code>
                                     </td>
 
                                     <td>
@@ -352,22 +392,31 @@ export class TokenService {
 
   constructor(private router: Router) { }
 
-  saveToken(token: string): void {
+  saveToken(token: string | any): void{
     localStorage.setItem(&#x27;token&#x27;, token);
     this.router.navigate([&#x27;&#x27;]);
-  }
+}
 
   isLogged(): boolean{
     const token &#x3D; localStorage.getItem(&#x27;token&#x27;)
     console.log(token);
     return !! token;
   }
-
+ 
+  // se servir pour la deconnexion: au moment du logout la methode clearToken() est appelée
   clearToken(): void{
     localStorage.removeItem(&#x27;token&#x27;)
-    this.router.navigate([&#x27;/&#x27;])
+    localStorage.removeItem(&#x27;user&#x27;)
   }
 
+  // on suprimme le token quand il sera expiré
+  clearTokenExpired(): void{
+    localStorage.removeItem(&#x27;token&#x27;)
+    localStorage.removeItem(&#x27;user&#x27;)
+    this.router.navigate([&#x27;auth&#x27;])
+  }
+ 
+  //on recupère le token de l&#x27;utilisateur connecté puis l&#x27;injecter dans l&#x27;intercepteur
   getToken(): string | null {
     return localStorage.getItem(&#x27;token&#x27;);
   }

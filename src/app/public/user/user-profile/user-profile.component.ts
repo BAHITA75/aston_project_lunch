@@ -1,3 +1,4 @@
+import { TokenService } from 'src/app/_services/auth/token.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user-service';
@@ -24,6 +25,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private tokenService: TokenService,
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient
@@ -79,6 +81,7 @@ export class UserProfileComponent implements OnInit {
      try {
       //REQUETE VERS LE SERVICE DES UTILIATEURS
       await this.userService.deleteUser(this.userId);
+      this.tokenService.clearToken();
       this.router.navigate(['/']);
     }
     catch (error: any) {

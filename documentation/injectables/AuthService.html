@@ -93,6 +93,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#forgotPassword" >forgotPassword</a>
+                            </li>
+                            <li>
                                 <a href="#login" >login</a>
                             </li>
                         </ul>
@@ -118,7 +122,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/_services/auth/auth.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/_services/auth/auth.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -165,6 +169,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="forgotPassword"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>forgotPassword</b></span>
+                        <a href="#forgotPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>forgotPassword(resetPasswordForm: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/_services/auth/auth.service.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resetPasswordForm</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="login"></a>
                     <span class="name">
                         <span ><b>login</b></span>
@@ -181,8 +256,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/_services/auth/auth.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/_services/auth/auth.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -220,7 +295,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;IToken&gt;</code>
+                        <b>Returns : </b>    <code>Observable&lt;HttpResponse&lt;IToken&gt;&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -255,12 +330,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;http://localhost:8080/stone.lunchtime/login&#x27;</code>
+                        <i>Default value : </i><code>&#x27;http://localhost:8080/stone.lunchtime&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/_services/auth/auth.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/_services/auth/auth.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -274,8 +349,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable } from &#x27;rxjs&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { HttpClient, HttpResponse } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
+import { FormGroup } from &#x27;@angular/forms&#x27;;
 
 interface ICredentials{
   email: string,
@@ -291,12 +367,22 @@ interface IToken{
 
 export class AuthService {
 
-  url &#x3D; &#x27;http://localhost:8080/stone.lunchtime/login&#x27;;
+  url &#x3D; &#x27;http://localhost:8080/stone.lunchtime&#x27;;
 
   constructor(private http: HttpClient) { }
+  
 
-  login(credentials: ICredentials): Observable&lt;IToken&gt;{
-    return this.http.post&lt;IToken&gt;(this.url, credentials);
+  //--------------------  Connexion ----------------------------------//
+  login(credentials: ICredentials): Observable&lt;HttpResponse&lt;IToken&gt; &gt; {
+    return this.http.post&lt;IToken&gt;(&#x60;${this.url}/login&#x60;, credentials, {observe: &#x27;response&#x27;});
+  }
+
+  //--------------------  Mot de passe oublié ----------------------------------//
+  async forgotPassword(resetPasswordForm : FormGroup){
+
+    let url &#x3D; this.url + &quot;/forgotpassword?email&#x3D;&quot; + resetPasswordForm.value.email ;
+    
+    return await this.http.post(url,&quot;&quot;, {observe : &#x27;response&#x27;}).toPromise();
   }
 }
 </code></pre>

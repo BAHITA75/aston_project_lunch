@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Menu } from '../../_interfaces/menu';
 import { MealService } from '../../_services/meal-service';
 import { ConstraintService } from '../../_services/constraint-service';
+import { Img } from 'src/app/_interfaces/img';
 
 @Component({
   selector: 'app-menu',
@@ -194,6 +195,7 @@ export class MenuComponent implements OnInit {
   Meal!: Meal;
   Menu!: Menu;
   Menus: any;
+  MenusWD: any;
   getCarte: any;
   getAllItem: any;
   platsTemp: any = [];
@@ -205,6 +207,9 @@ export class MenuComponent implements OnInit {
   maxMinutes: number = -1;
   maxHours: number = -1;
 
+  image: Img;
+  img: any;
+
   //-------------------- CONSTRUCTEUR ------------------------
   constructor(
     private menuService: MenuService,
@@ -214,14 +219,18 @@ export class MenuComponent implements OnInit {
   ) {}
   //-------------------- ON INIT ------------------------
   ngOnInit(): void {
-
     this.today = new Date().toISOString().substring(0, 10);
 
     //CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE
     this.onChargeWeekMenu();
     //CHARGEMENT DE LA CARTE POUR LA SEMAINE
     this.onChargeCarte();
-  
+    
+  }
+
+  async getImage(menuId: number) {
+    let menuImageInfo: any = await this.menuService.getMenuImage(menuId);
+    this.image = menuImageInfo['image64'];
   }
 
   //----------------------- CHARGEMENT DES PLATS DU JOUR POUR LA SEMAINE ACTUELLE ------------------------
@@ -229,6 +238,14 @@ export class MenuComponent implements OnInit {
     try {
       //REQUETE AU SERVICE MENU
       this.Menus = await this.menuService.getWeekMenu();
+      this.MenusWD = await this.menuService.getTodayMenu();
+      console.log(this.MenusWD);
+
+      this.Menus.forEach((Menu: any) => {
+         this.img = this.getImage(Menu.id)
+         console.log()
+       });
+      
 
       //Pour tout les menus de la semaine recuperés si le menu est un meal
       this.Menus.forEach((Menu: any) => {
@@ -243,7 +260,6 @@ export class MenuComponent implements OnInit {
           });
         }
       });
-  
     } catch (error: any) {
       console.log(error);
     }

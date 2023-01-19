@@ -23,7 +23,7 @@
               <ul class="dropdown-menu" *ngIf="isConnect && isLunchLady">
                 <li><a class="dropdown-item" routerLink="/menu" (click)="refresh()">Menu et Carte</a></li>
                 <li><a class="dropdown-item" routerLink="user/user-profile/{{userId}}">Mon Compte</a></li>
-                <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                <li><a class="dropdown-item" href="/admin/home">Dashboard</a></li>
                 <li><a class="dropdown-item" (click)="logout()" (click)="refresh()">Déconnexion</a></li>
               </ul>
             </li>

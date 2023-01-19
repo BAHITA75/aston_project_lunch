@@ -13,9 +13,9 @@ export class NavbarComponent implements OnInit {
   public user!: User;
   checkToken: any = '';
   checkTokenDecode: any = '';
-  public result: any;
-  public isConnect: Boolean = false;
-  public isLunchLady: Boolean = false;
+  role: string;
+  isConnect: Boolean = false;
+  isLunchLady: Boolean = false;
   userId: any = '';
   today: number = Date.now();
 
@@ -25,28 +25,34 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private tokenService: TokenService
   ) {}
-  //---------------------------- QUI EST CONNECTÉ --------------------------------
+  
+  //---------------------------- ON INIT --------------------------------
+  ngOnInit(): void {
+    this.whoIsConnect();
+  }
+
+  //---------------------------- qui est connecté--------------------------------
   whoIsConnect() {
     //Récuperation de l'authentification de la personne en cours
-    this.result = this.userService.onVerifAuthentification();
+    this.role = this.userService.authentificationRole();
 
     //Selon le resultat on assigne a isConnect et isLunchLady leur valeur
-    switch (this.result) {
-      case 0: // personne n'est connecté
+    switch (this.role) {
+      case 'any': // personne n'est connecté
         this.isConnect = false;
         this.isLunchLady = false;
         break;
-      case 1: // user connecté
+      case 'user': // user connecté
         this.isConnect = true;
         this.isLunchLady = false;
         break;
-      case 2: // continiere connecté
+      case 'cantiniere': // continiere connecté
         this.isConnect = true;
         this.isLunchLady = true;
         break;
     }
 
-    //Redirection en cas de lunchlady
+    //Redirection en cas cantiniere
     if (this.isConnect && this.isLunchLady) {
       this.router.navigate(['/']);
     }
@@ -60,12 +66,8 @@ export class NavbarComponent implements OnInit {
       this.userId = userLocal.id;
     }
   }
-  //---------------------------- ON INIT --------------------------------
-  ngOnInit(): void {
-    this.whoIsConnect();
-  }
 
-  //---------------------------- ON LOG --------------------------------
+  // ........................redirection vers la connexion........................//
   loggin() {
     this.router.navigate(['auth/login']);
   }
@@ -75,7 +77,7 @@ export class NavbarComponent implements OnInit {
     this.tokenService.clearToken();
     this.router.navigate(['/menu']);
   }
-  //---------------------------- Refraiche de la page ---------------------------//
+  //............................... rafraichir la page ...............................//
   refresh() {
     location.reload();
   }

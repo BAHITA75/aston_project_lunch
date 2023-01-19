@@ -22,9 +22,9 @@ export class UserComponent implements OnInit {
   constructor(private userService : UserService, private http : HttpClient) { }
 
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {
-      this.users = data;
-    });
+    // this.userService.findAll().subscribe(data => {
+    //   this.users = data;
+    // });
     this.actif = false;
   }
 

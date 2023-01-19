@@ -1,20 +1,18 @@
-<main class="contain-order">
-    <section class="contain-inprogress">
+<main class="order">
+    <section class="contain-order">
         <h2>Mes commandes</h2>
-        <ul *ngIf="thereIsOrders">
+        <ul *ngIf="hasOrders">
             <!-- Pour toutes les commandes en cours récupérées on affiche les infos -->
             <li *ngFor="let order of orders ">
                 <div class="contain-order-details">
                     <p class="date"> {{order.creationDate}} à {{ order.creationTime }} </p>
-                    <p class="status">Statut : {{order.status}} </p>
+                    <p class="status">Statut : <strong>{{order.status}}</strong></p>
                     <p class="price"> {{ order.price }} Crédit(s)</p>
                 </div>
-                <!-- Redirection vers différentes actions -->
-                <a>Voir Détails</a>  
+                <button *ngIf="order.status == 'Créée'" (click)="deleteOrder(order.id)">Annuler ma commande</button>
             </li>
         </ul>
-
-        <button (click)="ReturnMenu()">Retour vers mon compte</button>
+        <button (click)="ReturnUserProfile()">Retour vers mon compte</button>
     </section>
 </main>
 

@@ -72,17 +72,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ResetPasswordComponent } from &#x27;./reset-password/reset-password.component&#x27;;
+import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { LoginComponent } from &#x27;./login/login.component&#x27;;
-import { SigninComponent } from &#x27;./signin/signin.component&#x27;;
-
+import { SignupComponent } from &#x27;./sign-up/signup.component&#x27;;
 
 const routes: Routes &#x3D; [
-  { path: &#x27;&#x27;, redirectTo: &#x27;login&#x27;, pathMatch: &#x27;full&#x27;},
-  
-  {path: &#x27;login&#x27;, component: LoginComponent},
-  {path: &#x27;signin&#x27;, component: SigninComponent}
+  { path: &#x27;&#x27;, redirectTo: &#x27;login&#x27;, pathMatch: &#x27;full&#x27; },
+
+  { path: &#x27;login&#x27;, component: LoginComponent },
+  { path: &#x27;sign-up&#x27;, component: SignupComponent },
+  { path: &#x27;resetPassword&#x27;, component: ResetPasswordComponent}
 ];
 
 @NgModule({

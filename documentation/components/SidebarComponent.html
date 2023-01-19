@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/public/user/component/sidebar/sidebar.component.ts</code>
+    <code>src/app/_components/sidebar/sidebar.component.ts</code>
 </p>
 
 
@@ -125,6 +125,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -135,7 +149,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#refresh" >refresh</a>
+                            </li>
+                            <li>
+                                <a href="#updateUser" >updateUser</a>
+                            </li>
+                            <li>
+                                <a href="#userOrder" >userOrder</a>
                             </li>
                         </ul>
                     </td>
@@ -155,12 +181,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(TokenService: <a href="../injectables/TokenService.html" target="_self">TokenService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/public/user/component/sidebar/sidebar.component.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -177,6 +203,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>TokenService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TokenService.html" target="_self" >TokenService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>router</td>
                                                   
@@ -211,6 +249,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -227,8 +302,119 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/app/public/user/component/sidebar/sidebar.component.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:15</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refresh"></a>
+                    <span class="name">
+                        <span ><b>refresh</b></span>
+                        <a href="#refresh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refresh()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUser"></a>
+                    <span class="name">
+                        <span ><b>updateUser</b></span>
+                        <a href="#updateUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUser()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userOrder"></a>
+                    <span class="name">
+                        <span ><b>userOrder</b></span>
+                        <a href="#userOrder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>userOrder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:23</a></div>
                 </td>
             </tr>
 
@@ -245,6 +431,38 @@
         </tbody>
     </table>
 </section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/_components/sidebar/sidebar.component.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
@@ -252,19 +470,51 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { TokenService } from &#x27;src/app/_services/auth/token.service&#x27;;
 
 @Component({
   selector: &#x27;app-sidebar&#x27;,
   templateUrl: &#x27;./sidebar.component.html&#x27;,
-  styleUrls: [&#x27;./sidebar.component.scss&#x27;]
+  styleUrls: [&#x27;./sidebar.component.scss&#x27;],
 })
 export class SidebarComponent implements OnInit {
+  user: any;
 
-  constructor(private router: Router,) { }
+  constructor(private TokenService: TokenService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  // Traitement de la modification de l&#x27;utilisateur conneté
+  updateUser(): void {
+    // Redirection vers le composant user-update
+    this.router.navigate([&#x27;user/user-update&#x27;]);
   }
 
+  userOrder() {
+    let UserfoLocal: any &#x3D; localStorage.getItem(&#x27;user&#x27;);
+
+    //Si l&#x27;objet local n&#x27;est pas null alors on recupere l&#x27;ID de l&#x27;utilisateur
+    if (UserfoLocal !&#x3D; null) {
+      UserfoLocal &#x3D; JSON.parse(UserfoLocal);
+      let userId &#x3D; UserfoLocal.id;
+      this.router.navigate([&#x27;user/order/&#x27; + userId]);
+    }
+  }
+
+  // Deconnexion de l&#x27;utilisateur
+  logout(): void {
+    this.TokenService.clearToken();
+    this.router.navigate([&#x27;/menu&#x27;]);
+    setTimeout(this.refresh, 1);
+  }
+  // rafraichir la page
+  refresh() {
+    location.reload();
+  }
+
+  // profileUser(id : any) {
+  //   this.router.navigate([&#x27;user/user-profile/&#x27;+(id)]);
+  // }
 }
 </code></pre>
     </div>
@@ -276,18 +526,19 @@ export class SidebarComponent implements OnInit {
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;menu&quot;&gt;
         &lt;ul&gt;
-            &lt;li&gt;&lt;a href&#x3D;&quot;&quot; routerLink&#x3D;&quot;/user-profile&quot;&gt;Modifier le profil&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href&#x3D;&quot;&quot; routerLink&#x3D;&quot;/user-order&quot;&gt;Commandes&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a (click)&#x3D;&quot;updateUser()&quot;&gt;Modifier mes informations&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a (click) &#x3D; &quot;userOrder()&quot;&gt;Mes Commandes&lt;/a&gt;&lt;/li&gt;
             
         &lt;/ul&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;sign-out&quot;&gt;
-        &lt;a href&#x3D;&quot;&quot;&gt;
+        &lt;a (click)&#x3D;&quot;logout()&quot;&gt;
             &lt;i class&#x3D;&quot;fa-solid fa-power-off me-2&quot;&gt;&lt;/i&gt;
             &lt;span&gt;Déconnexion&lt;/span&gt;
         &lt;/a&gt;
     &lt;/div&gt; 
 &lt;/div&gt;
+
 </code></pre>
     </div>
 
@@ -295,7 +546,16 @@ export class SidebarComponent implements OnInit {
                 <p class="comment">
                     <code>./sidebar.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">
+                <pre class="line-numbers"><code class="language-scss">.side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 25vw;
+    padding: 2rem;
+    background-color: #faddb1;
+}
+
 ul {
     list-style-type: none;
 }
@@ -303,6 +563,7 @@ ul {
 a {
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 
 h1 {
@@ -326,14 +587,26 @@ ul {
     color: red;
 }
 
-.side-bar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    width: 25vw;
-    padding: 2rem;
-    background-color: #faddb1;
+@media screen and (max-width: 768px) {
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+    .side-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 25vh;
+        background-color: #faddb1;
+    }
+
+    h1, ul, .sign-out a {
+        font-size: 100%;  
+    }
+
+
 }
 
 </code></pre>
@@ -364,8 +637,8 @@ ul {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="side-bar">    <div class="title">        <h1>Edu\'cantine</h1>    </div>    <div class="menu">        <ul>            <li><a href="" routerLink="/user-profile">Modifier le profil</a></li>            <li><a href="" routerLink="/user-order">Commandes</a></li>                    </ul>    </div>    <div class="sign-out">        <a href="">            <i class="fa-solid fa-power-off me-2"></i>            <span>Déconnexion</span>        </a>    </div> </div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserInfosComponent', 'selector': 'app-user-profile'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'}];
+        var COMPONENT_TEMPLATE = '<div><div class="side-bar">    <div class="title">        <h1>Edu\'cantine</h1>    </div>    <div class="menu">        <ul>            <li><a (click)="updateUser()">Modifier mes informations</a></li>            <li><a (click) = "userOrder()">Mes Commandes</a></li>                    </ul>    </div>    <div class="sign-out">        <a (click)="logout()">            <i class="fa-solid fa-power-off me-2"></i>            <span>Déconnexion</span>        </a>    </div> </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'Page404Component', 'selector': 'app-page404'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserUpdateComponent', 'selector': 'app-user-update'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
 </script>
