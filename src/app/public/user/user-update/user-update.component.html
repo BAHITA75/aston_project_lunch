@@ -20,7 +20,7 @@
             <form (ngSubmit)="upadateUserInfos()" [formGroup]="updateUserInfos"> 
 
                 <div class="label-form">
-                    <strong></strong> Nom :<input type="text" [formControl]="name" />
+                    <strong>Nom</strong> :<input type="text" [formControl]="name" />
                 </div><br/>
                 <p *ngIf="name.dirty && (name.hasError('required') || name.hasError('pattern'))">
                     Nom incorrect (caracteres alpha-numérique uniquement, accents non autorisés)

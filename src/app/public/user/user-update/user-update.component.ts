@@ -219,7 +219,7 @@ export class UserUpdateComponent implements OnInit {
     //Requetes asynchrone de changement d'avatar au service user
     await this.userService.changeUserPicture(this.user.id, imageObj);
     //Redirection vers la page "mon compte"
-    this.router.navigate([`user/profile/${this.user.id}`]);
+    // this.router.navigate([`user/profile/${this.user.id}`]);
   }
 
   //------------------- Conversion du path d'une image en base 64 ---------------//

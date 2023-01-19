@@ -75,25 +75,29 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { HomeComponent } from &#x27;./home/home.component&#x27;;
-import { UserInfosComponent } from &#x27;./user/user-profile/user-profile.component&#x27;;
+import { UserProfileComponent } from &#x27;./user/user-profile/user-profile.component&#x27;;
+import { UserUpdateComponent } from &#x27;./user/user-update/user-update.component&#x27;;
 import { UserOrderComponent } from &#x27;./user/user-order/user-order.component&#x27;;
 import { UserHomeComponent } from &#x27;./user/user-home/user-home.component&#x27;;
+import { MenuComponent } from &#x27;./menu/menu.component&#x27;;
 
 const routes: Routes &#x3D; [
   { path: &#x27;&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27;},
   
   { path: &#x27;home&#x27;, component: HomeComponent },
+  { path: &#x27;menu&#x27;, component: MenuComponent },
+
   { path: &#x27;user&#x27;, component: UserHomeComponent },
-  { path: &#x27;user-order&#x27;, component: UserOrderComponent },
-  { path: &#x27;user-profile&#x27;, component: UserInfosComponent },
+  { path: &#x27;user/order/:userId&#x27;, component: UserOrderComponent },
+  { path: &#x27;user/user-profile/:userId&#x27;, component: UserProfileComponent },
+  { path: &#x27;user/user-update&#x27;, component: UserUpdateComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PublicRoutingModule { }
-</code></pre>
+export class PublicRoutingModule { }</code></pre>
     </div>
 </div>
 

@@ -25,6 +25,6 @@ import { OrderService } from '../services/order.service';
     HttpClientModule
 
   ],
-  providers: [UserService, MenuService, OrderService],
+  providers: [],
 })
 export class AdminModule { }

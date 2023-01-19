@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/menu']);
           setTimeout(this.refreshPage, 1);
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/admin/home']);
           setTimeout(this.refreshPage, 1) ;
         }
       },

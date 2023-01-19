@@ -72,7 +72,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ErrorComponent } from &#x27;./_error/error.component&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Page404Component } from &#x27;./_page404/page404.component&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
@@ -83,10 +83,17 @@ const routes: Routes &#x3D; [
       &quot;import(&#x27;./public/public.module&#x27;).then((m) &#x3D;&gt; m.PublicModule)&quot;,
   },
   {
+    path: &#x27;admin&#x27;,
+    loadChildren: () &#x3D;&gt;
+      &quot;import(&#x27;./admin/admin.module&#x27;).then((m) &#x3D;&gt; m.AdminModule)&quot;,
+  },
+  {
     path: &#x27;auth&#x27;,
     loadChildren: () &#x3D;&gt; &quot;import(&#x27;./auth/auth.module&#x27;).then((m) &#x3D;&gt; m.AuthModule)&quot;,
   },
-  { path: &#x27;**&#x27;, component: ErrorComponent },
+
+  { path: &#x27;page-404&#x27;, component: Page404Component },
+  { path: &#x27;**&#x27;, redirectTo: &#x27;page-404&#x27;, pathMatch: &#x27;full&#x27; },
 ];
 
 @NgModule({

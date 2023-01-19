@@ -59,7 +59,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/auth/token.interceptor.ts</code>
+            <code>src/app/_services/auth/token.interceptor.ts</code>
         </p>
 
 
@@ -99,12 +99,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(tokenService: <a href="../injectables/TokenService.html" target="_self">TokenService</a>)</code>
+<code>constructor(TokenService: <a href="../injectables/TokenService.html" target="_self">TokenService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/auth/token.interceptor.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/_services/auth/token.interceptor.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -122,7 +122,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>tokenService</td>
+                                                        <td>TokenService</td>
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/TokenService.html" target="_self" >TokenService</a></code>
@@ -167,8 +167,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/auth/token.interceptor.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/_services/auth/token.interceptor.ts:18</a></div>
                 </td>
             </tr>
 
@@ -234,47 +234,59 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TokenService } from &#x27;./token.service&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HTTP_INTERCEPTORS,
+  HTTP_INTERCEPTORS
 } from &#x27;@angular/common/http&#x27;;
-import { catchError, Observable, Subject, throwError } from &#x27;rxjs&#x27;;
-import { TokenService } from &#x27;../_services/auth/token.service&#x27;;
+import { Observable, throwError } from &#x27;rxjs&#x27;;
+import { catchError } from &#x27;rxjs/operators&#x27;;
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private tokenService: TokenService) {}
 
-  intercept(
-    request: HttpRequest&lt;unknown&gt;,
-    next: HttpHandler
-  ): Observable&lt;HttpEvent&lt;unknown&gt;&gt; {
+  constructor(private TokenService: TokenService) {}
+
+  intercept(request: HttpRequest&lt;unknown&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;unknown&gt;&gt; {
     console.log(request);
 
-    const token &#x3D; this.tokenService.getToken();
-
-    // SI token à insérer dans le header
-    if (token !&#x3D;&#x3D; null) {
+    const token &#x3D; this.TokenService.getToken();
+ 
+    // Si token à insérer dans le header
+    if(token !&#x3D;&#x3D; null){
       let clone &#x3D; request.clone({
-        headers: request.headers.set(&#x27;Authorization&#x27;, &#x27;bearer &#x27; + token),
+        headers: request.headers.set(&#x27;Authorization&#x27;, token)
       });
-      console.log(clone);
-      return next.handle(clone);
-    }
 
-    return next.handle(request);
+      console.log(clone);
+
+      return next.handle(clone).pipe( // on recupère l&#x27;erreur quand on reçois la reponse
+
+        catchError(error &#x3D;&gt; {
+          console.log(error);
+          if(error.status &#x3D;&#x3D;&#x3D; 401){ // si l&#x27;erreur de 401 (erreur d&#x27;authentification, le token est expiré)
+            this.TokenService.clearTokenExpired(); // on suprimme le token actuel puis on redirge le user vers la page de connexion
+          }
+          return throwError(&#x27;Session Expired&#x27;);
+        })
+  
+      );
+
+    } else {
+      return next.handle(request);
+    } 
   }
 }
-
+// exports
 export const TokenInterceptorProvider &#x3D; {
   provide: HTTP_INTERCEPTORS,
   useClass: TokenInterceptor,
   multi: true,
-};
+}
 </code></pre>
     </div>
 </div>

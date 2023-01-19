@@ -35,6 +35,6 @@ registerLocaleData(localeFr, 'fr'); //Gestion des dates Françaises
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatePipe, ComponentsModule], 
+  providers: [ComponentsModule], 
 })
 export class PublicModule {}

@@ -205,7 +205,8 @@ export class AppComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -219,6 +220,7 @@ export class AppComponent {
     src: url(../assets/font/Ubuntu-Medium.ttf) format(&quot;opentype&quot;);
     src: url(../assets/font/Ubuntu-Regular.ttf) format(&quot;opentype&quot;);
   }
+
 </code></pre>
     </div>
 
@@ -247,8 +249,8 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><router-outlet></router-outlet></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserInfosComponent', 'selector': 'app-user-profile'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'}];
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><router-outlet></router-outlet></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'Page404Component', 'selector': 'app-page404'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UserComponent', 'selector': 'app-user'},{'name': 'UserHomeComponent', 'selector': 'app-user'},{'name': 'UserOrderComponent', 'selector': 'app-user-order'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'UserUpdateComponent', 'selector': 'app-user-update'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>

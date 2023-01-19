@@ -1,7 +1,8 @@
+import { TokenService } from 'src/app/_services/auth/token.service';
 import { Injectable } from '@angular/core';
 import { User } from '../_interfaces/user';
 import { Img } from '../_interfaces/img';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,115 +10,64 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private url: string;
-  private tokenItem: any = localStorage.getItem('token');
+  tokenItem: any = localStorage.getItem('token');
   userInfos: any = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private tokenService: TokenService) {
     this.url = `http://localhost:8080/stone.lunchtime/user`;
   }
 
-  //--------------------  RECUPERATION DES NFORMATIONS D'UN UTILISATEUR ----------------------------------------------
+  // ---------------------Récuperation des informations d'un utilisateur ------------------------//
   async getUserInfos(userId: number) {
-    //FORMULATION HEADER
-    const headers = {
-      Authorization: this.tokenItem,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      accept: 'application/json',
-    };
 
-    //REQUETE API: recuperer l'utilisateur par son id
     return await this.http.get(`${this.url}/find/${userId}`).toPromise();
   }
 
-  //------------------------ RECUPERATION DE LA PHOTO DE L'UTILISATEUR ---------------------------------
+  //------------------------ Récupération de l'image de l'utilisateur -----------------------------//
   async getUserImage(userId: number) {
-    const headers = {
-      Authorization: this.tokenItem,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      accept: 'application/json',
-    };
-    return await this.http
-      .get(`${this.url}/findimg/${userId}`, { headers })
-      .toPromise();
-    // return this.http.get<Img>(`${this.url}/user/findimg/${userId}`).subscribe(
-    //   data => console.log(data)
-    // );
+    
+    return await this.http.get(`${this.url}/findimg/${userId}`).toPromise();
   }
 
-  //--------------------  Modification des informations de l'utilisateur ----------------------------------------------
+  //--------------------  Modification des informations de l'utilisateur --------------------------//
   async updateUser(user: any, userId: number) {
-    const headers = {
-      Authorization: this.tokenItem,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:4200/menu',
-      accept: 'application/json',
-    };
 
-    return await this.http
-      .patch(`${this.url}/update/${userId}`, user, { headers })
-      .toPromise();
+    return await this.http.patch(`${this.url}/update/${userId}`, user).toPromise();
   }
 
-  //------------------------- Changement de la photo de l'utilisateur --------------------------
+  //------------------------- Changement de la photo de l'utilisateur ----------------------------//
   async changeUserPicture(userId: number, avatarObj: any) {
-    const headers = {
-      Authorization: this.tokenItem,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      accept: 'application/json',
-    };
 
-    return await this.http
-      .patch(`${this.url}/updateimg/${userId}`, avatarObj, { headers })
-      .toPromise();
+    return await this.http.patch(`${this.url}/updateimg/${userId}`, avatarObj).toPromise();
   }
 
-  //--------------------  Creation d'un compte (S'enregistrer) ----------------------------------------------
+  //--------------------  Creation d'un compte (S'enregistrer) -------------------------------------//
   async createUser(people: any) {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      accept: 'application/json',
-    };
-
-    return await this.http
-      .put(`${this.url}/register`, people, { headers })
-      .toPromise();
+    
+    return await this.http.put(`${this.url}/register`, people).toPromise();
   }
 
-  //--------------------  Supprission du compte utilisateur ----------------------------------------------
+  //--------------------  Supprission du compte utilisateur ---------------------------------------//
   async deleteUser(userId: number) {
-    const headers = {
-      Authorization: this.tokenItem,
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      accept: 'application/json',
-    };
-
-    return await this.http
-      .delete(`${this.url}/delete/${userId}`, { headers })
-      .toPromise();
+    return await this.http.delete(`${this.url}/delete/${userId}`).toPromise();
   }
 
-  //--------------------  VERIFICATION D'AUTHENTIFICATION ----------------------------------------------
-  onVerifAuthentification() {
-    //RECUPERATION DE L'OBJET USER LOCAL
-    let userCrypted: any = localStorage.getItem('user');
-    //DECRYPTAGE DE L'OBJET
-    let userUncrypted: any = JSON.parse(userCrypted);
+  //-------------------------  Verification de la connexion ------------------------------------//
+  authentificationRole() {
+    let user: any = localStorage.getItem('user');
 
-    //SELON LE RETOUR DE L'OBJET, ON DEFINIT LA CONNEXION
-    if (userUncrypted == null) {
-      return 0; // personne n'est connecté
+    let userInfos: any = JSON.parse(user);
+
+    //selon les infos de l'objet, on definit le role
+    if (userInfos == null) {
+      return 'any'; // personne n'est connecté
     } else {
-      let isLunchLady = userUncrypted.isLunchLady;
+      let isLunchLady = userInfos.isLunchLady;
 
       if (isLunchLady == false) {
-        return 1; // utilisyateur connecté
+        return 'user'; // utilisateur connecté
       } else {
-        return 2; // continiere connecté
+        return 'cantiniere'; // continiere connecté
       }
     }
   }

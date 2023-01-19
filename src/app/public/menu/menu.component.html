@@ -1,1 +1,120 @@
-<p>MENU</p>
+<main class="contain-homepage">
+    <section class="sect-homepage">
+        <h2 class="fadein">Menu et Carte</h2>
+
+        <!-- Affichage des plats du jour -->
+        <div class="contain-all-food">
+            <div class="contain-plats">
+             
+                <!-- Affichage en boucle for les jours de la semaine -->
+                <div class="list-of-menus mx-auto">
+                    <div class="row justify-content-center row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                          <div class="card">
+                            <img src="{{image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Lundi</h5>
+                              <p class="card-text">{{Menus[1].meals[0].label}}</p>
+                              <p class="card-text">{{Menus[1].meals[1].label}}</p>
+                              <p class="meal-price">{{ Menus[1].priceDF }} €</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card">
+                            <img src="{{image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Mardi</h5>
+                                <p class="card-text">{{Menus[22].meals[0].label}}</p>
+                                <p class="card-text">{{Menus[22].meals[1].label}}</p>
+                                <p class="meal-price">{{Menus[22].priceDF }} €</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card">
+                            <img src="{{image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Mercredi</h5>
+                                <p class="card-text">{{Menus[4].meals[0].label}}</p>
+                                <p class="card-text">{{Menus[4].meals[1].label}}</p>
+                                <p class="meal-price">{{ Menus[4].priceDF }} €</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card">
+                            <img src="{{image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Jeudi</h5>
+                                <p class="card-text">{{Menus[5].meals[0].label}}</p>
+                                <p class="card-text">{{Menus[5].meals[1].label}}</p>
+                                <p class="meal-price">{{ Menus[5].priceDF }} €</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                              <img src="{{image}}" class="card-img-top" alt="...">
+                              <div class="card-body">
+                                <h5 class="card-title">Vendredi</h5>
+                                <p class="card-text">{{Menus[10].meals[0].label}}</p>
+                                <p class="card-text">{{Menus[10].meals[1].label}}</p>
+                                <p class="meal-price">{{Menus[10].priceDF }} €</p>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+            </div>
+
+            <!-- Affichage de la carte -->
+            <div class=" contain-carte">
+                <h3 class="title-carte">Carte</h3>
+                <section class="category-carte">
+                    <ul>
+                        <!-- Pour toutes les catégories de la carte on affiche les elements de la carte -->
+                        <li *ngFor="let category of categories">
+                            <div class="contain-cat">
+                                <h4 class="category-title">{{category[0].name}}</h4>
+                            </div>
+                            <ul class="list-of-meals">
+                                <!-- Pour la categorie en cours, boucle for d'affichage des elements de la categorie en cours d'affichage -->
+                                <li class="meal-item" *ngFor="let item of category[0]['items']">
+                                    <div class="contain-info-item">
+                                        <h5 class="meal-title">{{item.label}}</h5>
+                                        <p class="meal-price">{{ item.priceDF }} crédit(s)</p>
+                                    </div>
+                                    <!-- Bouton d'ajout au panier -->
+                                    <ng-container >
+                                        <button class="btn add tool"><i class="fas fa-shopping-cart"></i>
+                                          </button>
+                                        </ng-container>
+                                    <ng-template #elseHour>
+                                        <button class="btn add tool disabled" disabled><i class="fas fa-shopping-cart"></i>
+                                            <span class="tooltiptext">
+                                                <i class="fas fa-exclamation-circle"></i>
+                                                ATTENTION
+                                                <i class="fas fa-exclamation-circle"></i> <br>
+                                                Toute commande dois etre prise <br> avant 10h30
+                                              </span>
+                                        </button>
+                                    </ng-template>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+        </div>
+    </section>
+    <div class="fixed-btn">
+        <!-- Bouton d'acces au panier -->
+        <button class="btn bucket"> <i class="fas fa-shopping-cart"></i>
+          <span class="tooltiptext toolTip">Voir mon panier</span>
+        </button>
+    </div>
+</main>
+
