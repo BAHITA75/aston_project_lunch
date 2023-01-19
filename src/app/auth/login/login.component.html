@@ -53,25 +53,22 @@
                 >
                 <div class="containerInput">
                     <input class="signFormField" type="email" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required placeholder="Adresse mail">
-                    <div class="form_error" *ngIf="email.errors && f.submitted">
-                        Email is required !
-                    </div>
-                    <!-- <span>adresse mail non connue</span> -->
+                    <!-- <div class="form_error" *ngIf="email.errors && f.submitted">
+                        Email est requis!
+                    </div> -->
+                    <span *ngIf="email.errors && f.submitted">Adresse émail est requise</span>
                 </div>
 
                 <div class="containerInput">
                     <input class="signFormField" type="password" placeholder="Mot de passe" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="5">
-                    <div class="form_error" *ngIf="password.errors && f.submitted">
-                        <div *ngIf="password.errors['required']">Password is required</div>
-                        <div *ngIf="password.errors['minlength']">Password must be at least 5 charracters</div>
-                    </div>
-                    <!-- <span>mot de passe incorrect</span> -->
+                    <span *ngIf="password.errors && f.submitted">Mot de passe est requis</span>
                 </div>
 
                 <div class="containerInput"><input class="signFormSubmit" type="submit" value="Connexion"></div>
             </form>
             <figure class="containerRedirectBtn">
-                <p>Pas encore inscrit  <a routerLink="../signin">Créer votre compte</a></p>
+                <p><a (click)="resetPassword()">Mot de Passe perdu ?</a></p>
+                <p>Pas encore inscrit ? <a (click)="createAccount()">Créer votre compte</a></p>
             </figure>
         </figure>
     </main>

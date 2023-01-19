@@ -2,7 +2,7 @@
     <app-sidebar></app-sidebar>
     <div class="welcome">
         <div class="infos">
-            <h2>Utilisateur <br> <span> {{userInfo.name}} {{userInfo.firstname}} </span></h2>
+            <h2>Utilisateur<span> {{userInfo.name}} {{userInfo.firstname}} </span></h2>
             <div class="contain-info">
                 <!-- Informations de l'utilisateur -->
                 <div class="contain-user">
@@ -10,67 +10,28 @@
                         <p><span>Nom :</span> {{userInfo.name}} </p>
                         <p><span>Prénom :</span> {{userInfo.firstname}} </p>
                         <p><span>E-Mail :</span> {{userInfo.email}} </p>
-                        <p *ngIf="userInfo.address"><span>Adresse: </span> {{userInfo.address}}</p>
-                        <p *ngIf="userInfo.town"><span>Ville:</span> {{userInfo.town}}</p>
-                        <p *ngIf="userInfo.postalCode"><span>Code Postal:</span> {{userInfo.postalCode}}</p>
+                        <p><span>Télephone :</span> {{userInfo.phone}} </p>
+                        <p *ngIf="userInfo.address"><span>Adresse : </span> {{userInfo.address}}</p>
+                        <p *ngIf="userInfo.town"><span>Ville :</span> {{userInfo.town}}</p>
+                        <p *ngIf="userInfo.postalCode"><span>Code Postal :</span> {{userInfo.postalCode}}</p>
                     </div>
-                    <div *ngIf="!isLunch">
-                        <div class="contain-cred">
+                    <div *ngIf="!isLunch" class="pictogram">
+                        <div class="user-picture">
+                            <img src="{{image}}" alt="img.{{userInfo.firstname}}">
+                        </div>
+                        <div class="wallet-credit">
                             <p>Crédit :</p>
-                            <p><span> {{userInfo.wallet}} </span></p>
+                            <p><span> {{userInfo.wallet}}  </span></p>
                         </div>
                     </div>
                 </div>
-                <!--Si l'utilisateur est la lunch-->
-                <!-- <div *ngIf="!isLunch">
-                    <div class="contain-btn"> -->
-                        <!--Voir les commandes en cours de l'user-->
-                        <!-- <div class="contain-links-order">
-                            <a routerLink="/currentOrder/{{userInfo.id}}">Voir les commandes en cours</a> <br>
-                        </div> -->
-                        <!-- Crediter le compte -->
-                        <!-- <div class="contain-credit">
-                            <input type="number" (click)="onClickInputAVider($event)" [(ngModel)]="nbCreditAsk">
-                            <button class="btn-action" (click)="onCreditAccount(userInfo.id)">Créditer le compte</button>
-                        </div> -->
-                        <!-- Débiter le compte -->
-                        <!-- <div class="contain-debit">
-                            <input type="number" (click)="onClickInputAVider($event)" [(ngModel)]="nbDebitAsk">
-                            <button class="btn-action" (click)="onDebitAccount(userInfo.id)">Débiter le compte</button>
-                        </div> -->
-                        <!-- Selon le status du compte, affichage du bouton activer, desactiver le compte -->
-                        <!-- <div class="contain-btn-active">
-                            <div *ngIf="userInfo.status == 0">
-                                <button class="btn-desactive" (click)="onDeactiveAccount(userInfo.id)">Désactiver le compte</button> <br>
-                            </div>
-                            <div *ngIf="userInfo.status != 0">
-                                <button class="btn-reactive" (click)="onReActivateAccount(userInfo.id)">Réactiver le compte</button> <br>
-                            </div>
-                        </div> -->
-        
-                    <!-- </div> -->
-                </div>
-            <!-- </div>
-            <button class="btn-return" > <i class="fas fa-arrow-circle-left"></i>  Utilisateurs</button> -->
+            </div>
+            <div class="btn-action">
+                <button (click)="updateUser()" >Modifier mes informations / Mot de Passe</button>
+                <button *ngIf="!isLunch" (click)="deleteUser()">Suprrimer mon compte</button>
+                <button routerLink="/menu" >Retour au Menu</button>
+            </div>
         </div>
-
-        <!-- <div class="infos">
-            <h2>Informations personnelles</h2>
-            <img style="width: 50px; height: 50px;" src="{{image.image64}}" alt="">
-            <p><strong>Prénom et Nom</strong> : {{ user[0].name }}</p>
-            <p><strong>Adresse mail</strong> : {{ user[0].firstname }}</p>
-
-            <a class="editPass"><strong>Modifier mon mot de passe </strong>
-                <i class="arrow-down"></i>
-                <div class="password">
-                    <input type="password" name="" id="" placeholder="Mot de passe actuel">
-                    <input type="password" name="" id="" placeholder="Nouveau mot de passe">
-                    <input type="password" name="" id="" placeholder="confirmer le nouveau de passe">
-                    <input type="button" value="submit" class="btn btn-primary col-6">
-                </div>
-            </a>
-            
-        </div> -->
     </div>
 </div>
 

@@ -1,0 +1,90 @@
+h1 {
+    color: #175242;
+    text-align: center;
+    font-size: 4vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    margin: 2vh;
+}
+
+
+
+#createForm {
+    background-color: rgb(250,221,177);
+    border-radius: 6px;
+    width: 40vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: center;
+    color: #175242;
+    font-size: 1em;
+    margin: auto;
+}
+
+input {
+    border: #86CB92;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.gender {
+    width: 196.444px;
+    border: #86CB92;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+form button {
+    margin: 1.6em;
+    font-size: 2.5vh;
+    color: #ffffff;
+    background-color: #14a37d !important;
+    border: #14a37d;
+    border-radius: 4px;
+    margin-top: 3vh;
+    padding: 0.5vw;
+}
+
+#boutonReturn {
+    margin-top: 50vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2vh;
+}
+
+#boutonReturn button {
+    width: 196.444px;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: #f3f3f3;
+    background-color: #f3f3f3;
+    color: #175242;
+    font-size: 2.5vh;
+}
+
+p {
+    color: red;
+    font-size: 1.5vh;
+}
+
+.ph-user {
+    margin-top: 0.7em;
+}
+
+form button:disabled {
+    background-color: #7a827d;
+}
+
+.img-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 800px) {
+    #createForm {
+        width: 80%;
+    }
+}

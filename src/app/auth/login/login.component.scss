@@ -1,7 +1,7 @@
 .SignIn{
     height: 100vh;
     font-family: 'Ubuntu';
-    background-color: #d8b785;
+    background-color: #faddb1;
 
     .navLogin{
         height: 15vh;
@@ -20,11 +20,6 @@
             margin-left: 10px;
             text-decoration: none;
             cursor: pointer;
-            
-
-            &:after{
-                
-            }
         }
     }
 
@@ -32,13 +27,30 @@
         display: flex;
         justify-content: center;
 
-
-        span{
-            visibility: hidden;
-        }
-
-        .form_error {
+        span {
             color: red;
+        }
+        h1{  
+            font-size: 2.2rem;
+        }
+    }
+
+    .containerRedirectBtn{
+        p{
+            font-size: 0.8rem;
+            a{
+                margin-left: 3px;
+                font-weight: 600;
+                color: #1d5cc8 ;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .containerInput {
+        input {
+            border-radius: 6px;
+            padding: 0.6em;
         }
     }
 }
@@ -57,10 +69,7 @@
     }
 
     .navBtn{
-        font-size: 1.2rem;
-        
-
-       
+        font-size: 1.2rem;   
     }
 
     .mainSignIn{
@@ -75,7 +84,7 @@
 
     .containerFormSignIn{
         width: 80%;
-        height: 60vh;
+        height: 100%;
         overflow: hidden;
         border-radius: 50px;
         border: 3px solid black;
@@ -86,10 +95,9 @@
             justify-content: center;
             align-items: center;
 
-            h1{
-                
-                font-weight: 300;
-            }
+            h1{  
+                font-size: 1.8rem;
+            } 
         }
 
         .formSignIn{
@@ -100,7 +108,6 @@
             
 
             .containerInput{
-                height: 10vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -108,7 +115,6 @@
 
                 .signFormField{
                     width: 70%;
-                    height: 7vh;
                     border: none;
                     background-color: transparent;
                     border-bottom: 1.5px solid black;
@@ -122,7 +128,7 @@
                 }
 
                 .signFormSubmit{
-                    padding: 14px;
+                    padding: 0.5em;
                     background-color: transparent;
                     border: 1.4px solid black;
                     cursor: pointer;
@@ -140,11 +146,11 @@
         .containerRedirectBtn{
             height: 10vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
 
             p{
-                font-size: 0.7rem;
+                font-size: 0.8rem;
 
                 a{
                     margin-left: 3px;
@@ -152,9 +158,6 @@
             }
         }
     }
-
-
-
 }
 
 // @media screen and (min-width: 769px) and (max-width:1024px){
@@ -170,36 +173,27 @@
     }
 
     .mainSignIn{
-        height: 85vh;
+        height: 75vh;
         align-items: flex-start;
     }
-
-        .navBtn{
-            font-size: 1.2rem;
-            
-
-            &:after{
-                
-            }
-        }
-
+    .navBtn{
+        font-size: 1.2rem;
+    }
+        
     .containerFormSignIn{
-        width: 25vw;
-        height: 70vh;
+        background-color: #f0f0f5;
+        width: 35vw;
+        height: 100%;
         overflow: hidden;
         border-radius: 50px;
-        border: 3px solid black;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        
 
         .titleFormSignIn{
             height: 15vh;
             display: flex;
             justify-content: center;
             align-items: center;
-
-            h1{
-
-                font-weight: 300;
-            }
         }
 
         .formSignIn{
@@ -208,9 +202,7 @@
             flex-direction: column;
             justify-content: space-around;
             
-
             .containerInput{
-                height: 10vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -218,7 +210,6 @@
 
                 .signFormField{
                     width: 70%;
-                    height: 7vh;
                     border: none;
                     background-color: transparent;
                     border-bottom: 1.5px solid black;
@@ -233,16 +224,15 @@
 
                 .signFormSubmit{
                     width: 150px;
-                    height: 60px;
                     background-color: transparent;
-                    border: 1.8px solid black;
+                    border: 2px solid #28a745;
                     cursor: pointer;
                     transition: 0.3s ease;
                     font-size: 17px;
                     font-family: 'Ubuntu';
 
                     &:hover{
-                        background-color: rgb(27, 27, 27);
+                        background-color: #28a745;
                         color: #FADDB1;
                     }
                 }
@@ -252,14 +242,13 @@
         .containerRedirectBtn{
             height: 10vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-
             p{
-                font-size: 0.9rem;
-
+                font-size: 0.8rem;
                 a{
                     margin-left: 3px;
+    
                 }
             }
         }

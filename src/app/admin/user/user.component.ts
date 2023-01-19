@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/app/_model/user';
+import { User } from 'src/app/_interfaces/user';
 import { UserService } from 'src/app/_services/user-service';
 
 @Component({

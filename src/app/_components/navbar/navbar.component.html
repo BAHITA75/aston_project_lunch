@@ -1,0 +1,41 @@
+<nav class="nav-contain">
+    <div class="contain-link">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Menu</a>
+              <!-- Navbar pour les utilisateurs non connectés -->
+              <ul class="dropdown-menu" *ngIf="!isConnect">
+                <li><a class="dropdown-item" routerLink="/menu" (click)="refresh()">Menu et Carte</a></li>
+                <li><a class="dropdown-item" (click)="loggin()">Connexion</a></li>
+              </ul>
+              <!-- Navbar pour les utilisateurs connectés -->
+              <ul class="dropdown-menu" *ngIf="isConnect && !isLunchLady">
+                <li><a class="dropdown-item" routerLink="/menu">Menu et Carte</a></li>
+                <li><a class="dropdown-item" routerLink="user/user-profile/{{userId}}">Mon Compte</a></li>
+                <li><a class="dropdown-item" routerLink="user/order/{{userId}}">Mes commandes</a></li>
+                <li><a class="dropdown-item" href="#">Mon Panier</a></li>
+                <li><a class="dropdown-item" (click)="logout()" (click)="refresh()">Déconnexion</a></li>
+              </ul>
+              <!-- Navbar pour la cantinière -->
+              <ul class="dropdown-menu" *ngIf="isConnect && isLunchLady">
+                <li><a class="dropdown-item" routerLink="/menu" (click)="refresh()">Menu et Carte</a></li>
+                <li><a class="dropdown-item" routerLink="user/user-profile/{{userId}}">Mon Compte</a></li>
+                <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                <li><a class="dropdown-item" (click)="logout()" (click)="refresh()">Déconnexion</a></li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="contain-brand">
+        <img src="../assets/educantine.svg" alt="">
+        <h1>Edu'cantine</h1>
+    </div>
+</nav>
+
+
+
+
+
