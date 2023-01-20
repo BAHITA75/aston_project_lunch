@@ -12,9 +12,11 @@ export class UserService {
   private url: string;
   tokenItem: any = localStorage.getItem('token');
   userInfos: any = '';
+  orderAllUrl: any = '';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
     this.url = `http://localhost:8080/stone.lunchtime/user`;
+    this.orderAllUrl = `http://localhost:8080/stone.lunchtime/user/findall`;
   }
 
   //--------------------  RECUPERATION DES NFORMATIONS D'UN UTILISATEUR ----------------------------------------------
@@ -78,5 +80,10 @@ export class UserService {
         return 'cantiniere'; // continiere connecté
       }
     }
+  };
+
+  
+  public findAll(): Observable<User[]> {
+    return this.http.get<User[]>(this.orderAllUrl);
   }
 }
